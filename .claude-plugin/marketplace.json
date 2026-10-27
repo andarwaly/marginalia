@@ -1,0 +1,12 @@
+{
+  "name": "marginalia",
+  "owner": { "name": "Dzaky" },
+  "plugins": [
+    {
+      "name": "marginalia",
+      "source": "./",
+      "description": "Skills that turn sources into notes with your own implications, and notes into ideas.",
+      "version": "0.0.1"
+    }
+  ]
+}
