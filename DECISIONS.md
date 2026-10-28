@@ -136,17 +136,27 @@ Skill names in this file are working names. Renaming stays open.
   take ideas" list.
 - Terms: each SKILL.md carries a short "terms used here" block. No shared glossary file.
 - Chat apps: ChatGPT and Claude chat are the intended apps; to verify.
-- Thought notes (the shape is to be discussed later; these principles hold): an atomic
-  idea; the title and filename are descriptive; the body explains; no section labels, and a
-  heading only where a small topic could grow into an article; links are inline in the
-  prose, each carrying its reason. The no-label rule is for thought notes only; source
-  notes keep their labeled sections.
+- Thought notes:
+  - An atomic idea. The title and filename are a full claim sentence, with the `✱` prefix.
+  - The body explains in prose, in the order claim, then why, then where it applies. It has
+    no section labels; a heading appears only where a small topic could grow into an
+    article. The no-label rule is for thought notes only; source notes keep their labeled
+    sections.
+  - Links are inline, the display text reading as part of the sentence:
+    `[[✱ target|clause of the sentence]]`. The prefix stays in the link target.
+  - The agent drafts the prose from the owner's confirmed parts, in the owner's wording
+    where possible, and the owner approves it through the open Gate. The agent adds no claim
+    the owner did not say. A new link is offered as a question, never asserted.
+  - Sign-off is one pass at the end, never mid-session. Too broad (more than one idea):
+    offer a second note. Too narrow: ask "where else would this hold?" The remaining
+    criteria appear as a short plain-text list below the block.
+  - The agent does not suggest edits to older notes so they link back. Backlinks cover it,
+    and connection-finding is deferred.
 
 **Dropped:** setup-slipbox, using-slipbox, write-checks, clip-resource (replaced by the
 two clip skills), ground-me (folds into grounding), the evergreen backlog.
 
-**Deferred, not designed:** connection-finding across notes; the thought note's detailed
-shape (the owner will discuss it later).
+**Deferred, not designed:** connection-finding across notes.
 
 ## Provisional
 
@@ -165,6 +175,7 @@ shape (the owner will discuss it later).
 - An ingest session ends when the owner says so or the energy winds down. The agent nudges
   once for points drafted but unconfirmed, asks the main-idea question openly, and then
   produces the notes (slipbox practice).
+- Refine mode may fully rewrite an existing thought note and bumps `updated`.
 - Authoring rules for SKILL.md bodies:
   - Be strict on the gates that protect fidelity (verbatim quote, Implications in the
     owner's words, quote shown only after the owner answers). Stay adaptive in the
@@ -183,17 +194,13 @@ shape (the owner will discuss it later).
    marked Implications section. Confirm the guard holds in the ported skill.
 3. **Reference skill inputs.** Point notes are pasted; the `source` link gives a dedupe
    key; admission verdict placement; the vault-read route.
-4. **Ideate.**
-   - The thought note's shape, to be discussed with the owner later.
-   - The five sign-off criteria. They match the owner's thought-note principles
-     (descriptive title, one idea, prose links with reasons), so the lean is to keep them.
-5. **Skills.** A per-skill type table; distinct descriptions; SKILL.md under 500 lines;
+4. **Skills.** A per-skill type table; distinct descriptions; SKILL.md under 500 lines;
    where the dispatch table lives (grounding or each caller); a small eval list as plain
    markdown (a handful of golden prompts per skill and one end to end).
-6. **Frontmatter values.** The `published-at` format; what `author` means for a video;
+5. **Frontmatter values.** The `published-at` format; what `author` means for a video;
    filename sanitization.
-7. **Plain-chat access to technique files.** How the owner gets them (raw repo URLs).
-8. **To test on a laptop.**
+6. **Plain-chat access to technique files.** How the owner gets them (raw repo URLs).
+7. **To test on a laptop.**
    - the skills folder each harness reads (`npx skills add andarwaly/marginalia`, Codex,
      cloud repo skills);
    - plugin manifest paths;
@@ -257,3 +264,6 @@ shape (the owner will discuss it later).
   strict, focused skills; write the why with each rule; every line must change behavior;
   agents can write skills for agents. UI-focused, a paid-course page, install and star
   counts unverified.
+- The two pastes that set the thought-note shape: Glukhov, "Evergreen notes" for engineers
+  (https://www.glukhov.org/knowledge-management/methods/evergreen-notes/) and Andy
+  Matuschak, "Evergreen notes" (notes.andymatuschak.org).
