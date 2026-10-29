@@ -8,7 +8,7 @@ answered explicitly by the owner. Items marked Provisional or Default may change
 under Open are the next session's frontier. Do not write skill bodies until the owner
 confirms shared understanding.
 
-Last updated: 2026-10-28
+Last updated: 2026-10-29
 
 ## Goal
 
@@ -69,10 +69,20 @@ Skill names in this file are working names. Renaming stays open.
 **Skills (six, working names)**
 - `clip-article` (Defuddle), `clip-youtube` (`youtube-transcript-api`), `grounding`,
   `ingest`, `ideate`, `reference`.
-- Clip skills need a CLI tool; in plain chat the owner pastes the text instead. Firecrawl
-  and TinyFish are dropped. A blocked fetch is reported with an ask to paste. Each checks
+- Clip skills need a CLI tool; in plain chat the owner pastes the text instead. Each checks
   for its tool, prints one install line, never auto-installs. The README carries a
   cloud-setup section.
+- Clip fallback order: Defuddle (articles) or `youtube-transcript-api` (video); then
+  Firecrawl, an optional second route used only when its tools are present and never a
+  dependency; then the owner's browser clipper and a paste. TinyFish is dropped. A failed
+  fetch is reported, and the skill asks the owner to clip the page with their browser
+  clipper and paste the result. In cloud sessions where YouTube blocks the IP, Firecrawl's
+  transcript capability is the route to try.
+- Clip v1 covers articles (including Medium and Substack) and YouTube. X goes through
+  Firecrawl only, at 30 credits per post, with exact quotes unverified. Reddit and Threads
+  are pasted.
+- Auto-generated captions: the clip header records `captions: auto-generated`, and ingest
+  warns once that quotes may carry transcription errors and quotes them as-is.
 - Clips are session-only: written to the harness's temp location, never saved in the
   vault, never committed. They let each quote be checked by exact match.
 - `grounding` is one skill holding the ten technique files. Each calling skill's SKILL.md
@@ -90,8 +100,17 @@ Skill names in this file are working names. Renaming stays open.
   and the five sign-off criteria. Trigger names in the description (provisional): ideate,
   refine-idea, validate-idea.
 - `reference`: a separate output, built last because it sits outside the owner's two-part
-  flow. The owner names a concept and supplies the notes that mention it. Keeps the
-  admission sequence and bounded lookup. No grounding interview.
+  flow. No grounding interview. Keeps the admission sequence and bounded lookup.
+  - Inputs: the owner names a concept and pastes the point notes that mention it, with
+    their maps' frontmatter (author, URL). The skill dedupes sources by URL and author.
+    There is no vault scan.
+  - Ingest gives no admission verdict; admission exists only in `reference`.
+  - If admission fails, the skill names the failed check and the support still missing. The
+    owner may reply "write it anyway", and the note then opens with a one-line caveat such
+    as `> Single source: this definition rests on Kowalski alone.` Slipbox never waived the
+    gates; this is a deliberate departure.
+  - The note is titled with the concept name and uses the `※` prefix. Frontmatter `sources`
+    lists the map links; `aliases` lists alternate names the owner gives.
 - Conventions: the agent does not need to know the owner's conventions; the owner brings
   them. Defaults are Obsidian flavor and filename prefixes (`§` source notes, `※`
   reference, `✱` thought notes).
@@ -130,10 +149,20 @@ Skill names in this file are working names. Renaming stays open.
   Questions; Implications.
 - An item goes on the point whose quote it is about; an owner-flagged item with no quote
   goes on the map.
-- Implications: the owner's own words only, marked reader-owned, in their own section,
-  never inside the point statement. Never authored by the agent; the agent only
-  transcribes the owner's words. Captured during the session. Replaces slipbox's "parked
-  take ideas" list.
+- Implications: the owner's own words only, marked reader-owned (the `## Implications`
+  heading is the marker), in their own section, never inside the point statement. Bullets
+  are first person, lightly tidied for spelling and filler but never reworded. Never
+  authored by the agent; the agent only transcribes the owner's words. Captured during the
+  session, plus one open closing prompt ("anything you want to add about what this means
+  for you, on any point?"); a decline is a complete end. Replaces slipbox's "parked take
+  ideas" list. Slipbox's `*Assumption*` and `*Answered*` bullets are dropped; the owner's
+  guess at an answer becomes an Implication bullet that names the question.
+- The agent's own view: it does not fill gaps from general knowledge. When it disagrees with
+  or adds to the source, it states so clearly with a fixed label ("My own view, not the
+  article's:"), in chat only, after a point is settled and never mid-question, at most once
+  per point (the timing is the assistant's assumption). It enters a note only if the owner
+  adopts it as an Implication in their words. This replaces slipbox's tension-to-backlog
+  feature.
 - Terms: each SKILL.md carries a short "terms used here" block. No shared glossary file.
 - Chat apps: ChatGPT and Claude chat are the intended apps; to verify.
 - Thought notes:
@@ -185,28 +214,35 @@ two clip skills), ground-me (folds into grounding), the evergreen backlog.
     generic parts.
   - Use concrete limits, not soft words ("one question per turn", not "keep questions
     short").
+- Ingest quotes only from the source body. Frontmatter and any AI summary in a clip are
+  context, never quoted. A point drawn from material the author quotes is attributed to the
+  quoted person (for example "Kowalski quotes Atluru"), never to the author. An empty
+  `published` in a clip stays empty rather than guessed.
 
 ## Open
 
 1. **Skill names.** All six are working names. Rename if a better name turns up.
-2. **Implications guard.** Slipbox's glossary rejected a Take and a Reaction field in the
-   literature note (2026-07-23). This design reverses that on purpose through a separate,
-   marked Implications section. Confirm the guard holds in the ported skill.
-3. **Reference skill inputs.** Point notes are pasted; the `source` link gives a dedupe
-   key; admission verdict placement; the vault-read route.
-4. **Skills.** A per-skill type table; distinct descriptions; SKILL.md under 500 lines;
+2. **Skills.** A per-skill type table; distinct descriptions; SKILL.md under 500 lines;
    where the dispatch table lives (grounding or each caller); a small eval list as plain
-   markdown (a handful of golden prompts per skill and one end to end).
-5. **Frontmatter values.** The `published-at` format; what `author` means for a video;
-   filename sanitization.
-6. **Plain-chat access to technique files.** How the owner gets them (raw repo URLs).
-7. **To test on a laptop.**
+   markdown (a handful of golden prompts per skill and one end to end). When the skills
+   are written, confirm the Implications guard holds in the ported text: slipbox's
+   glossary rejected a Take and a Reaction field in the literature note (2026-07-23), and
+   this design reverses that on purpose.
+3. **Frontmatter values and quote cleanup.** The `published-at` format; what `author`
+   means for a video; filename sanitization; stripping footnote markers and garbled
+   pull-quote wrappers from clips before exact-match checks.
+4. **Plain-chat access to technique files.** How the owner gets them (raw repo URLs).
+5. **To test on a laptop.**
    - the skills folder each harness reads (`npx skills add andarwaly/marginalia`, Codex,
      cloud repo skills);
    - plugin manifest paths;
    - Codex cloud and Cowork setup scripts and network allowlists;
+   - whether the Firecrawl plugin is available in Codex and Cowork cloud sessions;
    - the temp location for clips;
-   - YouTube blocking cloud IPs.
+   - `youtube-transcript-api` from a cloud IP (expected blocked; Firecrawl is the cloud
+     route);
+   - Firecrawl's main-content filter on Medium;
+   - Defuddle on Substack, Reddit, Threads and X (oEmbed and FxTwitter), all untested.
 
 ## Terms
 
@@ -239,6 +275,10 @@ two clip skills), ground-me (folds into grounding), the evergreen backlog.
 - **Admission sequence / bounded lookup:** the ordered checks that decide whether a concept
   earns a Reference note, and the rule that a Reference note stays one coherent subject.
 - **Defuddle:** a CLI that extracts clean markdown from a web page.
+- **Firecrawl:** a hosted scraping service with a plugin; an optional second route for
+  clips, billed in credits.
+- **Browser clipper:** the owner's Obsidian Web Clipper extension, the final fallback; it
+  reads the page and the YouTube transcript through the real browser.
 
 ## Port notes (from reading slipbox)
 
@@ -251,6 +291,26 @@ two clip skills), ground-me (folds into grounding), the evergreen backlog.
 - Slipbox clip-resource: Defuddle as a direct binary (not npx), `youtube-transcript-api`
   directly (not the `ytt` wrapper), no Whisper fallback, paywalls reported and nothing
   written. A summarizing fetch tool silently dropped content once.
+- Owner-tested (2026-10-29): Defuddle's CLI cannot read YouTube transcripts without a
+  browser, and is blocked on Medium.
+- Clip tool findings (2026-10-29, read from source and tested with Firecrawl):
+  - Defuddle has extractors for X, Threads, Reddit, Medium, Substack, YouTube and more.
+    Medium and Threads read only the HTML they are given; Reddit and X (oEmbed,
+    FxTwitter) fetch on their own. Its YouTube transcript fetch uses the unofficial
+    InnerTube API and failed in the owner's test.
+  - `youtube-transcript-api`'s README says YouTube blocks most cloud-provider IPs.
+  - Firecrawl fetched a Medium article (1 credit) and a Substack post (1 credit), returned
+    an X post with thread and replies (30 credits), and returned a full timed YouTube
+    transcript through `youtube-com/videos/video_transcript` (5 credits), which matched the
+    pasted transcript. It refused Reddit and Threads as unsupported. Its YouTube page
+    scrape returned no transcript.
+  - Reddit: third-party blogs report logged-out `.json` blocked since about May 2026 and
+    the official API approval-only. Threads: Meta's oEmbed returns embed markup and
+    metadata only, not full text. Neither verified against the platforms' own announcements.
+  - Not used: the official clipper CLI (not documented for install and not on npm; needs a
+    template JSON), `theharshith/obsidian-clipper-cli` (an older fork reusing the official
+    package name), and `harryzhz/webclip-cli` (installs unpinned from GitHub, uses
+    Readability, no YouTube).
 
 ## Research pointers
 
@@ -267,3 +327,8 @@ two clip skills), ground-me (folds into grounding), the evergreen backlog.
 - The two pastes that set the thought-note shape: Glukhov, "Evergreen notes" for engineers
   (https://www.glukhov.org/knowledge-management/methods/evergreen-notes/) and Andy
   Matuschak, "Evergreen notes" (notes.andymatuschak.org).
+- Clip tools: `kepano/defuddle` (README documents `npm install -g defuddle` and
+  `npx defuddle parse <url> --markdown`), `jdepoix/youtube-transcript-api` (README section
+  on IP bans), `obsidianmd/obsidian-clipper` (contains a CLI), FxTwitter docs
+  (docs.fxembed.com). The owner-supplied page deepwiki.com/obsidianmd/obsidian-clipper was
+  not readable (network policy).
