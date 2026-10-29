@@ -50,14 +50,15 @@ Skill names in this file are working names. Renaming stays open.
   are treated as CLI sessions: same skills, subject to the environment's network policy and
   setup script.
 - Distribution: a `skills/` folder plus plugin manifests for both. Install in the owner's
-  note vault, or point the agent at the vault repo (cloud = GitHub repo). The ingest and
-  grounding skills may be installed outside the vault.
+  note vault, or point the agent at the vault repo (cloud = GitHub repo). The ingest side
+  (the clip skills, grounding and ingest) may be installed outside the vault.
 - Every input has a paste fallback. Notes are read from the vault when the harness can,
   else pasted. A URL goes through a clip skill (a summarizing fetch tool is not trusted for
   verbatim text), else the text is pasted.
 - Plain chat: every path that needs a CLI or file access (clip skills, vault reads, file
   writes, progressive technique loading) has a pasted-content fallback. In chat the agent
-  checks quotes against the pasted text; no file exists.
+  checks quotes against the pasted text; no file exists. A URL given in chat is answered
+  with a request to paste the text.
 - No validator script (a fixed constraint from the owner).
 - No subagents anywhere in the repo.
 - Name and repo: `marginalia` at `andarwaly/marginalia`. Flat layout, one plugin, no
@@ -67,8 +68,18 @@ Skill names in this file are working names. Renaming stays open.
   self-explanation, guided-reading, maieutic, compass, connect, challenge, distil.
 
 **Skills (six, working names)**
-- `clip-article` (Defuddle), `clip-youtube` (`youtube-transcript-api`), `grounding`,
-  `ingest`, `ideate`, `reference`.
+- `clip-article` (Defuddle) clips any text resource (an article, blog, Medium or Substack
+  page, or a post). `clip-youtube` (`youtube-transcript-api`) clips a YouTube video. Both
+  are model-invoked wrappers, so other skills can reach them.
+- `grounding` is the protocol for how to discuss with the human. Its dispatch table lives
+  once in `grounding/SKILL.md`; the ten technique files are the detail for a given
+  situation. It is model-invoked, so callers and bare "ground me on X" sessions reach it.
+- `ingest` and `ideate` are modes the owner enters, and both are user-invoked. The owner
+  invokes one with a source or an idea; the agent stays in the mode, discussing per
+  grounding, until the done gate (below), and ordinary chat resumes after the notes. In
+  plain chat, pasting the SKILL.md starts the mode. `reference` is user-invoked too.
+- SKILL.md size targets: at most 80 lines for each clip skill, 150 for grounding and
+  reference, 250 for ingest and ideate; a hard cap of 500.
 - Clip skills need a CLI tool; in plain chat the owner pastes the text instead. Each checks
   for its tool, prints one install line, never auto-installs. The README carries a
   cloud-setup section.
@@ -86,21 +97,27 @@ Skill names in this file are working names. Renaming stays open.
 - Clips are session-only: written to the harness's temp location, never saved in the
   vault, never committed. They let each quote be checked by exact match.
 - `grounding` is one skill holding the ten technique files. Each calling skill's SKILL.md
-  names which technique files it uses, one level deep.
+  states its fidelity direction and names which technique files it uses, one level deep.
   - ingest (source-bound; source notes in Luhmann's bibliographic tradition): the
     reading dispatch (verification, feynman, self-explanation, guided-reading), elenchus
     on a mismatch, maieutic for Implications.
-  - ideate (the agent is held to the owner's notes; the owner is free): compass with
-    connect, challenge, distil; maieutic for a bare hunch; the same dispatch for the
-    owner's answers.
-- `ideate`: refining the owner's idea at most. It starts from the owner's raw thought; a
-  source may back it. Backing sources are pasted or named by the owner; there is no vault
-  search. Modes inferred from input (no draft = new, draft = refine); validate folds into
-  refine as the challenge step. Keeps the purity check (slipbox called the idea a Take)
-  and the five sign-off criteria. Trigger names in the description (provisional): ideate,
-  refine-idea, validate-idea.
+  - ideate (the agent is held to the owner's notes; the owner is free): the same dispatch
+    for the owner's answers; verification and elenchus when pressing the owner's
+    statement; compass with connect, challenge, distil; maieutic for a bare hunch.
+- `ideate`: the owner enters it with an idea or thought to sharpen, refine, validate or
+  extend. It starts from the owner's raw thought; a source may back it. Backing sources
+  are pasted or named by the owner; there is no vault search. It is one mode: the verb is
+  inferred from the owner's words, with one question if it is unclear. Sharpen and refine
+  press the owner's statement (verification, elenchus, feynman); validate challenges it
+  against the backing quotes; extend asks where it leads (compass south and west), with
+  the owner's answers supplying the content. A pasted draft means the note is updated, not
+  new; the verb is still inferred. Keeps the purity check (slipbox called the idea a Take)
+  and the five sign-off criteria.
 - `reference`: a separate output, built last because it sits outside the owner's two-part
-  flow. No grounding interview. Keeps the admission sequence and bounded lookup.
+  flow. It is the owner's personal glossary entry: a definition first, then examples,
+  where the term is found, and how to use it, each included only where the pasted notes
+  support it. If the notes lack one, the agent says what is missing and does not invent
+  it. No grounding interview. Keeps the admission sequence and bounded lookup.
   - Inputs: the owner names a concept and pastes the point notes that mention it, with
     their maps' frontmatter (author, URL). The skill dedupes sources by URL and author.
     There is no vault scan.
@@ -122,8 +139,7 @@ Skill names in this file are working names. Renaming stays open.
   owner says they have not read it fully, run guided-reading.
 - The agent picks a technique from how the owner answers (confident, hesitant, blank,
   confused).
-- Opening: the agent shows the topics or points it found and asks whether the owner has
-  other points or what brought them to the source. It asks once per source.
+- Opening: see the opening question under Modes and the done gate.
 - The agent builds a candidate frontier, each point with an exact verbatim quote, so
   the discussion stays honest. Notes carry quotes only for points the owner picked.
   Unpicked points leave no trace; a partial note is valid.
@@ -135,7 +151,38 @@ Skill names in this file are working names. Renaming stays open.
   inquiry; the agent drafts and source-verifies when it is supporting. Implications are
   always interviewed. Tangents never block.
 - Technique loading: progressive in the CLIs. In plain chat the last fallback is pasted
-  content: SKILL.md asks the owner to paste the named technique file.
+  content: the mode's SKILL.md asks the owner to paste grounding's SKILL.md (which holds
+  the dispatch table) and each technique file the session needs.
+
+**Modes and the done gate**
+- Two gates. The statement gate (in grounding) fixes one statement, only on the owner's
+  open confirmation. The done gate (in each mode) decides when the discussion is over and
+  runs the closing questions before the notes are produced.
+- The opening question is firm. At the start of ingest the agent shows the topics or points
+  it found and asks whether the owner has other points and what brought them to the
+  source; the answer decides which points are central. In ideate the agent asks one
+  question about the verb only when the owner's words leave it unclear.
+- Ingest trigger: the owner's signal ("done", "that's everything", or asking for the
+  notes). Otherwise, once every point the owner picked is settled, the agent asks once,
+  "anything else on this source, or shall we wrap up?" Done at any time yields partial
+  notes. A done signal skips step (1); steps (2) to (4) still run once (the assistant's
+  reading of "done at any time yields partial notes").
+- Ingest closing order: (1) one nudge for points drafted but unconfirmed, then one offer on
+  untouched topics; (2) the density check (points resting on the same reasoning merge; a
+  list the source presents as a unit becomes one point); (3) the open main-idea question
+  ("having been through all of it, what do you think the main idea is?"); (4) the open
+  closing question ("what do you think of this article?", adapted to the source: video,
+  post), always asked once; a decline ends the questions and the notes still follow;
+  (5) the notes, then the coverage and quote-check list (the list is Provisional).
+  Whatever the owner adds at (4) becomes an Implication on its point, or on the map if it
+  concerns the whole.
+- Ideate trigger and done gate: the gate starts when the owner confirms the refined
+  statement through the statement gate, or signals done. The agent then asks the "so what"
+  question once ("where does this lead, or where would you use it?"), runs the sign-off
+  pass, then writes the note. The "so what" answer feeds the body's "where it applies" and
+  satisfies sign-off criterion 5; sign-off's "where else would this hold?" is skipped when
+  that answer already names more than one context. An early done still gets the "so what"
+  question (the assistant's assumptions).
 
 **Output**
 - One fenced block per note, each labeled with its filename. Notes are written to files
@@ -153,10 +200,10 @@ Skill names in this file are working names. Renaming stays open.
   heading is the marker), in their own section, never inside the point statement. Bullets
   are first person, lightly tidied for spelling and filler but never reworded. Never
   authored by the agent; the agent only transcribes the owner's words. Captured during the
-  session, plus one open closing prompt ("anything you want to add about what this means
-  for you, on any point?"); a decline is a complete end. Replaces slipbox's "parked take
-  ideas" list. Slipbox's `*Assumption*` and `*Answered*` bullets are dropped; the owner's
-  guess at an answer becomes an Implication bullet that names the question.
+  session, plus the done gate's open closing question; a decline ends the questions and
+  the notes still follow. Replaces slipbox's "parked take ideas" list. Slipbox's
+  `*Assumption*` and `*Answered*` bullets are dropped; the owner's guess at an answer
+  becomes an Implication bullet that names the question.
 - The agent's own view: it does not fill gaps from general knowledge. When it disagrees with
   or adds to the source, it states so clearly with a fixed label ("My own view, not the
   article's:"), in chat only, after a point is settled and never mid-question, at most once
@@ -174,7 +221,7 @@ Skill names in this file are working names. Renaming stays open.
   - Links are inline, the display text reading as part of the sentence:
     `[[✱ target|clause of the sentence]]`. The prefix stays in the link target.
   - The agent drafts the prose from the owner's confirmed parts, in the owner's wording
-    where possible, and the owner approves it through the open Gate. The agent adds no claim
+    where possible, and the owner approves it through the statement gate. The agent adds no claim
     the owner did not say. A new link is offered as a question, never asserted.
   - Sign-off is one pass at the end, never mid-session. Too broad (more than one idea):
     offer a second note. Too narrow: ask "where else would this hold?" The remaining
@@ -195,16 +242,21 @@ two clip skills), ground-me (folds into grounding), the evergreen backlog.
   The owner said "might be located".
 - A plain-text coverage and quote-check list below the note blocks.
 - A one-line fallback in each dispatch row, used when the technique file is not pasted.
+- Ideate's description trigger names (ideate, refine-idea, validate-idea). The skill is
+  user-invoked, so the names serve the slash menu and the owner's memory, not model
+  matching.
 
 ## Default (not explicitly confirmed)
 
 - Topics are shown as neutral labels; the quote appears after the owner answers.
 - Filenames: prefix, a space, then the title (the source title for the map, the claim for
   a point).
-- An ingest session ends when the owner says so or the energy winds down. The agent nudges
-  once for points drafted but unconfirmed, asks the main-idea question openly, and then
-  produces the notes (slipbox practice).
-- Refine mode may fully rewrite an existing thought note and bumps `updated`.
+- When the owner pastes a draft, the thought note is updated in place; a full rewrite is
+  allowed, and `updated` is bumped.
+- A bare grounding session (no mode) uses fidelity "neither", ends at the statement gate,
+  and returns the confirmed statement in chat with no notes. Grounding's description says
+  to use it when the owner asks to be grounded or a mode calls it, so it does not fire in
+  ordinary chat after the notes.
 - Authoring rules for SKILL.md bodies:
   - Be strict on the gates that protect fidelity (verbatim quote, Implications in the
     owner's words, quote shown only after the owner answers). Stay adaptive in the
@@ -222,17 +274,25 @@ two clip skills), ground-me (folds into grounding), the evergreen backlog.
 ## Open
 
 1. **Skill names.** All six are working names. Rename if a better name turns up.
-2. **Skills.** A per-skill type table; distinct descriptions; SKILL.md under 500 lines;
-   where the dispatch table lives (grounding or each caller); a small eval list as plain
-   markdown (a handful of golden prompts per skill and one end to end). When the skills
+2. **Skills.** Distinct descriptions (what the skill does and when to use it, never its
+   steps); a small eval list as plain markdown (a handful of golden prompts per skill and
+   one end to end). When the skills
    are written, confirm the Implications guard holds in the ported text: slipbox's
    glossary rejected a Take and a Reaction field in the literature note (2026-07-23), and
    this design reverses that on purpose.
-3. **Frontmatter values and quote cleanup.** The `published-at` format; what `author`
+3. **Mode details.**
+   - How "user-invoked" is enforced per harness: Claude Code `disable-model-invocation`;
+     Codex has a separate implicit-invocation setting, unverified; Cowork unknown.
+   - Ideate's validate with no backing source: ask for one, or challenge the owner's
+     reasoning alone.
+   - Reference: where the definition's wording comes from (slipbox reconciled the notes'
+     characterizations and consulted the owner only on a conflict; no general knowledge)
+     and how the owner confirms it without a grounding interview.
+4. **Frontmatter values and quote cleanup.** The `published-at` format; what `author`
    means for a video; filename sanitization; stripping footnote markers and garbled
    pull-quote wrappers from clips before exact-match checks.
-4. **Plain-chat access to technique files.** How the owner gets them (raw repo URLs).
-5. **To test on a laptop.**
+5. **Plain-chat access to technique files.** How the owner gets them (raw repo URLs).
+6. **To test on a laptop.**
    - the skills folder each harness reads (`npx skills add andarwaly/marginalia`, Codex,
      cloud repo skills);
    - plugin manifest paths;
@@ -261,6 +321,10 @@ two clip skills), ground-me (folds into grounding), the evergreen backlog.
 - **Mentioned:** concrete named people, places, organizations, works, tools or events.
 - **Open Questions:** gaps the source leaves, flagged by the owner only.
 - **Dispatch:** choosing a grounding technique from the quality of the owner's answer.
+- **Statement gate:** grounding's rule that a statement is fixed only on the owner's open
+  confirmation ("what's missing or wrong?"), never a bare yes.
+- **Done gate:** each mode's rule for when the discussion ends and the closing questions
+  run before the notes are produced.
 - **Techniques:** verification checks a restatement against the source; elenchus presses a
   claim from several angles after a mismatch; feynman has the owner explain it plainly and
   patches the gap; self-explanation surfaces a contradiction in a confused answer;
