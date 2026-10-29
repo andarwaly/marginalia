@@ -78,6 +78,11 @@ Skill names in this file are working names. Renaming stays open.
   invokes one with a source or an idea; the agent stays in the mode, discussing per
   grounding, until the done gate (below), and ordinary chat resumes after the notes. In
   plain chat, pasting the SKILL.md starts the mode. `reference` is user-invoked too.
+- User-invoked is enforced per harness. Claude Code: `disable-model-invocation: true` in
+  the SKILL.md frontmatter. Codex: each of ingest, ideate and reference ships an
+  `agents/openai.yaml` with `policy: allow_implicit_invocation: false` (the default is
+  true; explicit `$skill` invocation still works). Cowork is assumed to read the same
+  SKILL.md flag (unverified). Plain chat needs no enforcement.
 - SKILL.md size targets: at most 80 lines for each clip skill, 150 for grounding and
   reference, 250 for ingest and ideate; a hard cap of 500.
 - Clip skills need a CLI tool; in plain chat the owner pastes the text instead. Each checks
@@ -109,8 +114,10 @@ Skill names in this file are working names. Renaming stays open.
   are pasted or named by the owner; there is no vault search. It is one mode: the verb is
   inferred from the owner's words, with one question if it is unclear. Sharpen and refine
   press the owner's statement (verification, elenchus, feynman); validate challenges it
-  against the backing quotes; extend asks where it leads (compass south and west), with
-  the owner's answers supplying the content. A pasted draft means the note is updated, not
+  against the backing quotes (with no backing source, the agent asks once for one; if
+  there is none it challenges the owner's reasoning alone, and the list below the note
+  says nothing was validated against a source); extend asks where it leads (compass south
+  and west), with the owner's answers supplying the content. A pasted draft means the note is updated, not
   new; the verb is still inferred. Keeps the purity check (slipbox called the idea a Take)
   and the five sign-off criteria.
 - `reference`: a separate output, built last because it sits outside the owner's two-part
@@ -121,6 +128,10 @@ Skill names in this file are working names. Renaming stays open.
   - Inputs: the owner names a concept and pastes the point notes that mention it, with
     their maps' frontmatter (author, URL). The skill dedupes sources by URL and author.
     There is no vault scan.
+  - Wording: the agent synthesizes one definition from the characterizations in the pasted
+    notes, in their wording where they agree, and asks the owner before writing only if
+    they conflict. It then shows the entry and asks one open question, "what's missing or
+    wrong?" That is one question, not an interview.
   - Ingest gives no admission verdict; admission exists only in `reference`.
   - If admission fails, the skill names the failed check and the support still missing. The
     owner may reply "write it anyway", and the note then opens with a one-line caveat such
@@ -280,21 +291,17 @@ two clip skills), ground-me (folds into grounding), the evergreen backlog.
    are written, confirm the Implications guard holds in the ported text: slipbox's
    glossary rejected a Take and a Reaction field in the literature note (2026-07-23), and
    this design reverses that on purpose.
-3. **Mode details.**
-   - How "user-invoked" is enforced per harness: Claude Code `disable-model-invocation`;
-     Codex has a separate implicit-invocation setting, unverified; Cowork unknown.
-   - Ideate's validate with no backing source: ask for one, or challenge the owner's
-     reasoning alone.
-   - Reference: where the definition's wording comes from (slipbox reconciled the notes'
-     characterizations and consulted the owner only on a conflict; no general knowledge)
-     and how the owner confirms it without a grounding interview.
-4. **Frontmatter values and quote cleanup.** The `published-at` format; what `author`
+3. **Frontmatter values and quote cleanup.** The `published-at` format; what `author`
    means for a video; filename sanitization; stripping footnote markers and garbled
    pull-quote wrappers from clips before exact-match checks.
-5. **Plain-chat access to technique files.** How the owner gets them (raw repo URLs).
-6. **To test on a laptop.**
+4. **Plain-chat access to technique files.** How the owner gets them (raw repo URLs).
+5. **To test on a laptop.**
    - the skills folder each harness reads (`npx skills add andarwaly/marginalia`, Codex,
      cloud repo skills);
+   - that `/ingest` still works with the user-invoked flag in Claude Code and Cowork
+     (GitHub bug reports say it once failed; unverified). If it fails, fall back to a
+     model-invoked skill whose description says it runs only when the owner invokes it;
+   - the exact path and file name Codex reads for `policy`;
    - plugin manifest paths;
    - Codex cloud and Cowork setup scripts and network allowlists;
    - whether the Firecrawl plugin is available in Codex and Cowork cloud sessions;
