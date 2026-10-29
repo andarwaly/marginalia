@@ -43,13 +43,16 @@ Fuller definitions: `references/terms.md`.
    Assume the user has at least skimmed the source; if they say they have not read it
    fully, run `guided-reading-technique`.
 4. **Interview one point at a time.** Ask the user to explain the point in their own words,
-   naming only its topic. Then read their answer's state and pick the technique; read
-   `references/reading-the-answer.md` at the first answer. After every later answer, read
-   the state again and switch technique.
+   naming only its topic. Read `references/reading-the-answer.md` before the first
+   interview question. Then read their answer's state and pick the technique. After every
+   answer, read the state again and switch technique.
    - Every question in the interview, including one a technique asks, has one question
      mark and no "and" that adds a second ask, and never states what the source says
      before the user has stated the point. Quote the source only after the user has
      answered, except the passage `guided-reading-technique` opens with.
+   - A technique's question asks for the point itself ("what is it actually claiming?"). It
+     never contrasts the user's guess with a neighbouring idea ("how does that differ from
+     …?"), and the acknowledgment never says what the source covers.
    - Interview a central point. For a supporting point, draft it from the source, check the
      quote, and show it for the user's correction.
    - Never fill a gap from general knowledge.
@@ -82,7 +85,8 @@ Fuller definitions: `references/terms.md`.
 - Implications are the user's words, kept as `references/source-notes.md` says, never
   written by the agent. Anything the user says at step 6.4 is an Implication on its point,
   or on the map if it concerns the whole. The Intention section does not change after
-  step 3.
+  step 3. Copy the user's words character for character into the main idea, the Intention
+  and the Implications; do not normalize slang or reword.
 - A user remark that fits no point: `references/reading-the-answer.md`.
 - The agent's own disagreement or addition is allowed only in chat, after a point is
   settled, at most once per point, labeled "My own view, not the article's:". It enters a

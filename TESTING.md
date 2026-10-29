@@ -155,5 +155,7 @@ vault first), 2 and 3 (a plain prompt with no slash). For the other skills, open
 | A4 | CC 2.1.312 | 2026-10-29 | pass | Confident: verification behaviour, no new Skill call (loaded earlier). Blank: `guided-reading-technique` via Skill tool, no choice offered. |
 | A5 | CC 2.1.312 | 2026-10-29 | pass | Standalone close did not appear after the confirmed statement. |
 | A6 | CC 2.1.312 | 2026-10-29 | pass | Main-idea and closing questions ran once; notes in fenced blocks; density check not observable. |
+| G1 | CC 2.1.312 (-p, cloud) | 2026-10-29 | partial | Ingest 1, 2, 3, 5, 6, 7, 8, 10, 11, 12, 14, 16-19, 21 pass. 4 fail (hedge made no Skill call in the main run; `feynman-technique` fired in a variant run). 20 fail (`feynman-technique` asked a contrast the source draws). 9, 13, 15 not exercised. Density check cannot confirm. Fixes: `ingest` step 4 and Hard rules, `feynman-technique` question shapes. Re-run (6 + 3 sessions): 20 pass 3/3 after the added step 4 rule; 4 still inconsistent (feynman called in 4 of 6 on the personal-preference hedge); exact-words rule not yet tested. |
+| G2 | CC 2.1.312 (-p, cloud) | 2026-10-29 | note | `defuddle` 0.19.6 fetched from the cloud, so ingest 1 is exercised. `uuidgen` missing (shimmed). User-level skills such as `supermatt:*` are visible to the vault. |
 
 Run headless (`claude -p`, scripted user) in a temp vault; an interactive run is still to do.
