@@ -205,6 +205,18 @@ The six skill names are confirmed: `clip-article`, `clip-youtube`, `grounding`, 
 - Map note: frontmatter `author`, `published-at`, `source`; the main idea in the owner's
   confirmed words (no quote); Source Point links. Whole-source Open Questions and
   Implications may sit on the map. Key Concepts and Mentioned are point-only.
+- Frontmatter values: `published-at` is ISO `YYYY-MM-DD`, left empty when the clip lacks
+  it and never guessed (a video uses its upload date). `author` is a bare wikilink,
+  `"[[Name]]"` (for a video, the channel name).
+- Filenames and headings: the filename is the prefix, a space, then the title. It drops
+  `\ / * ? " < > |`, turns `:` into ` -`, and avoids `# ^ [ ]`. The `# heading` inside
+  each note carries the exact title with no prefix; the prefix lives only in filenames and
+  link targets, and links hide it with the alias form.
+- Quote matching: the words and their order must be identical. These are ignored when
+  matching: markdown emphasis, link URLs, footnote markers like `[^1]`, whitespace and
+  line breaks, and curly versus straight quotes. A quote is one contiguous run with no
+  ellipsis. Boilerplate lines in a clip (sign-in banners, "Press enter or click to view
+  image") are never quoted, but the clip skills do not remove them.
 - Source Point note: always standalone. Frontmatter `source: [[map]]`; title stated as a
   claim; short source-owned restatement; verbatim quote; Key Concepts; Mentioned; Open
   Questions; Implications.
@@ -324,11 +336,8 @@ two clip skills), ground-me (folds into grounding), the evergreen backlog.
    the bodies are written. At that point, confirm the Implications guard holds in the
    ported text: slipbox's glossary rejected a Take and a Reaction field in the literature
    note (2026-07-23), and this design reverses that on purpose.
-2. **Frontmatter values and quote cleanup.** The `published-at` format; what `author`
-   means for a video; filename sanitization; stripping footnote markers and garbled
-   pull-quote wrappers from clips before exact-match checks.
-3. **Plain-chat access to technique files.** How the owner gets them (raw repo URLs).
-4. **To test on a laptop.**
+2. **Plain-chat access to technique files.** How the owner gets them (raw repo URLs).
+3. **To test on a laptop.**
    - the skills folder each harness reads (`npx skills add andarwaly/marginalia`, Codex,
      cloud repo skills);
    - that `/ingest` still works with the user-invoked flag in Claude Code and Cowork
