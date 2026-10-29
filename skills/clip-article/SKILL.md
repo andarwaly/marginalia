@@ -19,13 +19,17 @@ the like) may drop or reword text, so never use one for this.
    defuddle parse "<url>" --md -f -o "${TMPDIR:-/tmp}/marginalia/<slug>.md"
    ```
    `-f` puts title, site, source and, when the page has them, author and published in a
-   frontmatter header. Leave empty fields empty; never guess an author or a date.
+   frontmatter header. Leave empty fields empty; never guess an author or a date. Write
+   `published` as `YYYY-MM-DD` (Defuddle may return `2026-01-16T00:00:00+00:00`; trim it).
 3. **Check the result.** It fails if the file is empty, holds only a sign-in or
    cookie banner, or is far shorter than the page should be. Then try the fallback.
 4. **Fallback, in order.**
    - Firecrawl, only if its tools are present: `firecrawl_scrape` with the URL, markdown
-     format, `maxAge: 0`. Add the same frontmatter header by hand from what it returns.
-     Say once that it used a hosted service.
+     format, `maxAge: 0`. Medium blocks Defuddle (403), so expect to land here. Add the
+     same frontmatter header by hand, taking `published` from the byline shown on the page;
+     the page metadata date can differ (one Medium article showed a 2023 metadata date over
+     a 2020 byline), so if they disagree use the byline. Say once that it used a hosted
+     service.
    - Otherwise report the failure in one line and ask the user to clip the page with their
      browser clipper and paste the result.
 5. **Report.** Give the file path and one line: title, author, published, word count. Do

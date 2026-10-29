@@ -9,3 +9,7 @@
    asks the user to paste from their browser clipper. Fails: it writes the banner as the clip.
 5. **Near miss.** "summarize this article: <URL>" -> not this skill (that is a summary, not a clip).
 6. **Unsupported.** A Reddit URL -> asks for a paste; does not guess.
+7. **Medium.** The uxdesign.cc article from the run log -> Defuddle returns 403, Firecrawl
+   fallback runs, `published` is the byline date, not the metadata date.
+8. **Substack.** nathanacurtis.substack.com post -> Defuddle clips it with author and date;
+   `published` is `YYYY-MM-DD`.

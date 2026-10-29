@@ -31,8 +31,11 @@ If the API fails (YouTube blocks most cloud IPs, so expect this in cloud session
 
 - Firecrawl, only if its tools are present: its YouTube transcript capability
   (`youtube-com/videos/video_transcript`, about 5 credits; find it with
-  `firecrawl_find_tools` if the name differs). Write the same file format. A plain
-  Firecrawl page scrape does not return a transcript. Say once that it used a hosted service.
+  `firecrawl_find_tools` if the name differs), called with `video_id`. It returns `title`,
+  `kind` (`manual` or `asr`; `asr` means `captions: auto-generated`) and `segments` with
+  `start_ms` and `text`. Write the same file format, with seconds = `start_ms / 1000`. It
+  gives no upload date. A plain Firecrawl page scrape does not return a transcript. Say
+  once that it used a hosted service.
 - Otherwise report the failure in one line and ask the user to open the transcript with
   their browser clipper and paste it.
 
