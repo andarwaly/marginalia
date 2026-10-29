@@ -1,15 +1,22 @@
 # marginalia: decisions
 
-**Status: OPEN.** This is a discussion record, not a spec. Only a scaffold exists:
-`.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `.codex-plugin/plugin.json`,
-a README, and stubs `skills/{clip-article,clip-youtube,grounding,ingest,ideate,define}/
-SKILL.md` carrying the working descriptions and a TODO body. `ingest`, `ideate` and
-`define` also have an `agents/openai.yaml` (Codex implicit invocation off). No skill body
-is written. Items marked Settled were answered explicitly by the owner. Items marked
-Provisional or Default may change. Items under Open are the next session's frontier. The
-owner has confirmed shared understanding, so bodies may be written one skill at a time,
-in this order: `grounding` (the ten technique files verbatim, plus the dispatch table),
-`ingest`, `clip-article` and `clip-youtube`, `ideate`, `define`.
+**Status: OPEN.** This is a discussion record, not a spec. The scaffold is: the plugin
+manifests (`.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`,
+`.codex-plugin/plugin.json`), a README, and twelve skill folders.
+- Stubs with a working description and a TODO body: `clip-article`, `clip-youtube`,
+  `ingest`, `ideate`, `define`, `compass-technique`. `ingest`, `ideate` and `define` also
+  have an `agents/openai.yaml` (Codex implicit invocation off). The compass family's four
+  original files sit unchanged in `compass-technique/references/`.
+- Written: the six technique skills `verification-technique`, `elenchus-technique`,
+  `feynman-technique`, `self-explanation-technique`, `guided-reading-technique` and
+  `maieutic-technique` (reshaped from the slipbox technique files; see the reshape log).
+
+Items marked Settled were answered explicitly by the owner. Items marked Provisional or
+Default may change. Items under Open are the next session's frontier. The owner has
+confirmed shared understanding, so bodies are written one skill at a time, in this order:
+`ingest` (its six techniques are already written), then the call-by-name test on Claude
+Code, Codex and Cowork, then `clip-article` and `clip-youtube`, then `ideate` with the
+compass reshape, then `define`. Evals are written alongside each skill.
 
 Last updated: 2026-10-29
 
@@ -24,6 +31,8 @@ New public repo, ported and simplified from slipbox (`andarwaly/slipbox`). Not o
   matters mainly for ChatGPT.
 - Output is markdown in chat for the owner to copy.
 - The owner keeps their own implications in the notes, which slipbox literature notes lack.
+- Skill text is public and says "the user". This file says "the owner" for the person who
+  made these decisions.
 
 ## Journey
 
@@ -32,21 +41,22 @@ own head that they want to refine, optionally backed by a source. The steps belo
 notes shape.
 
 1. The owner reads an article or video and brings it in as a clip (md), a URL, or pasted text.
-2. A grounding session comes first, to understand the source's context and points. The
-   technique used follows how the owner answers.
+2. A discussion comes first, to understand the source's context and points. The technique
+   used follows how the owner answers.
 3. The owner receives copyable markdown notes, to keep or to consult when writing their own.
 
 ## Workflow
 
 ```
-URL                 -> clip-article | clip-youtube -> clip (session only)
-clip, or pasted text -> ingest (with grounding)    -> source notes (map + points)
-thought (+ backing) -> ideate (refine)             -> thought note
-concept + notes     -> define                      -> Reference note
+URL                  -> clip-article | clip-youtube -> clip (session only)
+clip, or pasted text -> ingest (with techniques)    -> source notes (map + points)
+thought (+ backing)  -> ideate                      -> thought note
+concept + notes      -> define                      -> Reference note
 ```
 
-The six skill names are confirmed: `clip-article`, `clip-youtube`, `grounding`, `ingest`,
-`ideate`, `define` (renamed from `reference`). A better name may still replace one later.
+The twelve skill names are confirmed: `clip-article`, `clip-youtube`, `ingest`, `ideate`,
+`define`, and the seven `<name>-technique` skills. A better name may still replace one
+later.
 
 ## Settled
 
@@ -57,40 +67,49 @@ The six skill names are confirmed: `clip-article`, `clip-youtube`, `grounding`, 
   setup script.
 - Distribution: a `skills/` folder plus plugin manifests for both. Install in the owner's
   note vault, or point the agent at the vault repo (cloud = GitHub repo). The ingest side
-  (the clip skills, grounding and ingest) may be installed outside the vault.
+  (the clip skills, the technique skills and ingest) may be installed outside the vault.
+- Install the whole repo. A mode without its technique skills cannot run its interview, so
+  each mode says: "If a technique skill is missing, stop and tell the user to install the
+  full marginalia set."
 - Every input has a paste fallback. Notes are read from the vault when the harness can,
   else pasted. A URL goes through a clip skill (a summarizing fetch tool is not trusted for
   verbatim text), else the text is pasted.
 - Plain chat: every path that needs a CLI or file access (clip skills, vault reads, file
-  writes, progressive technique loading) has a pasted-content fallback. In chat the agent
-  checks quotes against the pasted text; no file exists. A URL given in chat is answered
-  with a request to paste the text.
+  writes) has a pasted-content fallback. In chat the agent checks quotes against the pasted
+  text; no file exists. A URL given in chat is answered with a request to paste the text.
+  The rest of the chat route is deferred.
 - No validator script (a fixed constraint from the owner).
 - No subagents anywhere in the repo.
 - Name and repo: `marginalia` at `andarwaly/marginalia`. Flat layout, one plugin, no
   marketplace wrapper.
-- Skill source: port from slipbox (reference only, never edit). All ten grounding
-  technique files port verbatim, unedited: verification, elenchus, feynman,
-  self-explanation, guided-reading, maieutic, compass, connect, challenge, distil.
+- Skill source: port from slipbox (reference only, never edit). The ten slipbox technique
+  files became seven technique skills, reshaped (see the reshape log).
 
-**Skills (six, working names)**
+**Skills (twelve)**
 - `clip-article` (Defuddle) clips any text resource (an article, blog, Medium or Substack
   page, or a post). `clip-youtube` (`youtube-transcript-api`) clips a YouTube video. Both
   are model-invoked wrappers, so other skills can reach them.
-- `grounding` is the protocol for how to discuss with the human. Its dispatch table lives
-  once in `grounding/SKILL.md`; the ten technique files are the detail for a given
-  situation. It is model-invoked, so callers and bare "ground me on X" sessions reach it.
-- `ingest` and `ideate` are modes the owner enters, and both are user-invoked. The owner
-  invokes one with a source or an idea; the agent stays in the mode, discussing per
-  grounding, until the done gate (below), and ordinary chat resumes after the notes. In
-  plain chat, pasting the SKILL.md starts the mode. `define` is user-invoked too.
+- `ingest` and `ideate` are modes the owner enters, and both are user-invoked. The user
+  invokes one with a source or an idea; the agent stays in the mode until the done gate
+  (below), and ordinary chat resumes after the notes. `define` is user-invoked too.
+- There is no `grounding` skill. The two modes have different mental models: ingest is a
+  learning interview where the source is the only authority; ideate is a two-way
+  discussion where the agent takes positions. Each mode owns its method.
+- Modes are thin. A mode's SKILL.md holds the job, the goal, the hard rules, the technique
+  to start with and when to switch, the resume rule, the done state, and a one-line
+  definition of every term its rules use. Terms with their fuller explanation, the reading
+  states with examples, the statement-gate examples and the note formats live in the
+  mode's `references/`, each with a named moment in SKILL.md for when to read it.
+- Each mode says: "When a technique reaches a confirmed statement, ignore its standalone
+  ending and continue at step N." No harness keeps a call stack, so the resume step lives
+  in the mode.
 - User-invoked is enforced per harness. Claude Code: `disable-model-invocation: true` in
   the SKILL.md frontmatter. Codex: each of ingest, ideate and define ships an
   `agents/openai.yaml` with `policy: allow_implicit_invocation: false` (the default is
   true; explicit `$skill` invocation still works). Cowork is assumed to read the same
   SKILL.md flag (unverified). Plain chat needs no enforcement.
-- SKILL.md size targets: at most 80 lines for each clip skill, 150 for grounding and
-  define, 250 for ingest and ideate; a hard cap of 500.
+- SKILL.md size targets: at most 80 lines for each clip skill, 150 for define, 250 for
+  ingest and ideate (they should come in well under); a hard cap of 500.
 - Clip skills need a CLI tool; in plain chat the owner pastes the text instead. Each checks
   for its tool, prints one install line, never auto-installs. The README carries a
   cloud-setup section.
@@ -107,31 +126,35 @@ The six skill names are confirmed: `clip-article`, `clip-youtube`, `grounding`, 
   warns once that quotes may carry transcription errors and quotes them as-is.
 - Clips are session-only: written to the harness's temp location, never saved in the
   vault, never committed. They let each quote be checked by exact match.
-- `grounding` is one skill holding the ten technique files. Each calling skill's SKILL.md
-  states its fidelity direction and names which technique files it uses, one level deep.
-  - ingest (source-bound; source notes in Luhmann's bibliographic tradition): the
-    reading dispatch (verification, feynman, self-explanation, guided-reading), elenchus
-    on a mismatch, maieutic for Implications.
-  - ideate (the agent is held to the owner's notes; the owner is free): the same dispatch
-    for the owner's answers; verification and elenchus when pressing the owner's
-    statement; compass with connect, challenge, distil; maieutic for a bare hunch.
 - `ideate`: the owner enters it with an idea or thought to sharpen, refine, validate or
   extend. It starts from the owner's raw thought; a source may back it. Backing sources
   are pasted or named by the owner; there is no vault search. It is one mode: the verb is
-  inferred from the owner's words, with one question if it is unclear. Sharpen and refine
-  press the owner's statement (verification, elenchus, feynman); validate challenges it
-  against the backing quotes (with no backing source, the agent asks once for one; if
-  there is none it challenges the owner's reasoning alone, and the list below the note
-  says nothing was validated against a source); extend asks where it leads (compass south
-  and west), with the owner's answers supplying the content. A pasted draft means the note
-  is updated, not new; the verb is still inferred. Keeps the purity check (slipbox called
-  the idea a Take) and the five sign-off criteria.
+  inferred from the owner's words, with one question if it is unclear. A pasted draft
+  means the note is updated, not new; the verb is still inferred. Keeps the purity check
+  (slipbox called the idea a Take) and the five sign-off criteria.
+  - Technique by verb: sharpen and refine press the owner's statement
+    (`feynman-technique`, `verification-technique` against the notes, `elenchus-technique`);
+    validate challenges it against the backing quotes (`compass-technique`, east); extend
+    asks where it leads (`compass-technique`, south and west), with the owner's answers
+    supplying the content; a bare hunch goes to `maieutic-technique`. With no backing
+    source, validate asks once for one; if there is none it challenges the owner's
+    reasoning alone, and the list below the note says nothing was validated against a source.
+  - Two-way rules: every substantive claim the agent makes carries one basis tag, **[note:
+    quote]**, **[source: URL]** or **[reasoning]**. A claim about the world must be a note
+    or a source; if neither is found the agent searches, and if that fails it marks the
+    claim **[unverified]** and does not argue from it. The agent states its position first
+    (agree, disagree or partly) and names the strongest counter-argument before agreeing.
+    It changes position only for a new reason or new evidence, and says which. Tags go on
+    claims, not every sentence. Without web search the agent challenges only from the notes
+    or from logic labeled [reasoning], and says it could not check.
+  - End condition: the idea is a scoped claim and the strongest objection is answered or
+    folded in. Agreement alone does not end the session.
 - `define` (was `reference`): a separate output, built last because it sits outside the
   owner's two-part flow. It writes the owner's personal glossary entry: a definition
   first, then examples, where the term is found, and how to use it, each included only
   where the pasted notes support it. If the notes lack one, the agent says what is
-  missing and does not invent it. No grounding interview. Keeps the admission sequence and
-  bounded lookup.
+  missing and does not invent it. No interview. Keeps the admission sequence and bounded
+  lookup.
   - Inputs: the owner names a concept and pastes the point notes that mention it, with
     their maps' frontmatter (author, URL). The skill dedupes sources by URL and author.
     There is no vault scan.
@@ -152,11 +175,41 @@ The six skill names are confirmed: `clip-article`, `clip-youtube`, `grounding`, 
 - Vocabulary: "source notes" and "thought notes" replace the slipbox terms literature note,
   evergreen note and Take in the docs. The Terms section maps them.
 
-**Grounding behavior**
+**Technique skills (seven)**
+- `verification-technique`, `elenchus-technique`, `feynman-technique`,
+  `self-explanation-technique`, `guided-reading-technique`, `maieutic-technique`,
+  `compass-technique`. The suffix is `-technique`. Compass owns `connect`, `challenge` and
+  `distil` in its `references/`, because compass's own text points at those files.
+- Each is model-invoked, so a mode calls it by name through the harness with no `../`
+  sibling-path read. Each description opens "Marginalia interview technique, only when a
+  marginalia mode calls it or the user names it" and uses no generic verbs, so the skill
+  does not fire in ordinary chat.
+- Each is self-contained, so it can run on its own. Run on its own, a technique ends with
+  the user's confirmed statement in chat and writes no notes. Called from a mode, it
+  returns the statement to the mode.
+- Each is reshaped from the slipbox file, with ideas kept: a state-based "reach for this
+  when" in place of the dispatcher gating, one short pointer to a sibling by skill name at
+  most, the same Ending block in all seven (probe before any draft; confirm openly; hand
+  back; never finish it for them), a standalone start, and at most about three added lines
+  of lessons from real sessions (probe types in feynman, self-explanation and maieutic;
+  point but do not quote before the user answers; ask wide before narrow; the
+  acknowledgment on its own line). Answer-quality routing (confident, hesitant, blank,
+  confused) lives only in `ingest`. The Ending block is kept identical across the seven
+  by a manual diff at release.
+- Each has an `evals/` folder: 2 or 3 short transcript cases judged by behavior (trigger
+  and near-miss, guardrail-bait, the ending). Mode evals focus on switching and resuming.
+- The compass family is reshaped when `ideate` is built.
+
+**Ingest behavior**
 - Default reading state is "at least skimmed". No upfront reading-state question. If the
   owner says they have not read it fully, run guided-reading.
-- The agent picks a technique from how the owner answers (confident, hesitant, blank,
-  confused).
+- Default technique: `verification-technique`, after the owner explains the point in their
+  own words. The agent switches by reading state (`ingest/references/reading-the-answer.md`,
+  with examples): hesitant → `feynman-technique`; confused → `self-explanation-technique`;
+  blank → `guided-reading-technique`; a mismatch with the source → `elenchus-technique`;
+  the owner's own reaction → `maieutic-technique`.
+- Blank answer: there is no offer to choose between reading and working together. The
+  agent acknowledges the blank and works through the passage with guided-reading.
 - Opening: see the opening question under Modes and the done gate.
 - The agent builds a candidate frontier, each point with an exact verbatim quote, so
   the discussion stays honest. Notes carry quotes only for points the owner picked.
@@ -165,18 +218,17 @@ The six skill names are confirmed: `clip-article`, `clip-youtube`, `grounding`, 
   'x' is 'y'. Is that what you said, or did you have something else in mind?" If the owner
   misread, return to that point. If it is their own read, record it as an Implication in
   their words. If no passage exists, re-check the source before saying so, then ask.
-- Depth, for each point the owner picks: interview when it is central to the stated
+- Depth, for each point the owner picked: interview when it is central to the stated
   inquiry; the agent drafts and source-verifies when it is supporting. Implications are
   always interviewed. Tangents never block.
-- Technique loading: progressive in the CLIs. In plain chat technique files are not
-  pasted: the owner pastes the mode's SKILL.md and grounding's SKILL.md (which holds the
-  dispatch table), and each dispatch row's one-line fallback stands in for its technique
-  file.
+- The source is the only authority. The agent quotes only after the owner answers, asks one
+  question per turn, and writes no note before a statement is confirmed.
 
 **Modes and the done gate**
-- Two gates. The statement gate (in grounding) fixes one statement, only on the owner's
-  open confirmation. The done gate (in each mode) decides when the discussion is over and
-  runs the closing questions before the notes are produced.
+- Two gates. The statement gate (the Ending block in each technique, and the mode's
+  confirmation of its final statement) fixes one statement, only on the owner's open
+  confirmation. The done gate (in each mode) decides when the discussion is over and runs
+  the closing questions before the notes are produced.
 - The opening question is firm. At the start of ingest the agent shows the topics or points
   it found and asks whether the owner has other points and what brought them to the
   source; the answer decides which points are central. In ideate the agent asks one
@@ -235,13 +287,14 @@ The six skill names are confirmed: `clip-article`, `clip-youtube`, `grounding`, 
   the notes still follow. Replaces slipbox's "parked take ideas" list. Slipbox's
   `*Assumption*` and `*Answered*` bullets are dropped; the owner's guess at an answer
   becomes an Implication bullet that names the question.
-- The agent's own view: it does not fill gaps from general knowledge. When it disagrees with
-  or adds to the source, it states so clearly with a fixed label ("My own view, not the
-  article's:"), in chat only, after a point is settled and never mid-question, at most once
-  per point (the timing is the assistant's assumption). It enters a note only if the owner
-  adopts it as an Implication in their words. This replaces slipbox's tension-to-backlog
-  feature.
-- Terms: each SKILL.md carries a short "terms used here" block. No shared glossary file.
+- The agent's own view in ingest: it does not fill gaps from general knowledge. When it
+  disagrees with or adds to the source, it states so clearly with a fixed label ("My own
+  view, not the article's:"), in chat only, after a point is settled and never
+  mid-question, at most once per point (the timing is the assistant's assumption). It
+  enters a note only if the owner adopts it as an Implication in their words. This
+  replaces slipbox's tension-to-backlog feature.
+- Terms: each mode keeps `references/terms.md`; its SKILL.md carries a one-line definition
+  of each term its rules use. No shared glossary file.
 - Chat apps: ChatGPT and Claude chat are the intended apps; to verify. Chat support is
   deferred (see Goal).
 - Thought notes:
@@ -253,8 +306,8 @@ The six skill names are confirmed: `clip-article`, `clip-youtube`, `grounding`, 
   - Links are inline, the display text reading as part of the sentence:
     `[[✱ target|clause of the sentence]]`. The prefix stays in the link target.
   - The agent drafts the prose from the owner's confirmed parts, in the owner's wording
-    where possible, and the owner approves it through the statement gate. The agent adds no claim
-    the owner did not say. A new link is offered as a question, never asserted.
+    where possible, and the owner approves it through the statement gate. The agent adds
+    no claim the owner did not say. A new link is offered as a question, never asserted.
   - Sign-off is one pass at the end, never mid-session. Too broad (more than one idea):
     offer a second note. Too narrow: ask "where else would this hold?" The remaining
     criteria appear as a short plain-text list below the block.
@@ -262,42 +315,68 @@ The six skill names are confirmed: `clip-article`, `clip-youtube`, `grounding`, 
     and connection-finding is deferred.
 
 **Working descriptions** (what the skill does and when to use it, never its steps; final
-wording is fixed when the bodies are written):
+wording is fixed when the bodies are written; the technique descriptions are already in
+their SKILL.md files):
 - `clip-article`: Fetches a text resource from a URL (article, blog post, Medium or
   Substack page, or a post) and returns it as clean markdown with its title, author, date
-  and URL. Use when the owner asks to clip a URL, or another skill needs a URL's text.
+  and URL. Use when the user asks to clip a URL, or another skill needs a URL's text.
 - `clip-youtube`: Fetches a YouTube video's transcript with timestamps and returns it as
-  markdown with its title, channel, date and URL. Use when the owner asks to clip a YouTube
+  markdown with its title, channel, date and URL. Use when the user asks to clip a YouTube
   link, or another skill needs the transcript.
-- `grounding`: The protocol for discussing something with the owner one question at a time
-  until they have confirmed what they understand or think, held against a source or notes
-  when present. Use when the owner asks to be grounded on a topic, or when ingest or ideate
-  calls it. Not for summarizing.
-- `ingest`: A mode for discussing and learning from one source with the owner. It ends in
-  source notes that keep the source's points apart from the owner's implications.
+- `ingest`: A mode for discussing and learning from one source with the user. It ends in
+  source notes that keep the source's points apart from the user's implications.
 - `ideate`: A mode for sharpening, refining, validating or extending an idea of the
-  owner's. It ends in one thought note.
-- `define`: Writes a glossary entry for a term from the owner's pasted notes: a definition,
+  user's. It ends in one thought note.
+- `define`: Writes a glossary entry for a term from the user's pasted notes: a definition,
   then examples, where it is found and how to use it, as far as the notes support.
 
-**Evals** (plain markdown, a handful per skill; the file's location is chosen at scaffold
-time). Routing table, prompt then expected skill:
+**Evals** (plain markdown, in each skill's `evals/` folder). Routing table, prompt then
+expected skill:
 - "clip https://medium.com/..." -> `clip-article`
 - "clip this video https://youtu.be/..." -> `clip-youtube`
-- "ground me on what a closure is" -> `grounding`, as a bare session
 - "/ingest https://emilkowal.ski/ui/developing-taste" -> `ingest`, which calls `clip-article`
 - "/ideate I think asking questions beats reading slower" -> `ideate`
 - "/define taste" with pasted notes -> `define`
-- "summarize this article: <URL>" -> no skill from this repo
-- "what does this error mean?" -> no skill from this repo
+- "/feynman-technique" naming a topic -> `feynman-technique`, run on its own
+- "summarize this article: <URL>", "explain this simply", "challenge my idea", "what does
+  this error mean?" -> no skill from this repo (negative cases)
+
+Technique cases are short multi-turn transcripts judged by behavior: one question per turn,
+no answer supplied, the right switch, resuming the mode, and "yeah sounds about right" not
+closing the run. The old slipbox cases (13, mostly routing, with weak keyword assertions)
+seed the ingest routing cases only.
 
 The end-to-end run uses the owner's "Developing Taste" clip: ingest it, ideate a thought
 from it, then define "taste".
 
 **Dropped:** setup-slipbox, using-slipbox, write-checks, clip-resource (replaced by the
-two clip skills), ground-me (folds into grounding), the evergreen backlog.
+two clip skills), ground-me and grounding (replaced by the technique skills and the
+modes' own methods; the first `grounding/SKILL.md` draft is in git history at 533d522 and
+its gate and fidelity text feeds `ingest`), the evergreen backlog.
 
 **Deferred, not designed:** connection-finding across notes.
+
+## Technique reshape log (slipbox file → technique skill)
+
+- All seven: frontmatter added; "Use this when / Don't use this" dispatcher gating became a
+  state-based "Reach for this when"; sibling pointers by filename became skill names, at
+  most one line; "the Gate" replaced by the shared Ending block; "see SKILL.md's Never
+  finish it for them" replaced by that rule inside the Ending block; "user" wording.
+- verification: standalone start; "point to the passage, don't quote until they answer".
+- elenchus: "never dispatched directly, never an opening move" became "needs a located
+  weakness; if none, say so and stop; standalone, ask for a stated position first".
+- feynman: refusal on a blank answer became "ask toward what they remember first"; the
+  mechanism, boundary and distinction probes; "ask wide before narrow"; acknowledgment line.
+- self-explanation: standalone start; probe types; acknowledgment line.
+- guided-reading: caller-supplied context became a standalone start; the offer between
+  reading alone and working together removed (the user's wish to read first is still
+  respected); the gate pointer became the Ending; ask wide before narrow.
+- maieutic: also covers the user's own reaction (the Implications use); probe types for
+  the test question; acknowledgment line.
+- compass family: not reshaped yet. Known fixes for when it is: drop the backlog,
+  `derived-from` and database text (an unpursued branch becomes an open thread in the
+  closing statement; north is the material in hand); add a start without notes and an
+  ending; distil drops its purity-check pointer.
 
 ## Provisional
 
@@ -317,10 +396,6 @@ two clip skills), ground-me (folds into grounding), the evergreen backlog.
   a point).
 - When the owner pastes a draft, the thought note is updated in place; a full rewrite is
   allowed, and `updated` is bumped.
-- A bare grounding session (no mode) uses fidelity "neither", ends at the statement gate,
-  and returns the confirmed statement in chat with no notes. Grounding's description says
-  to use it when the owner asks to be grounded or a mode calls it, so it does not fire in
-  ordinary chat after the notes.
 - Authoring rules for SKILL.md bodies:
   - Be strict on the gates that protect fidelity (verbatim quote, Implications in the
     owner's words, quote shown only after the owner answers). Stay adaptive in the
@@ -337,19 +412,27 @@ two clip skills), ground-me (folds into grounding), the evergreen backlog.
 
 ## Open
 
-1. **Skills.** The final description wording and the evals file's location are fixed when
-   the bodies are written. At that point, confirm the Implications guard holds in the
-   ported text: slipbox's glossary rejected a Take and a Reaction field in the literature
-   note (2026-07-23), and this design reverses that on purpose.
+1. **Skills.** The final description wording is fixed when the bodies are written. At that
+   point, confirm the Implications guard holds in the ported text: slipbox's glossary
+   rejected a Take and a Reaction field in the literature note (2026-07-23), and this
+   design reverses that on purpose.
 2. **Chat route, deferred until the skills are shaped.** The owner says Claude chat can
-   load skills and ChatGPT cannot. Leaning: the row fallbacks only, no technique files
-   pasted.
-3. **To test on a laptop.**
+   load skills and ChatGPT cannot. Chat uploads skills one at a time, which reopens the
+   standalone-versus-bundled technique question for that route.
+3. **Compass reshape and ideate body,** written together.
+4. **To test on a laptop.**
+   - the call-by-name path from a mode to a technique on Claude Code, Codex and Cowork
+     (a review reported Codex has no Skill tool and opens the SKILL.md path instead;
+     unverified). The ingest switching path is tested before the other bodies are written;
+   - a one-folder install (the mode should stop and say so, not improvise);
+   - routing collisions with the owner's other interview skills (`grounding`, `grilling`,
+     `ground-me`) and with ordinary prompts such as "explain this simply";
+   - that a technique's standalone ending does not leak when called from a mode;
    - the skills folder each harness reads (`npx skills add andarwaly/marginalia`, Codex,
      cloud repo skills);
    - that `/ingest` still works with the user-invoked flag in Claude Code and Cowork
      (GitHub bug reports say it once failed; unverified). If it fails, fall back to a
-     model-invoked skill whose description says it runs only when the owner invokes it;
+     model-invoked skill whose description says it runs only when the user invokes it;
    - the exact path and file name Codex reads for `policy`;
    - plugin manifest paths;
    - Codex cloud and Cowork setup scripts and network allowlists;
@@ -378,18 +461,20 @@ two clip skills), ground-me (folds into grounding), the evergreen backlog.
 - **Key Concepts:** abstract concepts, methods or frameworks a point leans on.
 - **Mentioned:** concrete named people, places, organizations, works, tools or events.
 - **Open Questions:** gaps the source leaves, flagged by the owner only.
-- **Dispatch:** choosing a grounding technique from the quality of the owner's answer.
-- **Statement gate:** grounding's rule that a statement is fixed only on the owner's open
-  confirmation ("what's missing or wrong?"), never a bare yes.
+- **Reading state:** how the user's last answer landed: confident, hesitant, blank or
+  confused. Ingest routes on it.
+- **Statement gate:** the rule that a statement is fixed only on the user's open
+  confirmation ("what's missing or wrong?"), never a bare yes. It is the Ending block in
+  each technique.
 - **Done gate:** each mode's rule for when the discussion ends and the closing questions
   run before the notes are produced.
-- **Techniques:** verification checks a restatement against the source; elenchus presses a
-  claim from several angles after a mismatch; feynman has the owner explain it plainly and
-  patches the gap; self-explanation surfaces a contradiction in a confused answer;
+- **Technique skills:** verification checks a restatement against the source; elenchus
+  presses a stated position on a located weakness; feynman has the user explain it plainly
+  and patches the gap; self-explanation surfaces a contradiction in a confused answer;
   guided-reading works through a source not yet read; maieutic draws a first statement out
-  of nothing; compass orients a synthesis (north origin, west similar via connect, south
-  where it leads, east what competes via challenge); distil combines connect and challenge
-  into one new claim.
+  of nothing and tests it; compass orients a discussion of an idea (north origin, west
+  similar via connect, south where it leads, east what competes via challenge; distil
+  combines connect and challenge into one new claim).
 - **Purity check:** every sentence of a thought note must say something no single cited
   note said alone.
 - **Five sign-off criteria:** title is a claim; standalone; about one thing; every link has a
@@ -433,19 +518,37 @@ two clip skills), ground-me (folds into grounding), the evergreen backlog.
     template JSON), `theharshith/obsidian-clipper-cli` (an older fork reusing the official
     package name), and `harryzhz/webclip-cli` (installs unpinned from GitHub, uses
     Readability, no YouTube).
+- Technique design (2026-10-29): three independent Opus reviews. The first recommended
+  bundling verbatim technique copies in each mode; the owner rejected it (duplicates, no
+  home for evals, cluttered shared references, thin skills want references). The second
+  confirmed standalone skills and found the risks recorded above (no call stack, call
+  mechanism differs by host, one-folder installs, routing collisions, fragile preface). The
+  third, with the technique files and research, found the dispatcher gating, the dangling
+  pointers, that "the Gate" was never defined in any technique file, and that the probe
+  taxonomy adopted on 2026-08-08 was never built.
+- pstack (Cursor): 58 tiny, mostly user-invoked skills; a hub skill reads sibling skills by
+  `../<name>/SKILL.md`; no per-skill evals. The sibling-path read is not used here.
+- The slipbox research kept the verification/elenchus duplicated guardrail on purpose
+  (each technique file readable standalone), and the owner's `grilling` skill was the
+  model for the lean interview loop.
 
 ## Research pointers
 
 - `andarwaly/skill-kojo`, `discussion/slipbox/discussion-topics/`:
   `personal-drift-and-off-source-questions.md`, `grounding-answer-quality-redesign.md`,
-  `claim-density-and-compression.md`. `discussion/gems/knowledge/skills/` for skill
+  `claim-density-and-compression.md`, `grounding-probing-taxonomy.md`,
+  `ground-my-take-techniques-research.md`, `grounding-verification-elenchus-redundancy.md`,
+  `discussion-skill-lean-grilling.md`. `discussion/gems/knowledge/skills/` for skill
   authoring thresholds.
+- `andarwaly/slipbox`: `skills/grounding/references/` (the original technique files),
+  `tests/grounding/evals.json` (13 old cases).
 - Anthropic, "When to fold subagents into your main agent loop"
   (claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop).
 - Emil Kowalski, "How to write good skills" (aiforui.dev/learn/how-to-write-good-skills):
   strict, focused skills; write the why with each rule; every line must change behavior;
   agents can write skills for agents. UI-focused, a paid-course page, install and star
   counts unverified.
+- `cursor/plugins`, `pstack/skills` (the pattern of small skills composed by name).
 - The two pastes that set the thought-note shape: Glukhov, "Evergreen notes" for engineers
   (https://www.glukhov.org/knowledge-management/methods/evergreen-notes/) and Andy
   Matuschak, "Evergreen notes" (notes.andymatuschak.org).
