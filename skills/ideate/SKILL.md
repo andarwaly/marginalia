@@ -1,6 +1,6 @@
 ---
 name: ideate
-description: "A mode for sharpening, refining, validating or extending an idea of the owner's. It ends in one thought note."
+description: "A mode for sharpening, refining, validating or extending an idea of the user's. It ends in one thought note."
 disable-model-invocation: true
 ---
 

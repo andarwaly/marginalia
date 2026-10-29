@@ -1,3 +1,8 @@
+---
+name: feynman-technique
+description: "Marginalia interview technique, only when a marginalia mode calls it or the user names it. The user explains a point in plain language, the agent names the one gap that breaks the explanation, and the user patches it."
+---
+
 # Feynman
 
 ## What it is
@@ -11,30 +16,35 @@ heard of it, notice exactly where the explanation breaks down or leans on
 words that haven't actually been unpacked, then return to the source to
 fill that specific gap before trying again.
 
+Start by asking what the user wants to explain, then: "In your own words,
+what does it mean?" If a source is in play, have read it first.
+
 ## Why this technique, for this job
 
-`grounding`'s whole premise is that the agent never states the user's
+The premise of this whole family is that the agent never states the user's
 understanding for them — the user has to produce it. Feynman is the one
 technique built to do exactly that from a standing start: it doesn't test
 whether a stated claim survives scrutiny (that's elenchus's job, downstream
 of a claim existing), it's the mechanism for getting a first plain-language
-claim to exist at all. That's why it's the answer to a hesitant/hedging
-response specifically — something was attempted, it's just shaky, and
-Feynman's loop is built to turn "shaky" into "solid" without the agent ever
-supplying the missing words itself.
+claim to exist at all. That's why it fits a hesitant/hedging response
+specifically — something was attempted, it's just shaky, and Feynman's loop
+is built to turn "shaky" into "solid" without the agent ever supplying the
+missing words itself.
 
-**Use this when** the answer is hesitant or hedging — something was
+**Reach for this when** the answer is hesitant or hedging — something was
 attempted, but it's shaky, hedged, or trails off. Feynman needs *some*
 stated content to loop against, even a weak one.
 
-**Use `self-explanation.md` instead when** the answer is confused rather
-than hesitant — garbled or circular, not just uncertain. Feynman's loop
+If the answer is confused rather than hesitant — garbled or circular, not
+just uncertain — `self-explanation-technique` fits better. Feynman's loop
 assumes a simplifiable idea exists; confusion means there's no settled idea
 yet to simplify.
 
-**Don't use this when** nothing at all comes back. That's Blank, not
-Hesitant — see `guided-reading.md` or `maieutic.md` depending on whether a
-source is present.
+If nothing at all comes back, ask toward what the user does remember first
+("what's the piece you keep coming back to?") and then run the loop on
+whatever comes out. With a source and a user who wants to work through it
+together, `guided-reading-technique` fits; with no source, so does
+`maieutic-technique`.
 
 ## Concept
 
@@ -62,10 +72,7 @@ repair.
 ## Conversational adoption
 
 This is a chat, not a worksheet — the technique has to be carried entirely
-in how the agent talks, one turn at a time, matching `grounding`'s own
-global one-question-per-turn rule.
-
-See `SKILL.md`'s **Never finish it for them** — naming the gap is the agent's
+in how the agent talks, one question per turn. Naming the gap is the agent's
 job here, filling it is the user's.
 
 - **Play the role for real, not performatively.** The agent's confusion at
@@ -79,7 +86,18 @@ job here, filling it is the user's.
   re-articulating it is the user's step, not the agent's.
 - **Keep the ask small.** One gap, one question, one turn. A hesitant
   answer with three separate weak spots still gets one question about the
-  most load-bearing gap first, not three at once.
+  most load-bearing gap first, not three at once. To pick the question: a
+  claim stated without its cause gets a mechanism question ("what causes
+  that?"); a sweeping claim gets a boundary question ("when would that not
+  hold?"); two blurred terms get a distinction question ("how are A and B
+  different here?").
+- **Ask wide before narrow.** Don't announce the source's structure inside
+  the question ("what do its three arguments claim?" hands over that there
+  are three). Ask "what is it actually claiming?" and narrow to one part
+  only if that stalls.
+- **Acknowledge, then ask.** A hesitant answer gets one short, varied
+  acknowledgment on its own line ("that's a fair place to get stuck"), and
+  the question on the next line.
 
 ## Worked example
 
@@ -113,3 +131,17 @@ itself when naming it. "What does 'connect' mean here — I mean, does it
 mean linking for retrieval, or something about meaning changing over time?"
 already hands over the answer inside the question. Name the gap, not the
 candidate answers.
+
+## Ending
+
+- **Probe first.** Show no draft until at least one open question has drawn
+  real content from the user.
+- **Confirm openly.** Ask "here's what I have, from what you said. What's
+  missing or wrong?" and never "yes or no?" A bare "yes", a pause or a topic
+  change does not confirm it.
+- **Hand it back.** Give the confirmed statement, verbatim. Called from a
+  mode, return it to the mode, which continues at its next step. Run on its
+  own, say the statement in chat and stop, with no notes.
+- **Never finish it for them.** The answer, the candidate, the connection and
+  the counter-argument are the user's to supply. Name the gap and leave it
+  open.

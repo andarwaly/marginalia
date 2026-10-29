@@ -1,3 +1,8 @@
+---
+name: self-explanation-technique
+description: "Marginalia interview technique, only when a marginalia mode calls it or the user names it. Points at the specific contradiction in a confused answer so the user repairs their own model."
+---
+
 # Self-explanation
 
 ## What it is
@@ -10,6 +15,10 @@ material and what they already believed. Distinct from asking a targeted
 unprompted sense-making, and the repair happens because the discrepancy was
 *noticed*, not because it was corrected for the person.
 
+Needs something the user has already said that doesn't hold together. Run
+on its own, start by asking for their current understanding in their own
+words, then listen for the inconsistency.
+
 ## Why this technique, for this job
 
 A confused-but-not-blank answer is exactly a mental-model-repair situation —
@@ -19,16 +28,16 @@ own prior reasoning) actually supports. This technique's whole mechanism is
 surfacing that discrepancy and letting the person notice and fix it
 themselves, rather than the agent diagnosing and correcting it directly —
 which matters here because correcting it outright would be exactly the
-kind of "handing over the answer" the whole family exists to avoid.
+kind of "handing over the answer" this whole family exists to avoid.
 
-**Use this when** the answer is confused — touched something, but garbled
-or circular, distinct from Hesitant (uncertain but coherent) and Blank
-(nothing substantive at all).
+**Reach for this when** the answer is confused — touched something, but
+garbled or circular, distinct from hesitant (uncertain but coherent) and
+blank (nothing substantive at all).
 
-**Use `feynman.md` instead when** the answer is hesitant rather than
-confused — shaky but not self-contradictory. Feynman's loop assumes a
-simplifiable idea exists; this technique assumes a *specific internal
-inconsistency* to surface, which a merely-hesitant answer may not have.
+If the answer is merely hesitant — shaky but not self-contradictory —
+`feynman-technique` fits better. Feynman's loop assumes a simplifiable idea
+exists; this technique assumes a *specific internal inconsistency* to
+surface, which a merely-hesitant answer may not have.
 
 ## Concept
 
@@ -47,9 +56,14 @@ wouldn't self-explain well unprompted has something concrete to work from.
 - **Name the specific contradiction, not the general confusion.** "You said
   X, but a moment ago you said Y — how do those fit together?" is far more
   useful than "that doesn't quite make sense, try again."
-- **Point at the discrepancy, don't resolve it.** See `SKILL.md`'s
-  **Never finish it for them** — the repair is the user's own; the agent's
-  job stops at making the inconsistency visible.
+- **Point at the discrepancy, don't resolve it.** The repair is the user's
+  own; the agent's job stops at making the inconsistency visible. When
+  several discrepancies show, name the one the others depend on. A pair of
+  blurred terms is a distinction question ("how are A and B different
+  here?"); a claim without its cause is a mechanism question.
+- **Acknowledge, then ask.** Give one short, varied acknowledgment on its own
+  line ("that's a fair place to get stuck"), and the question on the next
+  line.
 - **Let genuine confusion sit for a moment.** Don't rush to rephrase the
   question if the first attempt to surface the discrepancy doesn't land
   immediately — repair takes a beat, especially for material that was
@@ -81,3 +95,17 @@ it actually is — hedging the contradiction so it doesn't feel like a
 callout. That defeats the mechanism: the discrepancy has to be named
 clearly enough to actually notice, not smoothed into something so vague
 it's easy to wave past without genuinely reconciling it.
+
+## Ending
+
+- **Probe first.** Show no draft until at least one open question has drawn
+  real content from the user.
+- **Confirm openly.** Ask "here's what I have, from what you said. What's
+  missing or wrong?" and never "yes or no?" A bare "yes", a pause or a topic
+  change does not confirm it.
+- **Hand it back.** Give the confirmed statement, verbatim. Called from a
+  mode, return it to the mode, which continues at its next step. Run on its
+  own, say the statement in chat and stop, with no notes.
+- **Never finish it for them.** The answer, the candidate, the connection and
+  the counter-argument are the user's to supply. Name the gap and leave it
+  open.
