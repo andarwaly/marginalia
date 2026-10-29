@@ -3,7 +3,7 @@
 ## What it is
 
 Executes Compass's WEST direction ("what is similar to X?") — see
-`compass.md`. Grounded in Niklas Luhmann's own account of why a note
+the compass skill's `SKILL.md`. Grounded in Niklas Luhmann's own account of why a note
 collection becomes a genuine thinking partner: only if it can *surprise*
 its author.
 
@@ -43,11 +43,10 @@ a schema-less encounter with the same material doesn't.
 - **Ask for the shared shape, not the shared topic.** "What's the
   underlying pattern these two share?" surfaces structure; "are these
   related?" invites a shallow yes.
-- **Trace to material actually in play.** Per `grounding`'s own Fidelity
-  rule, a suggested connection must trace to a note actually retrieved or
-  already in the session — never supplied from the agent's own outside
-  knowledge of "similar things." See also `SKILL.md`'s **Never finish it for them**
-  — the connection itself is the user's to draw, not the agent's to hand over.
+- **Trace to material actually in play.** A suggested connection must trace
+  to material actually in the session (a note or source the user named or pasted),
+  never supplied from the agent's outside knowledge of "similar things." The
+  connection itself is the user's to draw (see the Ending in `SKILL.md`).
 - **Let a thin connection stay thin.** If nothing structural turns up,
   that's a complete result for this direction, not a gap to force.
 

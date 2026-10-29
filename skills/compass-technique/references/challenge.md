@@ -3,7 +3,7 @@
 ## What it is
 
 Executes Compass's EAST direction ("what competes with X?") — see
-`compass.md`. Grounded in Karl Popper's falsificationism: a test only
+the compass skill's `SKILL.md`. Grounded in Karl Popper's falsificationism: a test only
 counts if it carries real risk of negating the claim.
 
 ## Why this technique, for this job
@@ -41,8 +41,10 @@ perform token objections.
   respond.
 - **Stay a question, not a verdict.** Surfacing the competing case is the
   whole job; delivering the counter-argument's conclusion on the user's
-  behalf is not — see `SKILL.md`'s **Never finish it for them**, aimed here
-  at a synthesis instead of a source.
+  behalf is not (see the Ending in `SKILL.md`). A mode that makes
+  the discussion two-way, such as `ideate`, may have the agent state the
+  counter-argument itself, labeled as its own; the user still supplies the
+  response.
 
 ## Worked example
 

@@ -3,7 +3,7 @@
 ## What it is
 
 Runs after Compass's West (Connect) and East (Challenge) have both produced
-something — see `compass.md`. Not a fourth compass direction. Combines two
+something — see the compass skill's `SKILL.md`. Not a fourth compass direction. Combines two
 opposing inputs into a new claim, closer to Koestler's bisociation and
 Fauconnier & Turner's conceptual blending than to classical Hegelian
 synthesis, which mandates a single resolving outcome rather than an
@@ -47,7 +47,7 @@ open-endedness.
   (principle of charity), not the weakest or most convenient one to work
   with.
 - **The reflect-back only counts once the user has explicitly confirmed
-  it** — `grounding`'s own Gate applies at full force here.
+  it** — the Ending in `SKILL.md` applies at full force here.
 
 ## Worked example
 
@@ -63,5 +63,4 @@ tension you're pointing at, or have I drifted from what you meant?"
 ## Guardrail
 
 If the result only supports one side unchanged, that's not synthesis yet —
-the same failure the purity check (see the wrapper skill's own `SKILL.md`)
-is built to catch, just caught earlier here.
+a restatement of one finding. Say so and ask what the other finding changes.
