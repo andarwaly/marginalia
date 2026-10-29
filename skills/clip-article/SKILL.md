@@ -16,20 +16,22 @@ the like) may drop or reword text, so never use one for this.
 2. **Clip.** Write to `${TMPDIR:-/tmp}/marginalia/`, never into a vault or a repo:
    ```
    mkdir -p "${TMPDIR:-/tmp}/marginalia"
-   defuddle parse "<url>" --md -f -o "${TMPDIR:-/tmp}/marginalia/<slug>.md"
+   defuddle parse "<url>" --json -o "${TMPDIR:-/tmp}/marginalia/<slug>.json"
    ```
-   `-f` puts title, site, source and, when the page has them, author and published in a
-   frontmatter header. Leave empty fields empty; never guess an author or a date. Write
-   `published` as `YYYY-MM-DD` (Defuddle may return `2026-01-16T00:00:00+00:00`; trim it).
+   Build `<slug>.md` from the JSON: a frontmatter header with `title`, `site`, `source`
+   (the URL) and, when not empty, `author` and `published`, then `contentMarkdown` as the
+   body. Leave empty fields empty; never guess an author or a date. Write `published` as
+   `YYYY-MM-DD` (Defuddle may return `2026-01-16T00:00:00+00:00`; trim it). Note
+   `wordCount`, then delete the JSON file.
 3. **Check the result.** It fails if the file is empty, holds only a sign-in or
-   cookie banner, or is far shorter than the page should be. Then try the fallback.
+   cookie banner, or is far shorter than the page should be. Then try the fallback. If the
+   file cannot be written, stop and report it; never continue from stdout, because ingest
+   checks quotes against the file.
 4. **Fallback, in order.**
    - Firecrawl, only if its tools are present: `firecrawl_scrape` with the URL, markdown
-     format, `maxAge: 0`. Medium blocks Defuddle (403), so expect to land here. Add the
-     same frontmatter header by hand, taking `published` from the byline shown on the page;
-     the page metadata date can differ (one Medium article showed a 2023 metadata date over
-     a 2020 byline), so if they disagree use the byline. Say once that it used a hosted
-     service.
+     format, `maxAge: 0`. Add the same frontmatter header by hand, taking `published` from
+     the byline shown on the page; if the metadata date and the byline differ, use the
+     byline. Count the words in the saved file. Say once that it used a hosted service.
    - Otherwise report the failure in one line and ask the user to clip the page with their
      browser clipper and paste the result.
 5. **Report.** Give the file path and one line: title, author, published, word count. Do
@@ -37,10 +39,10 @@ the like) may drop or reword text, so never use one for this.
 
 ## Rules
 
-- Do not remove boilerplate lines (sign-in banners, "Press enter or click to view
-  image"); ingest knows not to quote them, and removing text breaks verbatim checks.
+- Keep boilerplate lines (sign-in banners, "Press enter or click to view image") as they
+  are; ingest knows not to quote them, and removing text breaks verbatim checks.
 - Paywalled or login-only page: report it and write nothing.
-- X posts go through Firecrawl only (about 30 credits per post; quotes unverified). Reddit
-  and Threads are not supported: ask the user to paste the text.
+- X posts go through Firecrawl only (quotes unverified). Reddit and Threads are not
+  supported: ask the user to paste the text.
 - In plain chat there is no shell: ask the user to paste the text instead.
 - Do not read the clip to the user, and do not save it anywhere else.

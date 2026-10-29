@@ -79,4 +79,11 @@ Harnesses: **CC** Claude Code, **CX** Codex, **CW** Cowork.
 
 | # | Harness | Date | Pass / fail | Notes |
 | --- | --- | --- | --- | --- |
-| | | | | |
+| A1 | CC 2.1.312 | 2026-10-29 | pass | 12/12 skills visible in a project-local install (temp vault). |
+| A2 | CC 2.1.312 | 2026-10-29 | partial, re-run pending | `clip-article` via Skill tool; 5 topic labels, no quotes. Run 1: `defuddle` 0.14.0 rejects `-f`, so no frontmatter or saved file. Run 2 (after fix): clip saved with title and author; the two opening questions merged into one, fixed in `ingest` step 3, not re-run. |
+| A3 | CC 2.1.312 | 2026-10-29 | pass | `feynman-technique` via Skill tool. Run 1: question had two parts. Run 2: one question. |
+| A4 | CC 2.1.312 | 2026-10-29 | pass | Confident: verification behaviour, no new Skill call (loaded earlier). Blank: `guided-reading-technique` via Skill tool, no choice offered. |
+| A5 | CC 2.1.312 | 2026-10-29 | pass | Standalone close did not appear after the confirmed statement. |
+| A6 | CC 2.1.312 | 2026-10-29 | pass | Main-idea and closing questions ran once; notes in fenced blocks; density check not observable. |
+
+Run headless (`claude -p`, scripted user) in a temp vault; an interactive run is still to do.
