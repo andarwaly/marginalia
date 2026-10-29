@@ -16,6 +16,3 @@ Ask: "Here's what I have, from what you said: <statement>. What's missing or wro
 | (changes the subject) | No. Return to the draft once; if the user moves on, leave the point unconfirmed. |
 
 An unconfirmed point is not written. The step 6.1 nudge offers it once more.
-
-Called from a technique, the technique's Ending does this check. Ignore its stand-alone
-close ("say the statement in chat and stop") and continue at the next step of `ingest`.

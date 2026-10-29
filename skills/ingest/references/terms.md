@@ -10,19 +10,17 @@ Read when a rule in SKILL.md is unclear.
 - **Main idea**: what the source chiefly argues, in one sentence, in the user's words.
 - **Frontier**: the candidate points the agent found, each with an exact quote. It keeps the
   discussion honest; the user never sees the quotes until they have answered.
-- **Reading state**: how the user's last answer landed.
-  - confident: clear, complete, unhedged.
-  - hesitant: something attempted, but shaky or trailing off.
-  - confused: garbled or circular, or contradicting itself.
-  - blank: nothing substantive.
+- **Reading state**: how the user's last answer landed. The states are in the table in
+  `reading-the-answer.md`.
 - **Statement gate**: the user's open confirmation ("what's missing or wrong?") fixes a
   statement. See `statement-gate.md`.
 - **Done gate**: the steps that end the discussion: the closing questions, then the notes.
 - **Implications**: the user's own reactions and consequences, in their words, in their own
   section.
-- **Key Concepts**: abstract concepts, methods or frameworks a point leans on.
-- **Mentioned**: concrete named people, places, organizations, works, tools or events.
-- **Open Questions**: gaps the source leaves, flagged by the user only.
-- **Central point**: a point tied to what brought the user to the source. Interviewed.
+- **Intention**: what the user wants from the source, in their words; often it includes
+  what they will do with it. Set at step 3, kept on the map under its own heading, and recalled at the
+  closing question. It orders the points and is never a point, so the statement gate does
+  not apply to it.
+- **Central point**: a point tied to the user's intention. Interviewed.
 - **Supporting point**: a picked point that is not central. Drafted by the agent and
   checked against the source.

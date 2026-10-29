@@ -90,7 +90,8 @@ job here, filling it is the user's.
   claim stated without its cause gets a mechanism question ("what causes
   that?"); a sweeping claim gets a boundary question ("when would that not
   hold?"); two blurred terms get a distinction question ("how are A and B
-  different here?").
+  different here?"), but never one that asks for a distinction the source itself
+  draws.
 - **Ask wide before narrow.** Don't announce the source's structure inside
   the question ("what do its three arguments claim?" hands over that there
   are three). Ask "what is it actually claiming?" and narrow to one part

@@ -570,6 +570,18 @@ Observed in the cloud container; use them when setting up the owner's vault envi
   (each technique file readable standalone), and the owner's `grilling` skill was the
   model for the lean interview loop.
 
+## Clip notes (2026-10-29)
+
+Facts moved out of `clip-article/SKILL.md` because they can go stale:
+
+- Medium blocks Defuddle (403); Firecrawl is the route.
+- Metadata date and byline can differ: one Medium article showed a 2023 metadata date over
+  a 2020 byline. The skill uses the byline.
+- X posts via Firecrawl cost about 30 credits per post.
+- `defuddle` 0.14.0 has no `-f` flag, so the skill builds the frontmatter from
+  `defuddle parse --json` (fields: title, author, site, published, contentMarkdown,
+  wordCount).
+
 ## Research pointers
 
 - `andarwaly/skill-kojo`, `discussion/slipbox/discussion-topics/`:

@@ -19,6 +19,13 @@ line and begin with the passage.
 A thin but accurate answer is not a mismatch. Press with elenchus only on a located
 weakness: a quote that contradicts the restatement.
 
+## A remark that fits no point
+
+Find the nearest passage and ask: "The article says 'x' is 'y'. Is that what you said, or
+did you have something else in mind?" A misreading returns to that point. The user's own
+read becomes an Implication. If no passage exists, re-check the source before saying so,
+then ask.
+
 ## Examples
 
 Source point: "Taste grows from making many things and judging them."

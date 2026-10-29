@@ -75,8 +75,110 @@ Harnesses: **CC** Claude Code, **CX** Codex, **CW** Cowork.
 22. Ingest "Developing Taste" to notes. `/ideate` a thought from it, with the notes pasted.
     Then `/define taste`. Pass: the notes pass the checks in each skill's `evals/README.md`.
 
+## G. Running the evals (scripted user)
+
+The cases live in each skill's `evals/README.md` and are judged by behavior. Run them as a
+scripted conversation in a throwaway vault, where the skills are project-local (no install).
+
+**Setup**
+
+1. `mkdir -p w/vault/.obsidian w/vault/.claude/skills && cp -R skills/. w/vault/.claude/skills/`
+2. `npm install -g defuddle` (0.14.0 or later). Headless runs may block writes to `/tmp`, so
+   the driver points `TMPDIR` at a folder it is allowed to use.
+3. Save this as `w/run.sh` and `chmod +x` it. `run.sh 1 "<prompt>"` starts a session,
+   `run.sh N "<prompt>"` resumes it. Each turn leaves `logs/N.prompt` and `logs/N.jsonl`.
+
+```bash
+#!/bin/bash
+W=$(cd "$(dirname "$0")" && pwd); cd "$W/vault"
+export TMPDIR="$W/tmp"; mkdir -p "$TMPDIR" "$W/logs"
+if [ "$1" = 1 ]; then uuidgen | tr A-Z a-z > "$W/sid.txt"; F="--session-id $(cat "$W/sid.txt")"
+else F="--resume $(cat "$W/sid.txt")"; fi
+echo "$2" > "$W/logs/$1.prompt"
+claude -p "$2" $F --add-dir "$TMPDIR" \
+  --allowedTools "Bash(command -v:*)" "Bash(mkdir:*)" "Bash(defuddle:*)" "Bash(wc:*)" "Bash(rm:*)" Write Read Skill \
+  --output-format stream-json --verbose </dev/null > "$W/logs/$1.jsonl"
+python3 - "$W/logs/$1.jsonl" <<'P'
+import json, sys
+for l in open(sys.argv[1]):
+    d = json.loads(l)
+    if d.get("type") == "assistant":
+        for c in d["message"]["content"]:
+            if c["type"] == "text": print("TEXT:", c["text"])
+            elif c["type"] == "tool_use": print("TOOL:", c["name"], json.dumps(c["input"])[:160])
+P
+```
+
+**Turn script** (one `run.sh` call per turn, answers adapted to what the agent asks; write them
+in the language you want to test)
+
+| Turn | User says | Evals it exercises |
+| --- | --- | --- |
+| 1 | `/ingest https://emilkowal.ski/ui/developing-taste` | ingest 1, 18 |
+| 2 | No other points; why you are here and what you will do with it | 15, 16, 19 |
+| 3 | A hedge about the first point | 4, 20 |
+| 4 | A confident restatement taken from the clip | 21 |
+| 5 | "Nothing, that's it." | 9 |
+| 6 | "No idea." on the next point | 6 |
+| 7 | "done" | 11 |
+| 8-9 | A main idea, then "Nothing, that's it." | 10, 17 |
+| 10 | A reaction to the article | 12, 13 |
+
+Cases that need their own session: ingest 5 (confused answer), 7 (mismatch), 8 (reaction),
+10 (answer "yes" to the open confirmation), 14 (delete one `*-technique` folder from the
+vault first), 2 and 3 (a plain prompt with no slash). For the other skills, open
+`<skill>/evals/README.md` and follow its setup.
+
+**Judge**
+
+- Skill calls per turn: `grep -o '"name":"Skill","input":{[^}]*}' logs/N.jsonl`. The skill
+  must be called by name, not opened by path.
+- Quotes: each quote in the notes must appear verbatim in the saved clip, inside one
+  paragraph, ignoring `[^n]` markers, emphasis and curly quotes. Check with a script.
+- Judge behavior, not wording. Mark each case pass, fail or not exercised, with the quoted
+  turn. Ignore harness noise (blocked `/tmp` writes, denied tools); it is not a skill defect.
+- Record the result in the table below, with the harness and date.
+
+**Cloud**
+
+- No residential IP: `clip-article` may fail on some sites. Paste the article text after
+  `/ingest` instead, and mark ingest 1 "not exercised".
+- Use a project-local install, as above. A cloud session needs the same folder layout.
+
 ## Results
 
 | # | Harness | Date | Pass / fail | Notes |
 | --- | --- | --- | --- | --- |
-| | | | | |
+| A1 | CC 2.1.312 | 2026-10-29 | pass | 12/12 skills visible in a project-local install (temp vault). |
+| A2 | CC 2.1.312 | 2026-10-29 | partial, re-run pending | `clip-article` via Skill tool; 5 topic labels, no quotes. Run 1: `defuddle` 0.14.0 rejects `-f`, so no frontmatter or saved file. Run 2 (after fix): clip saved with title and author; the two opening questions merged into one, fixed in `ingest` step 3, not re-run. |
+| A3 | CC 2.1.312 | 2026-10-29 | pass | `feynman-technique` via Skill tool. Run 1: question had two parts. Run 2: one question. |
+| A4 | CC 2.1.312 | 2026-10-29 | pass | Confident: verification behaviour, no new Skill call (loaded earlier). Blank: `guided-reading-technique` via Skill tool, no choice offered. |
+| A5 | CC 2.1.312 | 2026-10-29 | pass | Standalone close did not appear after the confirmed statement. |
+| A6 | CC 2.1.312 | 2026-10-29 | pass | Main-idea and closing questions ran once; notes in fenced blocks; density check not observable. |
+| G1 | CC 2.1.312 (-p, cloud) | 2026-10-29 | partial | Ingest 1, 2, 3, 5, 6, 7, 8, 10, 11, 12, 14, 16-19, 21 pass. 4 fail (hedge made no Skill call in the main run; `feynman-technique` fired in a variant run). 20 fail (`feynman-technique` asked a contrast the source draws). 9, 13, 15 not exercised. Density check cannot confirm. Fixes: `ingest` step 4 and Hard rules, `feynman-technique` question shapes. Re-run (6 + 3 sessions): 20 pass 3/3 after the added step 4 rule; 4 still inconsistent (feynman called in 4 of 6 on the personal-preference hedge); exact-words rule held in 1 full session (Intention, main idea and both Implications kept verbatim; one session only). |
+| G2 | CC 2.1.312 (-p, cloud) | 2026-10-29 | note | `defuddle` 0.19.6 fetched from the cloud, so ingest 1 is exercised. `uuidgen` missing (shimmed). User-level skills such as `supermatt:*` are visible to the vault. |
+
+### G findings (2026-10-29, CC 2.1.312 headless, cloud)
+
+Open, not fixed. To be re-checked after an interactive run.
+
+- **Ingest 4 (medium).** The hedge does not reliably load `feynman-technique` by name. On the
+  personal-preference hedge it loaded in 4 of 6 runs (`r4`, `s2` did not); on the practice
+  hedge, 3 of 3 after the step 4 edit, 0 of 1 before. In the misses the agent still asked one
+  feynman-shaped question after reading `reading-the-answer.md`, but never opened the
+  technique file, so its guardrails were not in context. `r4` also asked the contrast
+  question (ingest 20). Cause not visible in the logs; later turns of the misses were not
+  checked. Candidate fix: step 4 says to load the technique with the Skill tool before asking.
+- **Ingest 9, 13, 15: not exercised.** 9 needs a technique reaching a confirmed statement
+  (`verification-technique` was not loaded in the main run). 13 needs an agent disagreement.
+  15 needs the "design reviews" answer. Density check (11) cannot be observed.
+- **Extra loads.** `guided-reading-technique` (`s1`) and `maieutic-technique` (`s3`) loaded
+  before `feynman-technique` on a hedge. Not visible to the user; effect unknown.
+- **Harness noise, not defects.** The nested session overrides `TMPDIR`, blocks `$TMPDIR` and
+  `/tmp` writes, and denied approval for `node`/`python3` build scripts (`c14`, `c14b`).
+  `uuidgen` is missing in the cloud container (shimmed). The vault also sees user-level
+  skills (`supermatt:*`), so `ideate` shares a name with `supermatt:ideate`.
+- **Fixed and re-run.** Ingest 20 passes 3 of 3 after the step 4 rule. The exact-words rule
+  held in 1 full session.
+
+Run headless (`claude -p`, scripted user) in a temp vault; an interactive run is still to do.
