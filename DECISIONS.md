@@ -125,8 +125,9 @@ The six skill names are confirmed: `clip-article`, `clip-youtube`, `grounding`, 
 - `define` (was `reference`): a separate output, built last because it sits outside the
   owner's two-part flow. It writes the owner's personal glossary entry: a definition
   first, then examples, where the term is found, and how to use it, each included only
-  where the pasted notes support it. If the notes lack one, the agent says what is missing and does not invent
-  it. No grounding interview. Keeps the admission sequence and bounded lookup.
+  where the pasted notes support it. If the notes lack one, the agent says what is
+  missing and does not invent it. No grounding interview. Keeps the admission sequence and
+  bounded lookup.
   - Inputs: the owner names a concept and pastes the point notes that mention it, with
     their maps' frontmatter (author, URL). The skill dedupes sources by URL and author.
     There is no vault scan.
