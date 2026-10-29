@@ -17,7 +17,9 @@ New public repo, ported and simplified from slipbox (`andarwaly/slipbox`). Not o
 
 - Targets Claude Code (local and cloud), Codex, Cowork cloud (planned, setup untested), and
   plain chat.
-- Skills must also work pasted into a plain chat (ChatGPT, Claude chat).
+- Chat support is deferred until the real skills are shaped. The owner notes that Claude
+  chat can load skills and ChatGPT cannot (owner-stated, unverified), so the paste route
+  matters mainly for ChatGPT.
 - Output is markdown in chat for the owner to copy.
 - The owner keeps their own implications in the notes, which slipbox literature notes lack.
 
@@ -164,9 +166,10 @@ The six skill names are confirmed: `clip-article`, `clip-youtube`, `grounding`, 
 - Depth, for each point the owner picks: interview when it is central to the stated
   inquiry; the agent drafts and source-verifies when it is supporting. Implications are
   always interviewed. Tangents never block.
-- Technique loading: progressive in the CLIs. In plain chat the last fallback is pasted
-  content: the mode's SKILL.md asks the owner to paste grounding's SKILL.md (which holds
-  the dispatch table) and each technique file the session needs.
+- Technique loading: progressive in the CLIs. In plain chat technique files are not
+  pasted: the owner pastes the mode's SKILL.md and grounding's SKILL.md (which holds the
+  dispatch table), and each dispatch row's one-line fallback stands in for its technique
+  file.
 
 **Modes and the done gate**
 - Two gates. The statement gate (in grounding) fixes one statement, only on the owner's
@@ -237,7 +240,8 @@ The six skill names are confirmed: `clip-article`, `clip-youtube`, `grounding`, 
   adopts it as an Implication in their words. This replaces slipbox's tension-to-backlog
   feature.
 - Terms: each SKILL.md carries a short "terms used here" block. No shared glossary file.
-- Chat apps: ChatGPT and Claude chat are the intended apps; to verify.
+- Chat apps: ChatGPT and Claude chat are the intended apps; to verify. Chat support is
+  deferred (see Goal).
 - Thought notes:
   - An atomic idea. The title and filename are a full claim sentence, with the `✱` prefix.
   - The body explains in prose, in the order claim, then why, then where it applies. It has
@@ -300,7 +304,6 @@ two clip skills), ground-me (folds into grounding), the evergreen backlog.
 - Quote locator: nearest heading for an article, a linked `[mm:ss]` timestamp for a video.
   The owner said "might be located".
 - A plain-text coverage and quote-check list below the note blocks.
-- A one-line fallback in each dispatch row, used when the technique file is not pasted.
 - Ideate's description trigger names (ideate, refine-idea, validate-idea). The skill is
   user-invoked, so the names serve the slash menu and the owner's memory, not model
   matching.
@@ -336,7 +339,9 @@ two clip skills), ground-me (folds into grounding), the evergreen backlog.
    the bodies are written. At that point, confirm the Implications guard holds in the
    ported text: slipbox's glossary rejected a Take and a Reaction field in the literature
    note (2026-07-23), and this design reverses that on purpose.
-2. **Plain-chat access to technique files.** How the owner gets them (raw repo URLs).
+2. **Chat route, deferred until the skills are shaped.** The owner says Claude chat can
+   load skills and ChatGPT cannot. Leaning: the row fallbacks only, no technique files
+   pasted.
 3. **To test on a laptop.**
    - the skills folder each harness reads (`npx skills add andarwaly/marginalia`, Codex,
      cloud repo skills);
