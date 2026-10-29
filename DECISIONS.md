@@ -3,9 +3,10 @@
 **Status: OPEN.** This is a discussion record, not a spec. The scaffold is: the plugin
 manifests (`.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`,
 `.codex-plugin/plugin.json`), a README, and twelve skill folders.
-- Stub with a working description and a TODO body: `define`. `ingest`, `ideate` and
-  `define` have an `agents/openai.yaml` (Codex implicit invocation off).
-- Written: `ingest` (thin body, four `references/`, 14 eval cases; reviewed by the owner),
+- All twelve skills have bodies. `ingest`, `ideate` and `define` have an
+  `agents/openai.yaml` (Codex implicit invocation off). The README and the manifests were
+  updated on 2026-10-29; the manifests no longer claim plain chat.
+- Written: `define` (thin body, `admission.md`, 8 eval cases), `ingest` (thin body, four `references/`, 14 eval cases; reviewed by the owner),
   `ideate` (thin body, four `references/`, 13 eval cases), `clip-article` and
   `clip-youtube` (6 eval cases each, plus 2 for the article), `compass-technique`
   (reshaped, `connect`, `challenge` and `distil` in `references/`, 6 eval cases) and the
@@ -16,9 +17,10 @@ manifests (`.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`,
 Items marked Settled were answered explicitly by the owner. Items marked Provisional or
 Default may change. Items under Open are the next session's frontier. The owner has
 confirmed shared understanding, so bodies are written one skill at a time, in this order:
-`ingest`, the clip skills, `ideate` with the compass reshape and the technique evals are
-written; `define` is next. The owner runs the call-by-name test on Claude Code, Codex and
-Cowork. Evals are written alongside each skill.
+every body is written (`ingest`, the clip skills, `ideate` with the compass reshape,
+`define`, the technique evals). What remains is the owner's laptop tests (Open item 4), the
+"Developing Taste" end-to-end run, and the deferred chat route. Evals are written alongside
+each skill.
 
 Last updated: 2026-10-29
 

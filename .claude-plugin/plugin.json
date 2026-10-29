@@ -1,7 +1,7 @@
 {
   "name": "marginalia",
   "version": "0.0.1",
-  "description": "Skills that turn sources into notes with your own implications, and notes into ideas. Works in Claude Code, Codex and plain chat.",
+  "description": "Skills that turn sources into notes with your own implications, and notes into ideas. For Claude Code and Codex.",
   "author": { "name": "Dzaky" },
   "license": "MIT",
   "keywords": ["notes", "skills", "zettelkasten", "reading"],
