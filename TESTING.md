@@ -75,6 +75,76 @@ Harnesses: **CC** Claude Code, **CX** Codex, **CW** Cowork.
 22. Ingest "Developing Taste" to notes. `/ideate` a thought from it, with the notes pasted.
     Then `/define taste`. Pass: the notes pass the checks in each skill's `evals/README.md`.
 
+## G. Running the evals (scripted user)
+
+The cases live in each skill's `evals/README.md` and are judged by behavior. Run them as a
+scripted conversation in a throwaway vault, where the skills are project-local (no install).
+
+**Setup**
+
+1. `mkdir -p w/vault/.obsidian w/vault/.claude/skills && cp -R skills/. w/vault/.claude/skills/`
+2. `npm install -g defuddle` (0.14.0 or later). Headless runs may block writes to `/tmp`, so
+   the driver points `TMPDIR` at a folder it is allowed to use.
+3. Save this as `w/run.sh` and `chmod +x` it. `run.sh 1 "<prompt>"` starts a session,
+   `run.sh N "<prompt>"` resumes it. Each turn leaves `logs/N.prompt` and `logs/N.jsonl`.
+
+```bash
+#!/bin/bash
+W=$(cd "$(dirname "$0")" && pwd); cd "$W/vault"
+export TMPDIR="$W/tmp"; mkdir -p "$TMPDIR" "$W/logs"
+if [ "$1" = 1 ]; then uuidgen | tr A-Z a-z > "$W/sid.txt"; F="--session-id $(cat "$W/sid.txt")"
+else F="--resume $(cat "$W/sid.txt")"; fi
+echo "$2" > "$W/logs/$1.prompt"
+claude -p "$2" $F --add-dir "$TMPDIR" \
+  --allowedTools "Bash(command -v:*)" "Bash(mkdir:*)" "Bash(defuddle:*)" "Bash(wc:*)" "Bash(rm:*)" Write Read Skill \
+  --output-format stream-json --verbose </dev/null > "$W/logs/$1.jsonl"
+python3 - "$W/logs/$1.jsonl" <<'P'
+import json, sys
+for l in open(sys.argv[1]):
+    d = json.loads(l)
+    if d.get("type") == "assistant":
+        for c in d["message"]["content"]:
+            if c["type"] == "text": print("TEXT:", c["text"])
+            elif c["type"] == "tool_use": print("TOOL:", c["name"], json.dumps(c["input"])[:160])
+P
+```
+
+**Turn script** (one `run.sh` call per turn, answers adapted to what the agent asks; write them
+in the language you want to test)
+
+| Turn | User says | Evals it exercises |
+| --- | --- | --- |
+| 1 | `/ingest https://emilkowal.ski/ui/developing-taste` | ingest 1, 18 |
+| 2 | No other points; why you are here and what you will do with it | 15, 16, 19 |
+| 3 | A hedge about the first point | 4, 20 |
+| 4 | A confident restatement taken from the clip | 21 |
+| 5 | "Nothing, that's it." | 9 |
+| 6 | "No idea." on the next point | 6 |
+| 7 | "done" | 11 |
+| 8-9 | A main idea, then "Nothing, that's it." | 10, 17 |
+| 10 | A reaction to the article | 12, 13 |
+
+Cases that need their own session: ingest 5 (confused answer), 7 (mismatch), 8 (reaction),
+10 (answer "yes" to the open confirmation), 14 (delete one `*-technique` folder from the
+vault first), 2 and 3 (a plain prompt with no slash). For the other skills, open
+`<skill>/evals/README.md` and follow its setup.
+
+**Judge**
+
+- Skill calls per turn: `grep -o '"name":"Skill","input":{[^}]*}' logs/N.jsonl`. The skill
+  must be called by name, not opened by path.
+- Quotes: each quote in the notes must appear verbatim in the saved clip, inside one
+  paragraph, ignoring `[^n]` markers, emphasis and curly quotes. Check with a script.
+- Judge behavior, not wording. Mark each case pass, fail or not exercised, with the quoted
+  turn. Ignore harness noise (blocked `/tmp` writes, denied tools); it is not a skill defect.
+- Record the result in the table below, with the harness and date.
+
+**Cloud**
+
+- No residential IP: `clip-article` may fail on some sites. Paste the article text after
+  `/ingest` instead, and mark ingest 1 "not exercised".
+- Use a project-local install, as above. A cloud session needs the same folder layout.
+
 ## Results
 
 | # | Harness | Date | Pass / fail | Notes |
