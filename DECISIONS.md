@@ -2,7 +2,8 @@
 
 **Status: OPEN.** This is a discussion record, not a spec. Only a stub scaffold exists:
 `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `.codex-plugin/plugin.json`,
-empty stubs `skills/{ingest,ideate,reference}/SKILL.md`, and a README. Stubs for
+empty stubs `skills/{ingest,ideate,reference}/SKILL.md` (the `reference` folder becomes
+`define` at scaffold time), and a README. Stubs for
 `clip-article`, `clip-youtube` and `grounding` do not exist yet. Items marked Settled were
 answered explicitly by the owner. Items marked Provisional or Default may change. Items
 under Open are the next session's frontier. Do not write skill bodies until the owner
@@ -37,10 +38,11 @@ notes shape.
 URL                 -> clip-article | clip-youtube -> clip (session only)
 clip, or pasted text -> ingest (with grounding)    -> source notes (map + points)
 thought (+ backing) -> ideate (refine)             -> thought note
-concept + notes     -> reference                   -> Reference note
+concept + notes     -> define                      -> Reference note
 ```
 
-Skill names in this file are working names. Renaming stays open.
+The six skill names are confirmed: `clip-article`, `clip-youtube`, `grounding`, `ingest`,
+`ideate`, `define` (renamed from `reference`). A better name may still replace one later.
 
 ## Settled
 
@@ -77,14 +79,14 @@ Skill names in this file are working names. Renaming stays open.
 - `ingest` and `ideate` are modes the owner enters, and both are user-invoked. The owner
   invokes one with a source or an idea; the agent stays in the mode, discussing per
   grounding, until the done gate (below), and ordinary chat resumes after the notes. In
-  plain chat, pasting the SKILL.md starts the mode. `reference` is user-invoked too.
+  plain chat, pasting the SKILL.md starts the mode. `define` is user-invoked too.
 - User-invoked is enforced per harness. Claude Code: `disable-model-invocation: true` in
-  the SKILL.md frontmatter. Codex: each of ingest, ideate and reference ships an
+  the SKILL.md frontmatter. Codex: each of ingest, ideate and define ships an
   `agents/openai.yaml` with `policy: allow_implicit_invocation: false` (the default is
   true; explicit `$skill` invocation still works). Cowork is assumed to read the same
   SKILL.md flag (unverified). Plain chat needs no enforcement.
 - SKILL.md size targets: at most 80 lines for each clip skill, 150 for grounding and
-  reference, 250 for ingest and ideate; a hard cap of 500.
+  define, 250 for ingest and ideate; a hard cap of 500.
 - Clip skills need a CLI tool; in plain chat the owner pastes the text instead. Each checks
   for its tool, prints one install line, never auto-installs. The README carries a
   cloud-setup section.
@@ -117,13 +119,13 @@ Skill names in this file are working names. Renaming stays open.
   against the backing quotes (with no backing source, the agent asks once for one; if
   there is none it challenges the owner's reasoning alone, and the list below the note
   says nothing was validated against a source); extend asks where it leads (compass south
-  and west), with the owner's answers supplying the content. A pasted draft means the note is updated, not
-  new; the verb is still inferred. Keeps the purity check (slipbox called the idea a Take)
-  and the five sign-off criteria.
-- `reference`: a separate output, built last because it sits outside the owner's two-part
-  flow. It is the owner's personal glossary entry: a definition first, then examples,
-  where the term is found, and how to use it, each included only where the pasted notes
-  support it. If the notes lack one, the agent says what is missing and does not invent
+  and west), with the owner's answers supplying the content. A pasted draft means the note
+  is updated, not new; the verb is still inferred. Keeps the purity check (slipbox called
+  the idea a Take) and the five sign-off criteria.
+- `define` (was `reference`): a separate output, built last because it sits outside the
+  owner's two-part flow. It writes the owner's personal glossary entry: a definition
+  first, then examples, where the term is found, and how to use it, each included only
+  where the pasted notes support it. If the notes lack one, the agent says what is missing and does not invent
   it. No grounding interview. Keeps the admission sequence and bounded lookup.
   - Inputs: the owner names a concept and pastes the point notes that mention it, with
     their maps' frontmatter (author, URL). The skill dedupes sources by URL and author.
@@ -132,7 +134,7 @@ Skill names in this file are working names. Renaming stays open.
     notes, in their wording where they agree, and asks the owner before writing only if
     they conflict. It then shows the entry and asks one open question, "what's missing or
     wrong?" That is one question, not an interview.
-  - Ingest gives no admission verdict; admission exists only in `reference`.
+  - Ingest gives no admission verdict; admission exists only in `define`.
   - If admission fails, the skill names the failed check and the support still missing. The
     owner may reply "write it anyway", and the note then opens with a one-line caveat such
     as `> Single source: this definition rests on Kowalski alone.` Slipbox never waived the
@@ -141,7 +143,7 @@ Skill names in this file are working names. Renaming stays open.
     lists the map links; `aliases` lists alternate names the owner gives.
 - Conventions: the agent does not need to know the owner's conventions; the owner brings
   them. Defaults are Obsidian flavor and filename prefixes (`§` source notes, `※`
-  reference, `✱` thought notes).
+  Reference notes, `✱` thought notes).
 - Vocabulary: "source notes" and "thought notes" replace the slipbox terms literature note,
   evergreen note and Take in the docs. The Terms section maps them.
 
@@ -240,6 +242,39 @@ Skill names in this file are working names. Renaming stays open.
   - The agent does not suggest edits to older notes so they link back. Backlinks cover it,
     and connection-finding is deferred.
 
+**Working descriptions** (what the skill does and when to use it, never its steps; final
+wording is fixed when the bodies are written):
+- `clip-article`: Fetches a text resource from a URL (article, blog post, Medium or
+  Substack page, or a post) and returns it as clean markdown with its title, author, date
+  and URL. Use when the owner asks to clip a URL, or another skill needs a URL's text.
+- `clip-youtube`: Fetches a YouTube video's transcript with timestamps and returns it as
+  markdown with its title, channel, date and URL. Use when the owner asks to clip a YouTube
+  link, or another skill needs the transcript.
+- `grounding`: The protocol for discussing something with the owner one question at a time
+  until they have confirmed what they understand or think, held against a source or notes
+  when present. Use when the owner asks to be grounded on a topic, or when ingest or ideate
+  calls it. Not for summarizing.
+- `ingest`: A mode for discussing and learning from one source with the owner. It ends in
+  source notes that keep the source's points apart from the owner's implications.
+- `ideate`: A mode for sharpening, refining, validating or extending an idea of the
+  owner's. It ends in one thought note.
+- `define`: Writes a glossary entry for a term from the owner's pasted notes: a definition,
+  then examples, where it is found and how to use it, as far as the notes support.
+
+**Evals** (plain markdown, a handful per skill; the file's location is chosen at scaffold
+time). Routing table, prompt then expected skill:
+- "clip https://medium.com/..." -> `clip-article`
+- "clip this video https://youtu.be/..." -> `clip-youtube`
+- "ground me on what a closure is" -> `grounding`, as a bare session
+- "/ingest https://emilkowal.ski/ui/developing-taste" -> `ingest`, which calls `clip-article`
+- "/ideate I think asking questions beats reading slower" -> `ideate`
+- "/define taste" with pasted notes -> `define`
+- "summarize this article: <URL>" -> no skill from this repo
+- "what does this error mean?" -> no skill from this repo
+
+The end-to-end run uses the owner's "Developing Taste" clip: ingest it, ideate a thought
+from it, then define "taste".
+
 **Dropped:** setup-slipbox, using-slipbox, write-checks, clip-resource (replaced by the
 two clip skills), ground-me (folds into grounding), the evergreen backlog.
 
@@ -284,18 +319,15 @@ two clip skills), ground-me (folds into grounding), the evergreen backlog.
 
 ## Open
 
-1. **Skill names.** All six are working names. Rename if a better name turns up.
-2. **Skills.** Distinct descriptions (what the skill does and when to use it, never its
-   steps); a small eval list as plain markdown (a handful of golden prompts per skill and
-   one end to end). When the skills
-   are written, confirm the Implications guard holds in the ported text: slipbox's
-   glossary rejected a Take and a Reaction field in the literature note (2026-07-23), and
-   this design reverses that on purpose.
-3. **Frontmatter values and quote cleanup.** The `published-at` format; what `author`
+1. **Skills.** The final description wording and the evals file's location are fixed when
+   the bodies are written. At that point, confirm the Implications guard holds in the
+   ported text: slipbox's glossary rejected a Take and a Reaction field in the literature
+   note (2026-07-23), and this design reverses that on purpose.
+2. **Frontmatter values and quote cleanup.** The `published-at` format; what `author`
    means for a video; filename sanitization; stripping footnote markers and garbled
    pull-quote wrappers from clips before exact-match checks.
-4. **Plain-chat access to technique files.** How the owner gets them (raw repo URLs).
-5. **To test on a laptop.**
+3. **Plain-chat access to technique files.** How the owner gets them (raw repo URLs).
+4. **To test on a laptop.**
    - the skills folder each harness reads (`npx skills add andarwaly/marginalia`, Codex,
      cloud repo skills);
    - that `/ingest` still works with the user-invoked flag in Claude Code and Cowork
@@ -317,6 +349,8 @@ two clip skills), ground-me (folds into grounding), the evergreen backlog.
   (slipbox: literature note).
 - **Thought note:** a refined idea of the owner's own, optionally backed by sources
   (slipbox: the nearest relative is the evergreen note; the Take is its central claim).
+- **Reference note:** the note `define` writes: the owner's glossary entry for a term
+  (slipbox: Reference note).
 - **Map note:** one per source; the main idea plus links to its point notes.
 - **Point note (Source Point):** one standalone, independently citable proposition from the
   source, with its verbatim quote.
