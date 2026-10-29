@@ -3,21 +3,22 @@
 **Status: OPEN.** This is a discussion record, not a spec. The scaffold is: the plugin
 manifests (`.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`,
 `.codex-plugin/plugin.json`), a README, and twelve skill folders.
-- Stubs with a working description and a TODO body: `clip-article`, `clip-youtube`,
-  `ideate`, `define`, `compass-technique`. `ingest`, `ideate` and `define` have an
-  `agents/openai.yaml` (Codex implicit invocation off). The compass family's four original
-  files sit unchanged in `compass-technique/references/`.
-- Written: `ingest` (thin body, four `references/`, 14 eval cases; awaiting the owner's
-  review) and the six technique skills `verification-technique`, `elenchus-technique`,
+- Stub with a working description and a TODO body: `define`. `ingest`, `ideate` and
+  `define` have an `agents/openai.yaml` (Codex implicit invocation off).
+- Written: `ingest` (thin body, four `references/`, 14 eval cases; reviewed by the owner),
+  `ideate` (thin body, four `references/`, 13 eval cases), `clip-article` and
+  `clip-youtube` (6 eval cases each, plus 2 for the article), `compass-technique`
+  (reshaped, `connect`, `challenge` and `distil` in `references/`, 6 eval cases) and the
+  six technique skills `verification-technique`, `elenchus-technique`,
   `feynman-technique`, `self-explanation-technique`, `guided-reading-technique` and
   `maieutic-technique` (reshaped from the slipbox technique files; see the reshape log).
 
 Items marked Settled were answered explicitly by the owner. Items marked Provisional or
 Default may change. Items under Open are the next session's frontier. The owner has
 confirmed shared understanding, so bodies are written one skill at a time, in this order:
-`ingest` (written; awaiting the owner's review), then the call-by-name test on Claude
-Code, Codex and Cowork, then `clip-article` and `clip-youtube`, then `ideate` with the
-compass reshape, then `define`. Evals are written alongside each skill.
+`ingest`, the clip skills, `ideate` with the compass reshape and the technique evals are
+written; `define` is next. The owner runs the call-by-name test on Claude Code, Codex and
+Cowork. Evals are written alongside each skill.
 
 Last updated: 2026-10-29
 
@@ -355,7 +356,7 @@ Technique cases are short multi-turn transcripts judged by behavior: one questio
 no answer supplied, the right switch, resuming the mode, and "yeah sounds about right" not
 closing the run. The old slipbox cases (13, mostly routing, with weak keyword assertions)
 seed the ingest routing cases only. The 14 ingest cases are in
-`skills/ingest/evals/README.md`; the technique evals are still to write.
+`skills/ingest/evals/README.md`; every other skill has its own `evals/README.md`.
 
 The end-to-end run uses the owner's "Developing Taste" clip: ingest it, ideate a thought
 from it, then define "taste".
@@ -431,7 +432,9 @@ its gate and fidelity text feeds `ingest`), the evergreen backlog.
 2. **Chat route, deferred until the skills are shaped.** The owner says Claude chat can
    load skills and ChatGPT cannot. Chat uploads skills one at a time, which reopens the
    standalone-versus-bundled technique question for that route.
-3. **Compass reshape and ideate body,** written together.
+3. (Closed 2026-10-29) Compass reshape and ideate body, written together. One assumption:
+   `challenge.md` lets a two-way mode such as `ideate` have the agent state the
+   counter-argument, labeled as its own; the user still supplies the response.
 4. **To test on a laptop.**
    - the call-by-name path from a mode to a technique on Claude Code, Codex and Cowork
      (a review reported Codex has no Skill tool and opens the SKILL.md path instead;
@@ -454,6 +457,27 @@ its gate and fidelity text feeds `ingest`), the evergreen backlog.
      route);
    - Firecrawl's main-content filter on Medium;
    - Defuddle on Substack, Reddit, Threads and X (oEmbed and FxTwitter), all untested.
+
+## Cloud environment notes (2026-10-29)
+
+Observed in the cloud container; use them when setting up the owner's vault environment.
+- YouTube: `youtube-transcript-api` was blocked by IP here (a residential or laptop IP
+  should be tried first). Clips used Firecrawl's `youtube-com/videos/video_transcript`
+  (5 credits), which returned manual-track segments with `start_ms`, `kind` and no
+  upload date.
+- Medium (UX Collective): Defuddle returned 403 here; retest from a laptop. Firecrawl
+  (1 credit) returned the full text with nav and "Press enter..." lines. The page
+  metadata date (2023-01-17) disagreed with the byline (Dec 30, 2020), so `published`
+  is taken from the byline.
+- Substack: Defuddle worked and returned author and date (date as a full timestamp,
+  trimmed to `YYYY-MM-DD`).
+- A custom-user-agent retry against the Medium 403 was blocked by the permission
+  classifier as bot-check circumvention. The skills do not suggest it.
+- To prepare: install `defuddle` and `youtube-transcript-api` in the setup script; allow
+  `youtube.com`, Medium and Substack hosts, `registry.npmjs.org` and `pypi.org` in the
+  network policy; enable the Firecrawl plugin; set the temp location for clips.
+- Not yet run: the Python API fields used by `clip-youtube` (`is_generated`, `start`,
+  `text`).
 
 ## Terms
 
