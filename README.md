@@ -2,13 +2,17 @@
 
 Status: design in progress. Nothing here is usable yet. See [DECISIONS.md](./DECISIONS.md).
 
-Skills that turn a source into a note with your own implications kept apart from the source's
-points, and turn notes into ideas. For Claude Code, Codex and plain chat.
+Skills that turn a source into notes that keep your own implications apart from the
+source's points, and turn your own ideas into refined thought notes. For Claude Code and
+Codex; the chat route comes later.
 
 ## Planned skills
 
-| Skill | Purpose |
-| --- | --- |
-| `ingest` | One source in, one note out |
-| `ideate` | New idea from notes, or refine an existing idea note |
-| `reference` | Reference note for a concept, from the notes that mention it |
+| Skill | Type | Purpose |
+| --- | --- | --- |
+| `clip-article` | tool wrapper | Clip a text resource from a URL |
+| `clip-youtube` | tool wrapper | Clip a YouTube video's transcript |
+| `grounding` | discussion protocol | How to discuss with you, one question at a time |
+| `ingest` | mode, user-invoked | Discuss and learn from one source; source notes out |
+| `ideate` | mode, user-invoked | Sharpen, refine, validate or extend an idea; thought note out |
+| `define` | user-invoked | Glossary entry for a term, from your notes |

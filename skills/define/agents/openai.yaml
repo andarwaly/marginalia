@@ -1,0 +1,6 @@
+interface:
+  display_name: "Define"
+  short_description: "Write a glossary entry for a term"
+  default_prompt: "Use $define to write a glossary entry from my notes."
+policy:
+  allow_implicit_invocation: false

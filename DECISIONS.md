@@ -1,13 +1,15 @@
 # marginalia: decisions
 
-**Status: OPEN.** This is a discussion record, not a spec. Only a stub scaffold exists:
+**Status: OPEN.** This is a discussion record, not a spec. Only a scaffold exists:
 `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `.codex-plugin/plugin.json`,
-empty stubs `skills/{ingest,ideate,reference}/SKILL.md` (the `reference` folder becomes
-`define` at scaffold time), and a README. Stubs for
-`clip-article`, `clip-youtube` and `grounding` do not exist yet. Items marked Settled were
-answered explicitly by the owner. Items marked Provisional or Default may change. Items
-under Open are the next session's frontier. Do not write skill bodies until the owner
-confirms shared understanding.
+a README, and stubs `skills/{clip-article,clip-youtube,grounding,ingest,ideate,define}/
+SKILL.md` carrying the working descriptions and a TODO body. `ingest`, `ideate` and
+`define` also have an `agents/openai.yaml` (Codex implicit invocation off). No skill body
+is written. Items marked Settled were answered explicitly by the owner. Items marked
+Provisional or Default may change. Items under Open are the next session's frontier. The
+owner has confirmed shared understanding, so bodies may be written one skill at a time,
+in this order: `grounding` (the ten technique files verbatim, plus the dispatch table),
+`ingest`, `clip-article` and `clip-youtube`, `ideate`, `define`.
 
 Last updated: 2026-10-29
 

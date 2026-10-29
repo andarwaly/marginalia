@@ -1,0 +1,6 @@
+interface:
+  display_name: "Ingest"
+  short_description: "Discuss and learn from one source"
+  default_prompt: "Use $ingest to discuss and learn from a source."
+policy:
+  allow_implicit_invocation: false

@@ -1,6 +1,6 @@
 ---
 name: ingest
-description: Ingest one source into a note that keeps the source's points apart from your own implications. Not yet written.
+description: "A mode for discussing and learning from one source with the owner. It ends in source notes that keep the source's points apart from the owner's implications."
 disable-model-invocation: true
 ---
 

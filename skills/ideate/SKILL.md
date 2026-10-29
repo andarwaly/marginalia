@@ -1,6 +1,6 @@
 ---
 name: ideate
-description: Develop an idea from several notes, or refine an existing idea note (ideate, refine-idea). Not yet written.
+description: "A mode for sharpening, refining, validating or extending an idea of the owner's. It ends in one thought note."
 disable-model-invocation: true
 ---
 

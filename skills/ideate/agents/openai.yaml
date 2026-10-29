@@ -1,0 +1,6 @@
+interface:
+  display_name: "Ideate"
+  short_description: "Sharpen, refine, validate or extend an idea"
+  default_prompt: "Use $ideate to work on an idea."
+policy:
+  allow_implicit_invocation: false
