@@ -437,7 +437,7 @@ its gate and fidelity text feeds `ingest`), the evergreen backlog.
 3. (Closed 2026-10-29) Compass reshape and ideate body, written together. One assumption:
    `challenge.md` lets a two-way mode such as `ideate` have the agent state the
    counter-argument, labeled as its own; the user still supplies the response.
-4. **To test on a laptop.**
+4. **To test on a laptop.** The step-by-step script is `TESTING.md`; this list is its source.
    - the call-by-name path from a mode to a technique on Claude Code, Codex and Cowork
      (a review reported Codex has no Skill tool and opens the SKILL.md path instead;
      unverified). The ingest switching path is tested before the other bodies are written;
