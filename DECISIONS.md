@@ -4,17 +4,18 @@
 manifests (`.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`,
 `.codex-plugin/plugin.json`), a README, and twelve skill folders.
 - Stubs with a working description and a TODO body: `clip-article`, `clip-youtube`,
-  `ingest`, `ideate`, `define`, `compass-technique`. `ingest`, `ideate` and `define` also
-  have an `agents/openai.yaml` (Codex implicit invocation off). The compass family's four
-  original files sit unchanged in `compass-technique/references/`.
-- Written: the six technique skills `verification-technique`, `elenchus-technique`,
+  `ideate`, `define`, `compass-technique`. `ingest`, `ideate` and `define` have an
+  `agents/openai.yaml` (Codex implicit invocation off). The compass family's four original
+  files sit unchanged in `compass-technique/references/`.
+- Written: `ingest` (thin body, four `references/`, 14 eval cases; awaiting the owner's
+  review) and the six technique skills `verification-technique`, `elenchus-technique`,
   `feynman-technique`, `self-explanation-technique`, `guided-reading-technique` and
   `maieutic-technique` (reshaped from the slipbox technique files; see the reshape log).
 
 Items marked Settled were answered explicitly by the owner. Items marked Provisional or
 Default may change. Items under Open are the next session's frontier. The owner has
 confirmed shared understanding, so bodies are written one skill at a time, in this order:
-`ingest` (its six techniques are already written), then the call-by-name test on Claude
+`ingest` (written; awaiting the owner's review), then the call-by-name test on Claude
 Code, Codex and Cowork, then `clip-article` and `clip-youtube`, then `ideate` with the
 compass reshape, then `define`. Evals are written alongside each skill.
 
@@ -233,6 +234,15 @@ later.
   it found and asks whether the owner has other points and what brought them to the
   source; the answer decides which points are central. In ideate the agent asks one
   question about the verb only when the owner's words leave it unclear.
+- Ingest body choices (the assistant's assumptions, written 2026-10-29):
+  - A done signal skips only the step 6.1 nudge and offer; the density check, main idea,
+    closing question and notes still run.
+  - Supporting points are drafted from the source, quote-checked and shown for the user's
+    correction.
+  - A point note's restatement uses the user's confirmed words.
+  - The main idea goes through the statement gate (`references/statement-gate.md`).
+  - The coverage list holds the points written, the untouched topics and the quote-check
+    result.
 - Ingest trigger: the owner's signal ("done", "that's everything", or asking for the
   notes). Otherwise, once every point the owner picked is settled, the agent asks once,
   "anything else on this source, or shall we wrap up?" Done at any time yields partial
@@ -344,7 +354,8 @@ expected skill:
 Technique cases are short multi-turn transcripts judged by behavior: one question per turn,
 no answer supplied, the right switch, resuming the mode, and "yeah sounds about right" not
 closing the run. The old slipbox cases (13, mostly routing, with weak keyword assertions)
-seed the ingest routing cases only.
+seed the ingest routing cases only. The 14 ingest cases are in
+`skills/ingest/evals/README.md`; the technique evals are still to write.
 
 The end-to-end run uses the owner's "Developing Taste" clip: ingest it, ideate a thought
 from it, then define "taste".
@@ -415,7 +426,8 @@ its gate and fidelity text feeds `ingest`), the evergreen backlog.
 1. **Skills.** The final description wording is fixed when the bodies are written. At that
    point, confirm the Implications guard holds in the ported text: slipbox's glossary
    rejected a Take and a Reaction field in the literature note (2026-07-23), and this
-   design reverses that on purpose.
+   design reverses that on purpose. Re-checked in the `ingest` body: the guard is a hard
+   rule and is repeated in `references/source-notes.md`. Description wording is still open.
 2. **Chat route, deferred until the skills are shaped.** The owner says Claude chat can
    load skills and ChatGPT cannot. Chat uploads skills one at a time, which reopens the
    standalone-versus-bundled technique question for that route.
