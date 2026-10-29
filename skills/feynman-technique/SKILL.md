@@ -28,8 +28,7 @@ whether a stated claim survives scrutiny (that's elenchus's job, downstream
 of a claim existing), it's the mechanism for getting a first plain-language
 claim to exist at all. That's why it fits a hesitant/hedging response
 specifically — something was attempted, it's just shaky, and Feynman's loop
-is built to turn "shaky" into "solid" without the agent ever supplying the
-missing words itself.
+is built to turn "shaky" into "solid" while the claim's wording stays the user's.
 
 **Reach for this when** the answer is hesitant or hedging — something was
 attempted, but it's shaky, hedged, or trails off. Feynman needs *some*
@@ -96,9 +95,8 @@ job here, filling it is the user's.
   the question ("what do its three arguments claim?" hands over that there
   are three). Ask "what is it actually claiming?" and narrow to one part
   only if that stalls.
-- **Acknowledge, then ask.** A hesitant answer gets one short, varied
-  acknowledgment on its own line ("that's a fair place to get stuck"), and
-  the question on the next line.
+- **Start from what the user said.** A hesitant answer gets a question built on
+  its substance; when the user stays stuck, call `scaffold-technique`.
 
 ## Worked example
 
@@ -130,19 +128,10 @@ progress.
 A second failure mode, distinct from the first: over-explaining the gap
 itself when naming it. "What does 'connect' mean here — I mean, does it
 mean linking for retrieval, or something about meaning changing over time?"
-already hands over the answer inside the question. Name the gap, not the
-candidate answers.
+already hands over the answer inside the question. Name the gap in one short
+question; examples and explanations come through `scaffold-technique`, marked as
+the agent's own.
 
-## Ending
+## Done
 
-- **Probe first.** Show no draft until at least one open question has drawn
-  real content from the user.
-- **Confirm openly.** Ask "here's what I have, from what you said. What's
-  missing or wrong?" and never "yes or no?" A bare "yes", a pause or a topic
-  change does not confirm it.
-- **Hand it back.** Give the confirmed statement, verbatim. Called from a
-  mode, return it to the mode, which continues at its next step. Run on its
-  own, say the statement in chat and stop, with no notes.
-- **Never finish it for them.** The answer, the candidate, the connection and
-  the counter-argument are the user's to supply. Name the gap and leave it
-  open.
+The user has explained the idea in their own words and the gap is patched. Return the user's statement, verbatim, to the mode that called this technique; the mode continues at its next step. Run on its own, say the statement back once and stop, with no notes.

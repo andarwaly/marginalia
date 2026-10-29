@@ -13,6 +13,9 @@ every sentence.
 - **[unverified]**: a claim neither a note nor a source supports. Say it is unchecked and
   do not argue from it.
 
+Material from `scaffold-technique` takes one of these tags in place of its own-knowledge
+mark.
+
 Without web search: challenge only from the notes or from [reasoning], and say "I could not
 check this against a source."
 

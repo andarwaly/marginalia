@@ -1,98 +1,96 @@
 ---
 name: ingest
-description: "Interviews the user about one source and drafts source notes that keep the source's points apart from the user's implications. Use when the user runs /ingest with a URL or pasted text."
+description: "Discusses one source with the user, then drafts source notes whose claims and Implications stay in the user's words. Use when the user runs /ingest with a URL or pasted text."
 disable-model-invocation: true
 ---
 
 # Ingest
 
-Interview the user about one source until they can state its points in their own words,
-then write source notes. The source is the only authority. The agent never states a point
-for the user; the user's restatement is what the notes keep. The notes are a starting
-draft the user copies and refines in their own words.
+Discuss one source with the user until they can say, in their own words, what it claims and
+what they make of it. Then draft source notes. The user supplies the claims and the
+thinking; the agent supplies the source's text, a discussion partner's questions and
+marked scaffolds.
 
 If a technique skill named below is missing, stop and tell the user to install the full
 marginalia set.
 
-## Terms
-
-- **Point**: one standalone proposition the source makes, with one exact quote.
-- **Frontier**: the agent's candidate points, kept in mind, never shown with quotes.
-- **Intention**: what the user wants from the source, in their words; often it includes
-  what they will do with it.
-- **Reading state**: how the user's last answer landed (`references/reading-the-answer.md`).
-- **Statement gate**: a statement is fixed only on the user's open confirmation.
-- **Done gate**: the closing questions that run before the notes.
-- **Implications**: the user's own reactions, kept apart from the source's points.
-
-Fuller definitions: `references/terms.md`.
+Terms (Thread, Intention, Prior belief, Source point, Implications, Scaffold, End review,
+Wrap-up): `references/terms.md`.
 
 ## Steps
 
 1. **Get the source.** A URL goes through `clip-article` or `clip-youtube`; pasted text is
    used as is. In plain chat, ask for the pasted text. Read all of it. If the clip says
    `captions: auto-generated`, warn once that quotes may carry transcription errors.
-2. **Build the frontier.** List the points, each with one exact contiguous quote from the
-   source body. Never quote frontmatter or an AI summary. A point from material the author
-   quotes belongs to the quoted person.
-3. **Open.** Show the topics as neutral labels, no quotes. Ask two separate
-   questions, one per line: whether the user has other points, and "What do you want from
-   this source?" (say article, video or post to fit). The second answer is the intention.
-   Central points are the topics that answer it, interviewed in the order the user names,
-   else the order the source presents them. If none fits, ask which topic they want first.
-   Assume the user has at least skimmed the source; if they say they have not read it
-   fully, run `guided-reading-technique`.
-4. **Interview one point at a time.** Ask the user to explain the point in their own words,
-   naming only its topic. Read `references/reading-the-answer.md` before the first
-   interview question. Then read their answer's state and pick the technique. After every
-   answer, read the state again and switch technique.
-   - Every question in the interview, including one a technique asks, has one question
-     mark and no "and" that adds a second ask, and never states what the source says
-     before the user has stated the point. Quote the source only after the user has
-     answered, except the passage `guided-reading-technique` opens with.
-   - A technique's question asks for the point itself ("what is it actually claiming?"). It
-     never contrasts the user's guess with a neighbouring idea ("how does that differ from
-     …?"), and the acknowledgment never says what the source covers.
-   - Interview a central point. For a supporting point, draft it from the source, check the
-     quote, and show it for the user's correction.
-   - Never fill a gap from general knowledge.
-5. **Resume.** When a technique reaches a confirmed statement, ignore its standalone ending
-   and go to the next point (step 4) or, when none is left, to step 6. Nothing is written
-   yet. If the talk wanders, answer briefly and return to the step you were on.
-6. **Done gate.** Start on the user's signal ("done", "that's everything", or a request for
-   the notes). Otherwise, once every picked point is settled, ask once: "anything else on
-   this source, or shall we wrap up?" Then, in this order (a done signal skips only the
-   nudge and the offer):
-   1. One nudge for points drafted but unconfirmed; one offer on untouched topics.
-   2. Density check: points resting on the same reasoning merge; a list the source presents
-      as a unit becomes one point.
-   3. Ask the main idea: "having been through all of it, what do you think the main idea
-      is?" Fix it through the statement gate (`references/statement-gate.md`).
-   4. Ask once, in the user's language, recalling the intention verbatim, the same text
-      that goes under `## Intention`: "you wanted <intention>. What do you make of this
-      article against that?" (say video or post to fit). With no intention, ask what they think of the article. A decline ends the
-      questions; the notes still follow.
-7. **Notes.** Read `references/source-notes.md`. Write one map note and one note per picked
-   point, each in its own fenced block with its filename on the line above, then the
-   coverage list.
-   Write files only when the user asks, into a folder they name.
+2. **Find the threads.** List 2–4 threads, sized for about 20–30 minutes of discussion. Each claim in a thread carries one exact
+   quote from the source body (never frontmatter or an AI summary); a claim from material
+   the author quotes belongs to the quoted person. Keep the quotes unseen until the user
+   has answered or is stuck.
+3. **Open.** Done when both questions are answered or declined. Ask two questions, one per line: what the user already thinks about the topic
+   (the Prior belief), and "What do you want from this source?" (say article, video or post
+   to fit; the answer is the Intention). When the user gives no Intention, suggest one way
+   the source could help and let them take it, change it or drop it. When the user says
+   they have not read the source in full, run `guided-reading-technique`.
+4. **Show the threads.** Order them by the Intention, else by the source's order. Show them
+   as one-line chains with a progress marker and the finish line, and put the first
+   question of the first thread in the same message:
+
+   ```
+   Threads: ① … [now]  ② …  ③ …
+   Done when each has your claim in your own words. Then: wrap-up, notes.
+   ```
+
+   The user may reorder, add or drop threads.
+5. **Discuss a thread.**
+   - Open with one question that asks for the user's take, naming only the topic.
+   - Name the author in the third person and mark anything of your own as yours; never
+     speak as the author.
+   - Read each answer (`references/reading-the-answer.md`), pick the technique, load it with
+     the Skill tool the first time it is needed, and show the user only the question.
+   - Start every reply from the substance of the user's last message, never from a receipt
+     ("Noted.") or a verdict ("That matches."). Bring back what the user said earlier when it
+     bears on the point.
+   - Ask one question per turn: one question mark, and no "and" that adds a second ask.
+   - Call `scaffold-technique` when the user is about to settle (once per thread) and when
+     the user is stuck.
+   - Relate the thread to the Intention once, in conversation.
+   - Follow a tangent or a cross-domain link for a turn or two with `maieutic-technique`;
+     it is the user's Implication. A way the user would apply a point is an Implication too.
+   - When the user cannot phrase a point, invite a rough dump in any language, then offer
+     two or three candidate wordings that differ in substance, labeled as yours. The user
+     picks one or rewrites it in their own words.
+   - Check each claim against its quote yourself. When the claim goes beyond or against the
+     quote, raise it as an ordinary remark that gives the quote. When the user's remark fits
+     no thread, follow `references/reading-the-answer.md`.
+   - Record per thread, without announcing it: the claim in the user's words, its quote,
+     and the user's Implications.
+6. **Move on.** A thread is done when each claim in it that the user discussed has a claim
+   line in their words that passed the quote check, the thread has been related to the
+   Intention, and the scaffold offer has been made or the user moved on before settling.
+   Move the marker, say what comes next, and ask the next thread's first question. When the
+   user asks to skip a thread, mark it untouched and move on.
+7. **Wrap-up.** Start on the user's signal ("done", "that's everything", or a request for
+   the notes), or once every thread is done. In order:
+   1. When threads are untouched or unfinished and the user asked for the notes without
+      saying they are done, offer those threads once.
+   2. Name up to three Implications that look worth refining in `ideate`, as a suggestion
+      the user may ignore.
+   3. Ask for the main idea. The user states it first; offer two tighter candidates only
+      when their statement is long or loose.
+   4. Show the notes for the End review (`references/end-review.md`).
+   5. Ask once for a folder, then write the files. With no folder, leave the notes in chat.
+8. **Notes.** Read `references/source-notes.md` before drafting.
 
 ## Hard rules
 
-- No note before a statement is confirmed through the statement gate.
-- Notes carry quotes only for points the user picked. Unpicked points leave no trace; a
+- Build each claim line from what the user said, attribute it to the author by name in the
+  third person, and add no claim the user did not make.
+- Copy the Prior belief, the Intention, the main idea and the Implications word for word,
+  fixing only spelling.
+- Keep scaffolds, candidate wordings and your own views in chat. They enter a note only
+  when the user adopts them in their own words, as an Implication.
+- Quote only for threads that were discussed. An undiscussed thread leaves no trace; a
   partial note is valid.
-- Implications are the user's words, kept as `references/source-notes.md` says, never
-  written by the agent. Anything the user says at step 6.4 is an Implication on its point,
-  or on the map if it concerns the whole. The Intention section does not change after
-  step 3. Copy the user's words character for character into the main idea, the Intention
-  and the Implications; do not normalize slang or reword.
-- A user remark that fits no point: `references/reading-the-answer.md`.
-- The agent's own disagreement or addition is allowed only in chat, after a point is
-  settled, at most once per point, labeled "My own view, not the article's:". It enters a
-  note only if the user adopts it as an Implication in their words.
-- Applications come from the user. When they say how they would apply a point, it becomes
-  an Implication on that point; a fuller idea goes to `ideate`.
-- Never name reading states or techniques to the user. Show the question, not the routing.
-- Reply in the user's language. Everything that names the source stays in the source's
-  language (`references/source-notes.md`).
+- Write files only after the End review and a folder from the user.
+- Reply in the user's language. Whatever names the source stays in the source's language
+  (`references/source-notes.md`).

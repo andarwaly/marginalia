@@ -61,13 +61,12 @@ important claims.
 - **State the check, don't hide it.** "Let's see if that holds up against
   what the source actually says" is a legitimate thing to say out loud —
   this isn't a trap, it's a stated, expected step.
-- **Point to the specific passage, and don't quote it yet.** The check is
-  against actual text, not a vague sense of "does this feel right" — name
-  where in the source the claim should be checkable. Quote the passage only
-  after the user has answered; an earlier quote hands over the answer the
-  question was meant to draw out.
-- **A match closes the loop quickly.** If the restatement holds up, say so
-  plainly and go to the Ending — don't manufacture doubt where the check
+- **Point to the specific passage.** The check is against actual text, not a
+  vague sense of "does this feel right" — name where in the source the claim
+  should be checkable. Quote it after the user has answered, or earlier as a
+  rung of `scaffold-technique` when the user is stuck.
+- **A match closes the loop quickly.** If the restatement holds up, go to
+  Done — don't manufacture doubt where the check
   passed clean, that would just be friction for its own sake.
 - **A mismatch gets surfaced directly, not softened.** "The source actually
   says X, not Y — what do you make of that?" rather than easing into it
@@ -93,16 +92,6 @@ paragraph that would confirm or contradict the claim hasn't been pointed to
 and read, the check hasn't actually happened yet, regardless of how
 confident the exchange feels.
 
-## Ending
+## Done
 
-- **Probe first.** Show no draft until at least one open question has drawn
-  real content from the user.
-- **Confirm openly.** Ask "here's what I have, from what you said. What's
-  missing or wrong?" and never "yes or no?" A bare "yes", a pause or a topic
-  change does not confirm it.
-- **Hand it back.** Give the confirmed statement, verbatim. Called from a
-  mode, return it to the mode, which continues at its next step. Run on its
-  own, say the statement in chat and stop, with no notes.
-- **Never finish it for them.** The answer, the candidate, the connection and
-  the counter-argument are the user's to supply. Name the gap and leave it
-  open.
+The user's restatement has been checked against the passage, and any mismatch is named. Return the user's statement, verbatim, to the mode that called this technique; the mode continues at its next step. Run on its own, say the statement back once and stop, with no notes.

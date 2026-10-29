@@ -22,7 +22,7 @@ not yet established, and the user works through it together: they said they have
 not read it fully, or their answer about a passage came back blank.
 
 **Do not use this when** the user wants to read independently or finish reading
-first (give a natural acknowledgment and the space to return, with no choice
+first (say they can come back to it, with no choice
 card or prediction exercise), when a clear restatement is ready for
 `verification-technique`, or when no source is available (`maieutic-technique`
 fits that case).
@@ -60,9 +60,10 @@ Explanation, clarification, comparison, or retrieval may be the better next move
 Keep the question open enough for the user to supply the substance. Add a small hint,
 such as the relevant relationship or a short pointer to where to look, only when the
 user is stuck or misses the source's direction. Withdraw that support after the user
-is answering cleanly; restore or increase it when the user stalls again. Never answer
-the question in the hint, summarize the whole passage, or silently repair the user's
-interpretation.
+is answering cleanly; restore or increase it when the user stalls again. A hint never
+answers the question itself; when the user is still stuck after a hint, call
+`scaffold-technique`, whose ladder can end in a plain explanation. Summarize the whole
+passage only when the user asks, and name any repair of the user's interpretation aloud.
 
 Reveal only the amount of source material needed for the current move, then pause for
 the user's response. A passage may be shown before an explanation, clarification,
@@ -77,23 +78,13 @@ passage is claiming, and narrow to one part only if that stalls.
 
 - Ask exactly one substantive question per turn.
 - Preserve the source's posture, attribution, uncertainty, and scope.
-- Acknowledge hesitant or partial progress briefly, then ask the question on its own
-  line.
+- Build each turn on the substance of the user's last answer, then ask the question on
+  its own line.
 - Build the accumulated understanding from the user's words; do not hand over a
   polished conclusion prematurely.
-- At the Ending, confirm the whole accumulated result once, not each move. If only
-  part of the source was worked through, say which part, and confirm only that.
+- At Done, hand back the whole accumulated result once, not each move. If only
+  part of the source was worked through, say which part, and hand back only that.
 
-## Ending
+## Done
 
-- **Probe first.** Show no draft until at least one open question has drawn
-  real content from the user.
-- **Confirm openly.** Ask "here's what I have, from what you said. What's
-  missing or wrong?" and never "yes or no?" A bare "yes", a pause or a topic
-  change does not confirm it.
-- **Hand it back.** Give the confirmed statement, verbatim. Called from a
-  mode, return it to the mode, which continues at its next step. Run on its
-  own, say the statement in chat and stop, with no notes.
-- **Never finish it for them.** The answer, the candidate, the connection and
-  the counter-argument are the user's to supply. Name the gap and leave it
-  open.
+The user has a first understanding of the passage in their own words. Return the user's statement, verbatim, to the mode that called this technique; the mode continues at its next step. Run on its own, say the statement back once and stop, with no notes.
