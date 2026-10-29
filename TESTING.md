@@ -158,4 +158,27 @@ vault first), 2 and 3 (a plain prompt with no slash). For the other skills, open
 | G1 | CC 2.1.312 (-p, cloud) | 2026-10-29 | partial | Ingest 1, 2, 3, 5, 6, 7, 8, 10, 11, 12, 14, 16-19, 21 pass. 4 fail (hedge made no Skill call in the main run; `feynman-technique` fired in a variant run). 20 fail (`feynman-technique` asked a contrast the source draws). 9, 13, 15 not exercised. Density check cannot confirm. Fixes: `ingest` step 4 and Hard rules, `feynman-technique` question shapes. Re-run (6 + 3 sessions): 20 pass 3/3 after the added step 4 rule; 4 still inconsistent (feynman called in 4 of 6 on the personal-preference hedge); exact-words rule held in 1 full session (Intention, main idea and both Implications kept verbatim; one session only). |
 | G2 | CC 2.1.312 (-p, cloud) | 2026-10-29 | note | `defuddle` 0.19.6 fetched from the cloud, so ingest 1 is exercised. `uuidgen` missing (shimmed). User-level skills such as `supermatt:*` are visible to the vault. |
 
+### G findings (2026-10-29, CC 2.1.312 headless, cloud)
+
+Open, not fixed. To be re-checked after an interactive run.
+
+- **Ingest 4 (medium).** The hedge does not reliably load `feynman-technique` by name. On the
+  personal-preference hedge it loaded in 4 of 6 runs (`r4`, `s2` did not); on the practice
+  hedge, 3 of 3 after the step 4 edit, 0 of 1 before. In the misses the agent still asked one
+  feynman-shaped question after reading `reading-the-answer.md`, but never opened the
+  technique file, so its guardrails were not in context. `r4` also asked the contrast
+  question (ingest 20). Cause not visible in the logs; later turns of the misses were not
+  checked. Candidate fix: step 4 says to load the technique with the Skill tool before asking.
+- **Ingest 9, 13, 15: not exercised.** 9 needs a technique reaching a confirmed statement
+  (`verification-technique` was not loaded in the main run). 13 needs an agent disagreement.
+  15 needs the "design reviews" answer. Density check (11) cannot be observed.
+- **Extra loads.** `guided-reading-technique` (`s1`) and `maieutic-technique` (`s3`) loaded
+  before `feynman-technique` on a hedge. Not visible to the user; effect unknown.
+- **Harness noise, not defects.** The nested session overrides `TMPDIR`, blocks `$TMPDIR` and
+  `/tmp` writes, and denied approval for `node`/`python3` build scripts (`c14`, `c14b`).
+  `uuidgen` is missing in the cloud container (shimmed). The vault also sees user-level
+  skills (`supermatt:*`), so `ideate` shares a name with `supermatt:ideate`.
+- **Fixed and re-run.** Ingest 20 passes 3 of 3 after the step 4 rule. The exact-words rule
+  held in 1 full session.
+
 Run headless (`claude -p`, scripted user) in a temp vault; an interactive run is still to do.
