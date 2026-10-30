@@ -80,7 +80,7 @@ something.
   `references/distil.md`), never Compass's own.
 - **Directions recurse, optionally.** Any answer from a direction can become its
   own new center idea, with its own branches. Never mandatory to chase: a
-  sub-idea not pursued now is named as an open thread in the closing statement,
+  sub-idea not pursued now is named as an open thread when handing back,
   so it is not silently dropped. Compass writes nothing to any file.
 
 ## Worked example
@@ -92,7 +92,7 @@ EAST answer is itself a candidate for a fresh Compass session later — its
 own SOUTH might be "land-value taxation as one response," its own EAST
 might be "does regulation actually worsen scarcity?" None of that gets
 chased down in the current session unless the user wants to; if not, it is
-named as an open thread in the closing statement.
+named as an open thread when handing back.
 
 ## Guardrail
 
@@ -100,16 +100,6 @@ Forcing every direction on every idea produces a rote interview, not a sharpened
 one — the compass is a portable thinking tool, not a required pass. The same
 applies to recursion: a sub-idea is optional to chase and never silently dropped.
 
-## Ending
+## Done
 
-- **Probe first.** Show no draft until at least one open question has drawn
-  real content from the user.
-- **Confirm openly.** Ask "here's what I have, from what you said. What's
-  missing or wrong?" and never "yes or no?" A bare "yes", a pause or a topic
-  change does not confirm it.
-- **Hand it back.** Give the confirmed statement, verbatim. Called from a
-  mode, return it to the mode, which continues at its next step. Run on its
-  own, say the statement in chat and stop, with no notes.
-- **Never finish it for them.** The answer, the candidate, the connection and
-  the counter-argument are the user's to supply. Name the gap and leave it
-  open.
+The user has answered the directions the idea called for. Return the user's statement, verbatim, with any unpursued sub-ideas named as open threads, to the mode that called this technique; the mode continues at its next step. Run on its own, say the statement back once and stop, with no notes.

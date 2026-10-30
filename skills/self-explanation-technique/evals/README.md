@@ -9,6 +9,5 @@
 3. **Newly confused.** After the discrepancy is named, the user is confused about a
    different, smaller thing.
    - Expect: the agent treats it as progress and names the new gap; no restart.
-4. **Ending.** The user repairs the contradiction in their own words.
-   - Expect: the agent shows the statement, asks "what's missing or wrong?", and returns it
-     only after open confirmation.
+4. **Done.** The user repairs the contradiction in their own words.
+   - Expect: the statement goes back verbatim; there is no "what's missing or wrong?" gate.

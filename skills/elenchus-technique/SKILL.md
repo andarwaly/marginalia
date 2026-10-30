@@ -62,7 +62,7 @@ reasons-and-evidence question.
   collaborative even while the questioning gets pointed.
 - **Stop once it resolves.** The moment the claim either survives the
   pressure or gets revised to something that does, the escalation is over —
-  go to the Ending, don't keep pressing for its own sake.
+  go to Done, don't keep pressing for its own sake.
 
 ## Worked example
 
@@ -89,16 +89,6 @@ acceptable answer the agent is fishing for, that's not elenchus anymore —
 it's a quiz wearing elenchus's shape. The test should be genuinely open to
 the claim surviving, not rigged to fail.
 
-## Ending
+## Done
 
-- **Probe first.** Show no draft until at least one open question has drawn
-  real content from the user.
-- **Confirm openly.** Ask "here's what I have, from what you said. What's
-  missing or wrong?" and never "yes or no?" A bare "yes", a pause or a topic
-  change does not confirm it.
-- **Hand it back.** Give the confirmed statement, verbatim. Called from a
-  mode, return it to the mode, which continues at its next step. Run on its
-  own, say the statement in chat and stop, with no notes.
-- **Never finish it for them.** The answer, the candidate, the connection and
-  the counter-argument are the user's to supply. Name the gap and leave it
-  open.
+The claim has survived the pressure, or the user has revised it. Return the user's statement, verbatim, to the mode that called this technique; the mode continues at its next step. Run on its own, say the statement back once and stop, with no notes.

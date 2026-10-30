@@ -10,22 +10,32 @@ Harnesses: **CC** Claude Code, **CX** Codex, **CW** Cowork.
 ## A. Call by name (run on CC, CX and CW)
 
 1. Install the whole repo (`npx skills add andarwaly/marginalia`, or the plugin). List the
-   skills; expect twelve.
+   skills; expect thirteen.
 2. Run `/ingest https://emilkowal.ski/ui/developing-taste`.
-   - Pass: `clip-article` runs, then the agent shows topic labels and asks the two opening
-     questions. No quotes shown.
-3. Answer one point with a hedge ("something about practice, I think?").
-   - Pass: the agent calls `feynman-technique` by name and asks one plain-language question.
+   - Pass: `clip-article` runs, then the agent asks the Prior belief and Intention
+     questions, one per line. No threads and no quotes are shown yet.
+3. Answer both (say "I want to learn how to judge AI output").
+   - Pass: the agent shows 2-4 threads as one-line chains, with a progress marker and the
+     finish line, and the first question of thread 1 in the same message. That question
+     names only the topic.
+4. Give a confident, correct restatement.
+   - Pass: no verdict such as "that matches"; the next question pushes the point further.
+5. Give a hedge ("something about practice, I think?").
+   - Pass: the agent calls `feynman-technique` by name and asks one plain-language question
+     built on what you said.
    - Watch for: Codex opening the SKILL.md path instead of invoking a skill. Note which
      happened; either is acceptable if the interview works.
-4. Give a confident, correct restatement; then a blank answer ("no idea").
-   - Pass: `verification-technique`, then `guided-reading-technique` with no choice offered.
-5. Reach a confirmed statement.
-   - Pass: the technique's standalone close ("say it in chat and stop") does not appear;
-     ingest moves to the next point.
-6. Say "done".
-   - Pass: density check, main-idea question and closing question run once; the notes follow
-     in fenced blocks; Implications hold only your words.
+6. Give a tentative claim ("I think it's basically ..."). On the next point say "I'm stuck".
+   - Pass: `scaffold-technique` is called by name. The first time: one example that opens
+     "From my own knowledge, not Kowalski's", then one question. The second time: rung 1 of
+     the ladder (the passage named by its opening words), one rung per turn.
+7. Answer "no idea."
+   - Pass: `guided-reading-technique`, with no choice offered.
+8. Say "done".
+   - Pass: up to three `ideate` suggestions; you state the main idea first; the notes appear
+     in fenced blocks for the End review; the agent asks once for a folder and writes files
+     only after the review. Prior belief, Intention, main idea and Implications are your
+     words, word for word.
 
 ## B. Flags and routing
 
@@ -36,8 +46,8 @@ Harnesses: **CC** Claude Code, **CX** Codex, **CW** Cowork.
    on CX, the same with `agents/openai.yaml` in place.
 9. Say "explain this simply", "challenge my idea", "ground me on this". Pass: no skill from
    this repo runs. Note any collision with your own `grounding`, `grilling` or `ground-me`.
-10. Type `/feynman-technique` and name a topic. Pass: it runs on its own and ends with the
-    statement in chat and no notes.
+10. Type `/feynman-technique` and name a topic. Pass: it runs on its own and ends by saying
+    your statement back once, with no notes.
 
 ## C. Install shapes
 
@@ -74,6 +84,12 @@ Harnesses: **CC** Claude Code, **CX** Codex, **CW** Cowork.
 
 22. Ingest "Developing Taste" to notes. `/ideate` a thought from it, with the notes pasted.
     Then `/define taste`. Pass: the notes pass the checks in each skill's `evals/README.md`.
+23. Acceptance, run by the owner. Run `/ingest` on "Developing Taste" with your real answers,
+    then compare with the failed v1 run (`session-test/marginalia/transcript.md`) and the
+    slipbox run (`session-test/slipbox/Transcript Slipbox.md`). Pass on one question: did you
+    learn something you could not have written yourself? Also note: did any reply open with a
+    stock acknowledgment, did the agent bring your earlier thinking back, and did you always
+    know what came next?
 
 ## G. Running the evals (scripted user)
 
@@ -114,20 +130,24 @@ in the language you want to test)
 
 | Turn | User says | Evals it exercises |
 | --- | --- | --- |
-| 1 | `/ingest https://emilkowal.ski/ui/developing-taste` | ingest 1, 18 |
-| 2 | No other points; why you are here and what you will do with it | 15, 16, 19 |
-| 3 | A hedge about the first point | 4, 20 |
-| 4 | A confident restatement taken from the clip | 21 |
-| 5 | "Nothing, that's it." | 9 |
-| 6 | "No idea." on the next point | 6 |
-| 7 | "done" | 11 |
-| 8-9 | A main idea, then "Nothing, that's it." | 10, 17 |
-| 10 | A reaction to the article | 12, 13 |
+| 1 | `/ingest https://emilkowal.ski/ui/developing-taste` | ingest 1 |
+| 2 | A prior belief, and "I want to learn how to judge AI output" | 5 |
+| 3 | A clear, correct restatement taken from the clip | 7, 17, 18 |
+| 4 | A hedge about the next point | 9, 15 |
+| 5 | A tentative claim ("I think it's basically ...") | 13 |
+| 6 | "I'm stuck, I can't put it into words" | 14 |
+| 7 | A tangent ("this reminds me of how CLIs show help") | 11 |
+| 8 | A rough, loose dump on a point you cannot phrase | 12 |
+| 9 | "skip the next thread" | 8, 19 |
+| 10 | A remark tied to no thread | 20 |
+| 11 | "done" | 21 |
+| 12-13 | A main idea, then "that's it" to the End review, then a folder name | 22, 23, 24, 25 |
 
-Cases that need their own session: ingest 5 (confused answer), 7 (mismatch), 8 (reaction),
-10 (answer "yes" to the open confirmation), 14 (delete one `*-technique` folder from the
-vault first), 2 and 3 (a plain prompt with no slash). For the other skills, open
-`<skill>/evals/README.md` and follow its setup.
+Cases that need their own session: ingest 4 (delete one `*-technique` folder from the vault
+first), 6 (give no Intention), 10 (tell a story in turn 3 that a later point bears on), 16 (a
+claim that goes beyond its quote), 26 (answer in Indonesian), 27 (leave a thread untouched),
+2 and 3 (a plain prompt with no slash). For the other skills, open `<skill>/evals/README.md`
+and follow its setup; `scaffold-technique` cases 12 and 13 run standalone.
 
 **Judge**
 
@@ -147,6 +167,39 @@ vault first), 2 and 3 (a plain prompt with no slash). For the other skills, open
 
 ## Results
 
+Results below the v1 heading predate the 2026-10-30 redesign (new `ingest`, `scaffold-technique`,
+End review). They are history, not a pass for the new skills. Record new runs in the v2 table.
+
+### v2 (after the redesign)
+
+| # | Harness | Date | Pass / fail | Notes |
+| --- | --- | --- | --- | --- |
+| G-v2 | CC 2.1.312 (-p, local) | 2026-10-30 | partial | Run 1 (13 turns, scripted user), then fixes, then run 2 (6 turns). **Pass:** ingest 1, 5, 7, 11, 12, 13, 18, 19, 20, 21, 22, 23, 24 (quote verbatim in the clip; Prior belief, Intention, main idea and Implications word for word), 25, 27. Run 2: `feynman-technique` and `scaffold-technique` loaded by name; the stuck ladder began at rung 1; "I can't put it into words" got three candidate wordings. **Fail or weak:** 9 (stock opener "Noted, skipping the AI thread" in run 1; a milder "'Seeing patterns' is a start." in run 2); 14 (run 1: "can't put it into words" took the rough-dump path, not the ladder; trigger overlap fixed in the skills, run 2 passes); 15 (run 1: only `scaffold-technique` was loaded by name; fixed by loading techniques with the Skill tool, run 2 passes for feynman and scaffold); 17 (no Intention link seen in run 1 before a thread closed). **Not exercised:** 2, 3, 4, 6, 10, 16, 26; `maieutic`, `elenchus`, `guided-reading`, `verification` and `self-explanation` were never triggered. |
+
+| 23-v2 | CC cloud (marginalia-vault PR #1, interactive) | 2026-10-30 | pass on outcome, with fixes | Owner run on "Developing Taste" (4 threads, 9 source points). The owner reported learning and a two-way discussion. **Pass:** ingest 1, 5, 10, 13, 21, 22, 23, 24, 25 (scaffolds Van Gogh, wine study and AlphaGo stayed out of the notes). **Fail or weak:** 9 and 18 (every reply opened by restating the owner, with verdicts such as "a sound one"); 7 (quotes shown before the owner's take, then a "what does <Author> say" question); 17 (Intention link stated, not asked, and missing in two threads); the scaffold questions packed two asks and the owner twice asked for elaboration; Key Concepts and Mentioned were picked silently, so the owner added them by hand; Key Concepts inconsistent ("Tastemaker", "Tastemakers"). **Fixes applied:** openers, one plain ask, the Intention link as a question, a Wrap-up step 4 that proposes Key Concepts and Mentioned in one message, the one-clause "that's yours" note for the owner's own ideas, no agent-written prefix on Implications, the Intention question reworded ("What makes you want to read this?"). **Held:** quote timing and thread-opening questions, until a second source. |
+
+### G findings (v2, 2026-10-30)
+
+Open, to re-check in an interactive run (test 23).
+
+- **Intention link (ingest 17).** In run 1 a thread was marked done without the agent relating
+  it to the Intention. Step 6 requires it; the agent did not enforce it. Watch for it in run 2
+  and interactively.
+- **Receipt-like openers.** Run 1 opened with "Noted, skipping..."; the rule now names
+  "Noted." and "That matches." but run 2 still opened with "X is a start." Judge in an
+  interactive run whether that reads as a stock reply.
+- **Techniques.** Five techniques were never triggered. Script a run that gives a confused
+  answer, a mismatch and a blank answer.
+- **Few source points.** Four threads and a long discussion produced one source point, because
+  most of the user's talk was their own thinking. Check in an interactive run that this is
+  what you want.
+- **`ideate` suggestions** at wrap-up are the agent's paraphrase of an Implication, not the
+  user's words. Decide whether they should be quoted.
+- **Plugin copy.** The harness also sees the installed `marginalia:` plugin (names such as
+  `marginalia:clip-article` appear in the logs), so a run is not isolated from the repo.
+
+### v1 (superseded)
+
 | # | Harness | Date | Pass / fail | Notes |
 | --- | --- | --- | --- | --- |
 | A1 | CC 2.1.312 | 2026-10-29 | pass | 12/12 skills visible in a project-local install (temp vault). |
@@ -158,9 +211,10 @@ vault first), 2 and 3 (a plain prompt with no slash). For the other skills, open
 | G1 | CC 2.1.312 (-p, cloud) | 2026-10-29 | partial | Ingest 1, 2, 3, 5, 6, 7, 8, 10, 11, 12, 14, 16-19, 21 pass. 4 fail (hedge made no Skill call in the main run; `feynman-technique` fired in a variant run). 20 fail (`feynman-technique` asked a contrast the source draws). 9, 13, 15 not exercised. Density check cannot confirm. Fixes: `ingest` step 4 and Hard rules, `feynman-technique` question shapes. Re-run (6 + 3 sessions): 20 pass 3/3 after the added step 4 rule; 4 still inconsistent (feynman called in 4 of 6 on the personal-preference hedge); exact-words rule held in 1 full session (Intention, main idea and both Implications kept verbatim; one session only). |
 | G2 | CC 2.1.312 (-p, cloud) | 2026-10-29 | note | `defuddle` 0.19.6 fetched from the cloud, so ingest 1 is exercised. `uuidgen` missing (shimmed). User-level skills such as `supermatt:*` are visible to the vault. |
 
-### G findings (2026-10-29, CC 2.1.312 headless, cloud)
+### G findings (v1, 2026-10-29, CC 2.1.312 headless, cloud)
 
-Open, not fixed. To be re-checked after an interactive run.
+These are v1 findings. The technique-loading one (ingest 4) is worth re-checking on the new
+skills: confirm each technique is loaded by name before its question is asked.
 
 - **Ingest 4 (medium).** The hedge does not reliably load `feynman-technique` by name. On the
   personal-preference hedge it loaded in 4 of 6 runs (`r4`, `s2` did not); on the practice

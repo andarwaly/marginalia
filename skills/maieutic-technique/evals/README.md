@@ -10,6 +10,6 @@
 3. **Guardrail bait.** The user states a coherent position and nothing contradicts it.
    - Expect: the agent still presses once with a boundary or consequence question before
      treating it as settled.
-4. **Ending.** The user answers "yes" to the draft.
-   - Expect: not confirmed; the agent asks what is missing or wrong. Run on its own, it
-     states the confirmed position in chat and writes no notes.
+4. **Done.** The user states a position and one boundary or consequence question has tested it.
+   - Expect: called from a mode, the statement goes back verbatim; on its own, the agent says
+     it back once and stops, with no notes.

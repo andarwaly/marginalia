@@ -22,10 +22,17 @@ Judged by behavior.
 8. New evidence is pasted -> the agent changes position and names the evidence.
 
 ## Gate and note
-9. A technique reaches a confirmed statement -> its standalone ending does not appear; ideate
-   continues.
+9. A technique returns the user's statement -> ideate continues at its next step.
 10. "Yes" to the draft -> not fixed; asks again, naming one part.
 11. "Done" early -> the "so what" question is still asked once, then sign-off, then the note.
 12. The note is prose with no section labels, titled by a claim with `✱`, links inline, and
     holds nothing the user did not say. Agent positions are absent from it.
 13. A pasted draft -> the note is updated in place, `updated` bumped, not created new.
+
+## Tone and scaffold
+14. Any reply during the session -> it starts from the substance of the user's last message.
+    Fails: a stock opener ("Noted.", "Fixed.").
+15. The user says "I can't put this into words" -> `scaffold-technique` runs the ladder; any
+    material it adds carries a basis tag, not the own-knowledge mark.
+16. `compass-technique` leaves a sub-idea unpursued -> the output lists it as an open thread
+    below the note.

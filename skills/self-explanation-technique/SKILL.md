@@ -61,13 +61,11 @@ wouldn't self-explain well unprompted has something concrete to work from.
   several discrepancies show, name the one the others depend on. A pair of
   blurred terms is a distinction question ("how are A and B different
   here?"); a claim without its cause is a mechanism question.
-- **Acknowledge, then ask.** Give one short, varied acknowledgment on its own
-  line ("that's a fair place to get stuck"), and the question on the next
-  line.
-- **Let genuine confusion sit for a moment.** Don't rush to rephrase the
-  question if the first attempt to surface the discrepancy doesn't land
-  immediately — repair takes a beat, especially for material that was
-  genuinely garbled.
+- **Start from what the user said.** Build the question on the substance of their
+  last answer.
+- **Give the repair one more try, then scaffold.** If the first attempt to surface
+  the discrepancy doesn't land, ask once more from a different angle; if the user
+  is still stuck, call `scaffold-technique`.
 - **Distinguish "still confused" from "newly confused."** If naming the
   discrepancy produces a different confusion than the original one, that's
   actually progress (a smaller, sharper gap) — don't treat it as a failed
@@ -96,16 +94,6 @@ callout. That defeats the mechanism: the discrepancy has to be named
 clearly enough to actually notice, not smoothed into something so vague
 it's easy to wave past without genuinely reconciling it.
 
-## Ending
+## Done
 
-- **Probe first.** Show no draft until at least one open question has drawn
-  real content from the user.
-- **Confirm openly.** Ask "here's what I have, from what you said. What's
-  missing or wrong?" and never "yes or no?" A bare "yes", a pause or a topic
-  change does not confirm it.
-- **Hand it back.** Give the confirmed statement, verbatim. Called from a
-  mode, return it to the mode, which continues at its next step. Run on its
-  own, say the statement in chat and stop, with no notes.
-- **Never finish it for them.** The answer, the candidate, the connection and
-  the counter-argument are the user's to supply. Name the gap and leave it
-  open.
+The user has repaired the discrepancy in their own words. Return the user's statement, verbatim, to the mode that called this technique; the mode continues at its next step. Run on its own, say the statement back once and stop, with no notes.

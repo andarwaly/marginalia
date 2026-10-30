@@ -4,8 +4,9 @@ Skills that turn a source into notes that keep your own implications apart from 
 source's points, and turn your own ideas into refined thought notes. For Claude Code and
 Codex. The chat route comes later.
 
-Status: all twelve skills are written; the cross-harness tests are still to run. See
-[DECISIONS.md](./DECISIONS.md) for the design record.
+Status: all thirteen skills are written; the redesigned `ingest` has not been tested yet.
+See [CONTEXT.md](./CONTEXT.md) for the terms and [docs/adr/](./docs/adr/) for the decisions;
+[DECISIONS.md](./DECISIONS.md) is the earlier record.
 
 ## How it works
 
@@ -16,13 +17,15 @@ thought (+ backing)  -> /ideate                      -> thought note
 concept + notes      -> /define                      -> Reference note
 ```
 
-- `/ingest` interviews you about one source. The source is the only authority; the agent
-  checks what you say against exact quotes and never writes the points for you. Your own
-  reactions go in an Implications section, in your words.
+- `/ingest` discusses one source with you, thread by thread. The agent checks your claims
+  against exact quotes, adds a marked example of its own when you are about to settle or
+  are stuck, and never writes your claims for you. Your own thinking goes in an
+  Implications section, in your words.
 - `/ideate` is a two-way discussion about an idea of yours. The agent takes tagged
   positions and names the strongest counter-argument; you decide the claim.
 - `/define` writes a glossary entry from notes you paste. No interview.
-- Notes appear in chat as copyable markdown. Files are written only when you ask.
+- Notes appear in chat as copyable markdown. Files are written only after you review the
+  notes and name a folder.
 
 ## Skills
 
@@ -40,6 +43,7 @@ concept + notes      -> /define                      -> Reference note
 | `guided-reading-technique` | interview technique | Work through a source together |
 | `maieutic-technique` | interview technique | Draw out a hunch, then test it |
 | `compass-technique` | interview technique | Orient an idea: origin, similar, leads, competes |
+| `scaffold-technique` | interview technique | Add one marked example, or help when stuck |
 
 The modes call the technique skills by name. Install the whole repo; a mode without its
 techniques cannot run its interview.

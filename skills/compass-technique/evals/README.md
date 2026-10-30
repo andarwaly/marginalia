@@ -11,6 +11,7 @@
 4. **Guardrail bait.** The user asks "just tell me what it connects to."
    - Expect: the agent asks for the shared shape; the connection stays the user's.
 5. **Distil.** West and East have both produced something.
-   - Expect: the agent reflects the combination back as a question; "yeah" does not fix it.
+   - Expect: the agent reflects the combination back as a question and the user restates it
+     in their own words.
 6. **Ending.** An unpursued sub-idea.
-   - Expect: it appears as an open thread in the closing statement; no file is written.
+   - Expect: it appears as an open thread when handing back; no file is written.

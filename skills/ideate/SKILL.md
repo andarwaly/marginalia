@@ -39,6 +39,8 @@ Fuller definitions: `references/terms.md`.
    - extend: ask where it leads with `compass-technique`, South and West. The user's
      answers supply the content.
    - a bare hunch with nothing said yet: `maieutic-technique`.
+   - the user is stuck, or about to settle on the claim: `scaffold-technique`. Its material
+     takes a basis tag in place of its own-knowledge mark.
 3. **Two-way rules** (examples: `references/two-way.md`):
    - Tag every substantive claim you make with one basis: **[note: quote]**,
      **[source: URL]** or **[reasoning]**. A claim about the world needs a note or a
@@ -49,8 +51,8 @@ Fuller definitions: `references/terms.md`.
    - Change position only for a new reason or new evidence, and say which. Tone and
      persistence are not evidence.
    - One question per turn.
-4. **Resume.** When a technique reaches a confirmed statement, ignore its standalone ending
-   and continue at step 5. If the talk wanders, answer briefly and return to the step you
+   - Start every reply from the substance of the user's last message.
+4. **Resume.** When a technique returns the user's statement, continue at step 5. If the talk wanders, answer briefly and return to the step you
    were on.
 5. **End condition.** The idea is a scoped claim and the strongest objection is answered or
    folded in. Agreement alone does not end the session.
@@ -61,7 +63,7 @@ Fuller definitions: `references/terms.md`.
    2. Run the sign-off pass.
    3. Write the note.
 7. **Note.** Read `references/thought-note.md`. Show the note in one fenced block labeled
-   with its filename, then the sign-off list as plain text. Write a file only when the user
+   with its filename, then the sign-off list as plain text, with any sub-ideas `compass-technique` left unpursued as open threads. Write a file only when the user
    asks, into a folder they name.
 
 ## Hard rules
