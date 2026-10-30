@@ -44,13 +44,26 @@ source: https://example.com/article
 ## Source Points
 - [[§ Claim sentence one|Claim sentence one]]
 - [[§ Claim sentence two|Claim sentence two]]
+
+## Key Concepts
+- ...
+
+## Mentioned
+- ...
+
+## Open Questions
+- ...
+
+## Implications
+- I think ...
 ```
 
 - `published-at` is `YYYY-MM-DD`, empty when the clip lacks it, never guessed. A video uses
   its upload date.
 - `author` is a bare wikilink; for a video, the channel name.
 - Omit Prior belief and Intention when the user gave none.
-- Whole-source Open Questions and Implications may sit on the map, under their own headings.
+- Key Concepts, Mentioned, Open Questions and Implications on the map hold whole-source
+  items and items with no quote. Omit any section that is empty.
 
 ## Source point
 
@@ -90,19 +103,20 @@ source: "[[§ Title of the source]]"
   image").
 - Locator: the nearest heading for an article, or the source title when no heading sits
   above the quote; a linked `[mm:ss]` timestamp for a video.
-- Key Concepts: abstract concepts, methods or frameworks the point leans on. Mentioned:
-  concrete named people, places, organizations, works, tools or events. Open Questions:
-  gaps the source leaves, flagged by the user only. Key Concepts and Mentioned live on
-  source points only. Omit a section that is empty, Implications included when the user said
-  nothing.
-- An item goes on the source point whose quote it is about; a user-flagged item with no
-  quote goes on the map.
+- Key Concepts, Mentioned and Open Questions: definitions in `terms.md`, selection in
+  SKILL.md Wrap-up step 4. Key Concepts stay in the singular ("Tastemaker", never
+  "Tastemakers"). A link is written under Mentioned as `[Name](url)`. Omit a section that
+  is empty, Implications included when the user said nothing.
+- An item goes on the source point whose quote it is about; an item with no quote, from the
+  user's list at Wrap-up step 4 or flagged by the user, goes on the map.
 - Implications: first-person bullets in the user's words, word for word with spelling fixed,
   never reworded, never written by the agent. The user's guess at an answer to an Open
-  Question becomes an Implication that names the question.
+  Question becomes an Implication placed under that Open Question's source point, with the
+  user's words unchanged. Add no prefix of your own to a bullet ("On X:", "Re:"). A bullet
+  that lost its subject stays as said and shows in the End review for the user to reword.
 
 ## After the blocks
 
-A short plain-text list: every thread as shown at step 4, marked as written, untouched, or
+A short plain-text list: every thread as shown at SKILL.md step 4 (Show the threads), marked as written, untouched, or
 started but not finished, and the result of the quote check (each quote found verbatim in
 the clip, or flagged with the reason it was not).

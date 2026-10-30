@@ -35,9 +35,11 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
 ## Conversation
 
 9. Any reply during a thread.
-   - Expect: it starts from the substance of the user's last message.
-   - Fails: a stock opener ("Noted.", "Fixed.", "That matches the article."), or a label for
-     the user's remark ("your reaction").
+   - Expect: it opens with the next question, or with something the user said in an earlier
+     turn that bears on the point.
+   - Fails: a stock opener ("Noted.", "Fixed.", "That matches the article."), a restatement
+     of the user's message ("Your point is that…", "So you think X, why?"), or a label for the user's remark ("your
+     reaction").
 10. Setup: in an earlier turn the user told a bootcamp story; a later point bears on it.
     - Expect: the agent brings that story back in a question.
 11. The user answers with a tangent ("this reminds me of how CLIs show help").
@@ -58,7 +60,8 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
 16. The user's claim goes beyond its quote.
     - Expect: an ordinary remark that gives the quote, not a scripted confirmation question.
 17. Once per thread.
-    - Expect: the agent relates the thread to the Intention, in conversation.
+    - Expect: the agent relates the thread to the Intention as a question the user answers.
+    - Fails: the agent states the link itself ("It bears on your Intention…").
 18. The user's first answer in a thread is clear and correct.
     - Expect: no verdict such as "that matches"; the next question pushes the point further.
     - Fails: the thread closes after one answer, before the Intention link.
@@ -72,7 +75,8 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
 
 21. The user says "done" with one thread untouched.
     - Expect: the offer on the untouched thread is skipped; suggestions for `ideate`, the
-      main idea, the End review and the folder question still run.
+      main idea, the Key Concepts and Mentioned proposal, the End review and the folder
+      question still run.
 22. The agent asks for the main idea.
     - Expect: the user states it first; the agent offers candidates only if the statement is
       long or loose.
@@ -94,3 +98,35 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
 27. Only two of three threads were discussed.
     - Expect: the coverage list marks the third untouched, and it leaves no quote or source
       point in the notes.
+28. The user's remark goes beyond the source ("this reminds me of how CLIs show help").
+    - Expect: one clause (it may come before the question) says the remark is the user's
+      and goes in as their Implication, then the agent asks about it.
+    - Fails: a silent record, or a restatement of the remark.
+29. A scaffold or any question in a thread.
+    - Expect: one ask in plain words; a second ask waits for the answer.
+    - Fails: "X, and what does that say about Y?" in one turn.
+30. Wrap-up, after the main idea.
+    - Expect: one message proposes Key Concepts (singular form, at most about five per
+      point) and Mentioned (names, works, tools, footnote links), one line per point; the
+      user's reply, or silence on a point, decides the notes; the step ends after that one
+      reply.
+    - Fails: the agent chooses them without asking, asks a second round, or leaves out a
+      footnote link the user can see in the clip.
+31. The opening question.
+    - Expect: "What makes you want to read this?" ("watch" for a video), one per line with
+      the Prior belief question.
+32. A UX article explains a design decision with "affordance".
+    - Expect: "Affordance" is proposed as a Key Concept, in the singular.
+    - Fails: it is dropped because it is abstract and unnamed.
+33. A mining article on Balikpapan uses "coal", "seam" and "sediment layer".
+    - Expect: "Coal", "Seam" and "Sediment layer" are proposed as Key Concepts, and
+      "Balikpapan" as Mentioned.
+    - Fails: "Coal" is skipped as too concrete, or "Balikpapan" is filed as a Key Concept.
+34. Wrap-up: the user used a term in chat that no source point holds, and a third thread was
+    never discussed.
+    - Expect: the last line offers the user's term for the map; terms from the undiscussed
+      thread are not proposed.
+35. A named framework ("Occam's razor") and a named place that is also a field term
+    ("Kutai Basin").
+    - Expect: "Occam's razor" is a Key Concept and its originator is Mentioned; "Kutai
+      Basin" is Mentioned and "Basin" is a Key Concept.

@@ -26,11 +26,12 @@ Wrap-up): `references/terms.md`.
    quote from the source body (never frontmatter or an AI summary); a claim from material
    the author quotes belongs to the quoted person. Keep the quotes unseen until the user
    has answered or is stuck.
-3. **Open.** Done when both questions are answered or declined. Ask two questions, one per line: what the user already thinks about the topic
-   (the Prior belief), and "What do you want from this source?" (say article, video or post
-   to fit; the answer is the Intention). When the user gives no Intention, suggest one way
-   the source could help and let them take it, change it or drop it. When the user says
-   they have not read the source in full, run `guided-reading-technique`.
+3. **Open.** Done when both questions are answered or declined. Ask two questions, one per
+   line: what the user already thinks about the topic (the Prior belief), and "What makes
+   you want to read this?" ("watch" for a video; the answer is the Intention). When the
+   user gives no Intention, suggest one way the source could help and let them take it,
+   change it or drop it. When the user says they have not read the source in full, run
+   `guided-reading-technique`.
 4. **Show the threads.** Order them by the Intention, else by the source's order. Show them
    as one-line chains with a progress marker and the finish line, and put the first
    question of the first thread in the same message:
@@ -47,23 +48,31 @@ Wrap-up): `references/terms.md`.
      speak as the author.
    - Read each answer (`references/reading-the-answer.md`), pick the technique, load it with
      the Skill tool the first time it is needed, and show the user only the question.
-   - Start every reply from the substance of the user's last message, never from a receipt
-     ("Noted.") or a verdict ("That matches."). Bring back what the user said earlier when it
-     bears on the point.
-   - Ask one question per turn: one question mark, and no "and" that adds a second ask.
+   - Open each reply with the next question, or with something the user said in an earlier
+     turn that bears on the point. Refer to their last message only by a short phrase
+     quoted from it. A receipt ("Noted."), a verdict ("That matches.") or a restatement
+     ("So you think X, why?") is not an opening. One exception: for the user's own idea,
+     the "that's yours" clause in Record, below, may come first.
+   - Ask one question per turn, in plain words: one question mark, and no "and" that adds a
+     second ask. The second ask waits for the answer to the first.
    - Call `scaffold-technique` when the user is about to settle (once per thread) and when
      the user is stuck.
-   - Relate the thread to the Intention once, in conversation.
+   - Relate the thread to the Intention once, as a question that recalls the Intention in
+     the user's words ("You said you're reading this to '…'. Where does this thread fit
+     that?"), never as your statement of the link.
    - Follow a tangent or a cross-domain link for a turn or two with `maieutic-technique`;
      it is the user's Implication. A way the user would apply a point is an Implication too.
    - When the user cannot phrase a point, invite a rough dump in any language, then offer
      two or three candidate wordings that differ in substance, labeled as yours. The user
      picks one or rewrites it in their own words.
-   - Check each claim against its quote yourself. When the claim goes beyond or against the
-     quote, raise it as an ordinary remark that gives the quote. When the user's remark fits
-     no thread, follow `references/reading-the-answer.md`.
-   - Record per thread, without announcing it: the claim in the user's words, its quote,
-     and the user's Implications.
+   - Check each claim against its quote yourself. When the user's reading of what the
+     author says goes beyond or against the quote, raise it as an ordinary remark that gives
+     the quote. When the user's remark fits no thread, follow
+     `references/reading-the-answer.md`.
+   - Record per thread: the claim in the user's words, its quote, and the user's
+     Implications. Announce a record only for the user's own idea, example or application
+     (not a reading of the author), in one clause: "that's yours, not <Author>'s, so it
+     goes in as your Implication."
 6. **Move on.** A thread is done when each claim in it that the user discussed has a claim
    line in their words that passed the quote check, the thread has been related to the
    Intention, and the scaffold offer has been made or the user moved on before settling.
@@ -77,8 +86,18 @@ Wrap-up): `references/terms.md`.
       the user may ignore.
    3. Ask for the main idea. The user states it first; offer two tighter candidates only
       when their statement is long or loose.
-   4. Show the notes for the End review (`references/end-review.md`).
-   5. Ask once for a folder, then write the files. With no folder, leave the notes in chat.
+   4. Read the Key Concepts and Mentioned definitions in `references/terms.md`. Propose
+      them for every source point you will write, in one message, one line per point (Key
+      Concepts | Mentioned). Key Concepts come from the quote and the discussion: propose a
+      term only when the claim line or the user's words would lose meaning without it, at
+      most about five per point; judge by the source's field and ask when it is unclear.
+      Mentioned are the proper names in the quote, the footnotes it marks and the links in
+      its paragraph. Add a last line for vocabulary the user or the main idea used that no
+      source point holds; it goes on the map. Vocabulary from undiscussed threads stays
+      out. The user chooses here, ahead of the End review: they add, drop or correct, and
+      silence on a point accepts it. Done after one reply from the user, or a decline.
+   5. Show the notes for the End review (`references/end-review.md`).
+   6. Ask once for a folder, then write the files. With no folder, leave the notes in chat.
 8. **Notes.** Read `references/source-notes.md` before drafting.
 
 ## Hard rules

@@ -13,8 +13,23 @@ copy that ships with the skill.
   first.
 - **Implications**: the user's own thinking, kept verbatim under the source point it
   concerns or on the map: tangents, cross-domain links, doubts, examples from their life.
-- **Intention**: what the user wants from the source, in their words, often including what
-  they will do with it. Set at the start, kept on the map, and recalled once per thread.
+- **Key Concepts**: the domain vocabulary, concepts, methods and frameworks a source point,
+  or the source as a whole, leans on, in the singular. A term counts when a Reference note
+  could define it (what it is, how it forms, how it relates to other terms); the field of
+  the source decides. A common noun of the field is a Key Concept: "Affordance" in a UX
+  article, "Coal", "Seam" and "Sediment layer" in a mining article. So is a named concept,
+  method or framework ("Occam's razor", "Agile"); its originator or the work that coined it
+  is Mentioned. The general kind of a named place ("Delta", "Basin") is a Key Concept. They
+  are the candidates for `define`.
+- **Mentioned**: anything with a proper name that a source point, or the source as a whole,
+  names: people, places, organizations, works, tools or events ("Balikpapan", "Stripe
+  Sessions 2024"), with the footnote or link that points to it. A specific named place is
+  Mentioned even when it is a field term. A brand used as a generic noun is Mentioned only
+  when the source means the product.
+- **Open Questions**: gaps the source leaves, flagged by the user only.
+- **Intention**: what makes the user want to read or watch the source and what they want
+  from it, in their words, often including what they will do with it. Set at the start,
+  kept on the map, and recalled once per thread.
 - **Prior belief**: what the user thinks about the topic before the discussion, in their
   words.
 - **Thread**: a chain of related claims in the source, possibly across headings. The

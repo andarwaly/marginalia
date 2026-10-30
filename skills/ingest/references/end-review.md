@@ -1,6 +1,6 @@
 # End review
 
-Read at Wrap-up step 4. The one review in `ingest`. Show the notes as they will be written:
+Read at Wrap-up step 5. The one review in `ingest`. Show the notes as they will be written:
 the map note and each source point, one fenced block each, with the filename on a plain
 line above the block. The user edits what they see.
 
