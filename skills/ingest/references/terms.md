@@ -38,8 +38,9 @@ copy that ships with the skill.
 - **Passage**: one paragraph-sized unit of the source: a paragraph, example, code block,
   table, list, cited quote, image or demo. See `passages.md`.
 - **Seen**: a passage is seen once the agent showed it verbatim after the user's take, or
-  the user pasted it or put it in other words with the same meaning. A thread is done only
-  when each of its ask passages is seen.
+  the user pasted it or put it in other words with the same meaning, and the user has
+  answered a question about it. The parts of a passage (table rows, list entries) belong
+  to it. A thread is done only when each of its ask passages is seen.
 - **Passage tag**: each passage is tagged ask (every example, code block, table, image or
   demo, and the passage behind each claim: it gets one question) or mention (a context
   paragraph: shown with the rest at the end of the thread, with no question).
@@ -48,9 +49,11 @@ copy that ships with the skill.
 - **Rider**: the one extra item a reply may carry besides its question: the author's exact
   words, or a remark that the user's claim goes beyond its quote. The three beats of meet
   and return count as one reply.
-- **Meet and return**: the reply to the user's own thinking: your marked view in one or two
-  sentences (agree or differ), then the author's passage that bears on it if unseen, then
-  one question. It never labels the user's idea as outside the source. Not a scaffold.
+- **Meet and return**: the reply to the user's own thinking: your view in one or two
+  sentences (agree or differ; marked "From my own knowledge, not <Author>'s:" only when it
+  differs from the author's), then the author's passage that bears on it if unseen, then
+  one question about that passage. It never labels the user's idea as outside the source
+  and does not work the idea out. Not a scaffold.
 - **Scaffold**: the agent's marked contribution: one example or counter-case offered
   on a complete tentative claim, or the stuck ladder. First person, marked as the agent's own
   knowledge, never part of a source point.

@@ -50,10 +50,11 @@ review, Wrap-up): `references/terms.md`.
    The user may reorder, add or drop threads.
 5. **Discuss a thread.**
    - Open with one question that asks for the user's take, naming only the topic.
-   - Name the author in the third person and mark anything of your own as yours; never
-     speak as the author. A scaffold always opens with its own full marker
-     (`scaffold-technique`) and does not count toward this rule; your view uses the full
-     marker on its first appearance in a thread and first person after.
+   - Name the author in the third person and speak of your own views in the first person;
+     never speak as the author. The marker for a view is in `reading-the-answer.md`; a
+     scaffold always opens with its own full marker (`scaffold-technique`).
+   - Every question is about a passage of the source. The user's own idea is connected to
+     the source and recorded; working it out is `ideate`'s job.
    - Read each answer with `references/reading-the-answer.md`: take the first matching row
      and show the user only the question. Show each ask passage after the user's take
      (`references/passages.md`).
@@ -69,8 +70,7 @@ review, Wrap-up): `references/terms.md`.
    - Record per thread, without announcing it: the claim in the user's words, its quote,
      and the user's Implications. The user's answer to a thread's opening question becomes
      the claim line or an Implication (`references/source-notes.md`).
-6. **Move on.** A thread is done when each ask passage in it is seen and the user replied to
-   its question, each claim in it that the user discussed has a claim line that passed the
+6. **Move on.** A thread is done when each ask passage in it is seen, each claim in it that the user discussed has a claim line that passed the
    quote check, the thread has been related to the Intention, and row 11's offer has been
    made or the thread never reached it. Show the thread's mention passages together, word
    for word, in one message with no question when the marker moves. Before moving the
@@ -90,7 +90,8 @@ review, Wrap-up): `references/terms.md`.
       them in one message, one line per source point you will write (Key Concepts |
       Mentioned), from that point's passages: propose a term only when the claim line or
       the user's words would lose meaning without it, at most about five per point; judge
-      by the source's field and ask when it is unclear. Add a last line for the map, from
+      by the source's field and ask when it is unclear. Give each term a short reason for
+      being there ("Term: why"). Add a last line for the map, from
       the whole passage list, discussed or not: the vocabulary and proper names the source
       uses that no source point holds, at most about eight. List each term once, at the
       point it fits most. The user chooses here, ahead of the End review: they add, drop
