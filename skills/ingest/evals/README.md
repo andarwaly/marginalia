@@ -104,19 +104,21 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
     - Expect: the coverage list marks the third untouched, and it leaves no quote or source
       point in the notes.
 28. The user's own idea touches a passage the user has not seen.
-    - Expect: the agent's view (the first in the thread opens "From my own knowledge, not
-      <Author>'s:"; a later one in the thread uses first person, agree or differ, cited only
-      if it can vouch), then the author's passage and how it sits with the idea, then one
-      question. The idea is recorded without announcement.
+    - Expect: the agent's view in first person (agree or differ, cited only if it can
+      vouch, no marker when it does not differ from the author), then the author's passage
+      and how it sits with the idea, then one question about that passage. The idea is
+      recorded without announcement.
     - Fails: "That's yours, not <Author>'s…", a bare restatement, no return to the source,
-      a second ask ("…and what…?"), or the full prefix repeated on a later view in the same
-      thread.
+      a second ask ("…and what…?"), a question about the user's idea instead of the
+      passage, or a "From my own knowledge, not <Author>'s:" marker on a view that does
+      not differ from the author.
 29. A scaffold or any question in a thread.
     - Expect: one ask in plain words; a second ask waits for the answer.
     - Fails: "X, and what does that say about Y?" in one turn.
 30. Wrap-up, after the main idea.
     - Expect: one message proposes Key Concepts (singular form, at most about five per
-      point) and Mentioned (names, works, tools, footnote links), one line per point; the
+      point) and Mentioned (names, works, tools, footnote links), one line per point, each
+      term with a short reason ("Term: why"); the
       user's reply, or silence on a point, decides the notes; the step ends after that one
       reply.
     - Fails: the agent chooses them without asking, asks a second round, or leaves out a
@@ -141,8 +143,8 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
       Basin" is Mentioned and "Basin" is a Key Concept.
 36. The source has an example, a code block, a table and a demo.
     - Expect: the thread list names the examples each thread holds by a short label; each
-      ask passage is shown after the user's take and discussed ("what does it show, why
-      this one?"); sibling examples merge into one item, about four ask passages per thread.
+      ask passage is shown after the user's take and discussed ("what does it show?",
+      then why this one); sibling examples merge into one item, about four ask passages per thread.
     - Fails: an example or code block never comes up, or the label gives away its content.
 37. A demo or image the clip dropped ("the animation below").
     - Expect: the agent names it by its text and asks the user to open it at the source and
@@ -234,3 +236,28 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
 61. Clear answers keep coming after the Intention question and one push.
     - Expect: after the single push in the thread, the step 6 checks run and the marker moves.
     - Fails: a push on every later answer.
+62. The user disagrees with the author and the agent sides with the user.
+    - Expect: the view opens "From my own knowledge, not <Author>'s:", then the author's
+      passage, then one question about that passage.
+    - Fails: no marker, or a marker on a view that agrees with the author.
+63. The user's own idea (a rule they would write, a value, a design) after a return.
+    - Expect: the idea is recorded; the question is about the author's next passage or the
+      returned one.
+    - Fails: "How would you write that rule?", "What would you set it to?" or any further
+      probing of the user's design (that is `ideate`).
+64. An ask passage is a table, a list of rules or a code block with many parts.
+    - Expect: one question about the whole passage ("what does this table show?"); the
+      reason for choosing it waits for the answer.
+    - Fails: a question per row or rule, or a passage shown only as a bridge to a question
+      about the user's own idea and then counted as seen.
+65. A thread's passage was shown, but the user's reply was about something else.
+    - Expect: the passage is not seen; the agent asks about it before the marker moves.
+    - Fails: the marker moves, and the coverage list calls it "shown but not discussed".
+66. Wrap-up proposal and notes: Key Concepts and Mentioned.
+    - Expect: each term carries a reason in the proposal; in the notes the entry reads
+      `- Term: what it is, and why it is here`, with no `※` and no wikilink.
+    - Fails: a bare term, a wikilink, or a definition from outside the source.
+67. A source point whose passage holds an example, code block, table or flowchart.
+    - Expect: an `## Example` section between the quote and Key Concepts, word for word
+      with fenced blocks and a one-line label; a point with no example has no section.
+    - Fails: a paraphrased example, a missing fence, or an empty Example section.

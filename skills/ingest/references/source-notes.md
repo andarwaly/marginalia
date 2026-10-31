@@ -78,6 +78,11 @@ source: "[[§ Title of the source]]"
 > "exact quote"
 > locator
 
+## Example
+<what the example shows, in one line>
+
+<the author's example, word for word>
+
 ## Key Concepts
 - ...
 
@@ -105,6 +110,15 @@ source: "[[§ Title of the source]]"
   image").
 - Locator: the nearest heading for an article, or the source title when no heading sits
   above the quote; a linked `[mm:ss]` timestamp for a video.
+- Example: written only when the source holds an example, code block, table or flowchart
+  for that point. It sits between the quote and Key Concepts, copied word for word from
+  the clip (code, tables and text flowcharts in fenced blocks) under a one-line label of
+  what it shows. An image or demo gives its caption or alt text, flagged in the quote check
+  as not source text. Omit the section when the source has none.
+- Key Concepts and Mentioned entries are plain text: `- Term: what it is, and why it is
+  here`. "What it is" comes from the clip or the discussion only; when the source does not
+  say, give the reason alone. The reason is the one
+  agreed at Wrap-up step 4, so the user can tell on a later visit why the term is there.
 - Key Concepts, Mentioned and Open Questions: definitions in `terms.md`, selection in
   SKILL.md Wrap-up step 4. A question of the user's that the source does not answer is an
   Open Question. Key Concepts stay in the singular ("Tastemaker", never "Tastemakers"). A
@@ -121,5 +135,5 @@ source: "[[§ Title of the source]]"
 ## After the blocks
 
 A short plain-text list: every thread as shown at SKILL.md step 4 (Show the threads), marked as written, untouched, or
-started but not finished, and the result of the quote check (each quote found verbatim in
-the clip, or flagged with the reason it was not).
+started but not finished, and the result of the quote check (each quote and each example
+found verbatim in the clip, or flagged with the reason it was not).
