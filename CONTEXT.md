@@ -66,7 +66,10 @@ One paragraph-sized unit of the source: a paragraph, example, code block, table,
 _Avoid_: section, chunk
 
 **Seen**:
-A passage is seen once the agent showed it verbatim after the user's take, or the user pasted it or put it in other words with the same meaning. A thread is done only when each of its passages is seen.
+A passage is seen once the agent showed it verbatim after the user's take, or the user pasted it or put it in other words with the same meaning. A thread is done only when each of its ask passages is seen.
+
+**Passage tag**:
+Each passage is tagged ask (every example, code block, table, image or demo, and the passage behind each claim: it gets one question) or mention (a context paragraph: shown with the rest at the end of the thread, with no question).
 
 **Reading state**:
 Which row of the routing table in `reading-the-answer.md` the user's last answer matches. It routes the agent's next move and is never named to the user.
@@ -78,14 +81,14 @@ The one extra item a reply may carry besides its question: the author's exact wo
 The `ingest` reply to the user's own thinking: the agent's marked view in one or two sentences (agree or differ), then the author's passage that bears on it if unseen, then one question. It never labels the user's idea as outside the source. Not a scaffold.
 
 **Scaffold**:
-The agent's marked contribution: one example or counter-case offered before the user settles, or the stuck ladder (point to the passage, quote the author, explain plainly with an example). First person, marked as the agent's own knowledge, and never part of a source point.
+The agent's marked contribution: one example or counter-case offered on a complete tentative claim, or the stuck ladder (point to the passage, quote the author, explain plainly with an example). First person, marked as the agent's own knowledge, and never part of a source point.
 _Avoid_: hint, tip
 
 **End review**:
 The one review at the end of `ingest`. The agent shows the drafted claim lines for the user to edit; Implications are copied verbatim and the main idea is the user's.
 
 **Wrap-up**:
-`ingest`'s ending sequence: `ideate` suggestions, main idea, End review, folder, files written.
+`ingest`'s ending sequence: the coverage list, `ideate` suggestions, main idea, Key Concepts and Mentioned proposal, End review, folder, files written.
 
 **Statement gate**:
 The `ideate` rule that a claim is fixed only on the user's open confirmation. Not used in `ingest`.

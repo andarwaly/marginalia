@@ -19,7 +19,8 @@ Harnesses: **CC** Claude Code, **CX** Codex, **CW** Cowork.
      finish line, and the first question of thread 1 in the same message. That question
      names only the topic.
 4. Give a confident, correct restatement.
-   - Pass: no verdict such as "that matches"; the next question pushes the point further.
+   - Pass: no verdict such as "that matches"; the next question goes to the next unseen ask
+     passage (or the Intention question, or one push).
 5. Give a hedge ("something about practice, I think?").
    - Pass: the agent calls `feynman-technique` by name and asks one plain-language question
      built on what you said.
@@ -30,9 +31,11 @@ Harnesses: **CC** Claude Code, **CX** Codex, **CW** Cowork.
      "From my own knowledge, not Kowalski's", then one question. The second time: rung 1 of
      the ladder (the passage named by its opening words), one rung per turn.
 7. Answer "no idea."
-   - Pass: `guided-reading-technique`, with no choice offered.
+   - Pass: the `scaffold-technique` ladder at rung 1 (the passage named by its opening
+     words), with no choice offered.
 8. Say "done".
-   - Pass: up to three `ideate` suggestions; you state the main idea first; the notes appear
+   - Pass: the coverage list; up to three `ideate` suggestions; you state the main idea
+     first; one message proposes Key Concepts and Mentioned; the notes appear
      in fenced blocks for the End review; the agent asks once for a folder and writes files
      only after the review. Prior belief, Intention, main idea and Implications are your
      words, word for word.

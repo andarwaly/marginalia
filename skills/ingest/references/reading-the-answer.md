@@ -10,17 +10,17 @@ turn. First person means your view only: every claim of the author's names the a
 | # | The answer | The move |
 | --- | --- | --- |
 | 1 | Asks to skip the thread | Mark it untouched and move on (SKILL.md step 6). |
-| 2 | Stuck: "stuck" (alone or with "I can't put it into words"), "just explain it", no substance ("no idea"), or a second blank or circular answer in a row | `scaffold-technique`, the ladder, entering at the rung that matches what the user has said (the passage named by its opening words, with no choice between reading alone and together). Record any idea in the reply as an Implication. |
+| 2 | Stuck: "stuck" (alone or with "I can't put it into words"), "just explain it", no substance ("no idea"), or a second answer in a row with no substance, or a second circular one | `scaffold-technique`, the ladder, entering at the rung that matches what the user has said; a first "no idea" enters at rung 1, the passage named by its opening words, whatever `scaffold-technique` says about rung 2, with no choice between reading alone and together. Record any idea in the reply as an Implication. |
 | 3 | Any part goes against a passage, inside a rewrite, a paste, a tentative claim, a rough dump or an idea | `guided-reading-technique`, the recheck of that part only: name the passage by its opening words and ask the user to look again. Any wording or a paste is fine. The passage stays unseen. |
 | 4 | Has the idea but lacks the words, without saying stuck ("I can't put it into words", a rough dump) | With no dump yet, invite one in any language. After the dump, offer two or three candidate wordings that differ in substance, marked as yours. The user picks one or rewrites it. |
 | 5 | Asks you for information (what, how, does he…), not a doubt or an opinion | The source covers it: name the passage by its opening words and ask what they make of it. Otherwise say the source does not cover it; it becomes an Open Question. |
-| 6 | Their own idea, example, doubt (even phrased as a question) or application, alone or beside a paste | Meet and return, below. |
+| 6 | Their own idea, example, doubt (even phrased as a question) or application, alone or beside a paste; not a restatement of a source claim, however tentative (that is row 11) | Meet and return, below. |
 | 7 | Pastes a passage, with nothing of their own | Ask what they make of it. Do not show it again. |
 | 8 | Same meaning, other words | Accept it, show the author's exact words, ask what they make of them. |
 | 9 | No claim stated yet: trailing off, a fragment ending in "?" | `feynman-technique` |
 | 10 | Garbled, circular once, or self-contradicting | `self-explanation-technique` |
 | 11 | A complete claim stated tentatively ("I think…"), or a wish to move on | `scaffold-technique`, the offer, when it has not been made in this thread; otherwise row 12. A wish to move on goes to the step 6 checks. |
-| 12 | Anything else (clear and correct) | Check it against its quote silently; when it says more than the quote, add the quote as the rider. Then the first of these: the next unseen ask passage; the Intention question, when not yet asked in this thread; one push (a reason or a consequence); the step 6 checks. |
+| 12 | Anything else (clear and correct) | Check it against its quote silently; when it says more than the quote, add the quote as the rider. Then the first of these: the next unseen ask passage; the Intention question, when not yet asked in this thread; one push (a reason or a consequence), once per thread; the step 6 checks. |
 
 A thin but accurate answer is not row 3. Take row 3 only when a passage says otherwise.
 
@@ -33,7 +33,8 @@ your own knowledge. Answer in one reply, three beats:
 1. **Your view**, one or two sentences: agree or differ, with no new example or
    counter-case (that is a scaffold). The first time in a thread, open "From my own
    knowledge, not <Author>'s:"; later in the thread, first person is enough ("I'd say…",
-   "From what I know:"). Cite a work only when you can name it exactly; otherwise give no
+   "From what I know:"). A scaffold does not count toward this rule: it always opens with
+   its own full marker. Cite a work only when you can name it exactly; otherwise give no
    citation, and never a URL.
 2. **Return.** Show the author's passage that bears on it, only when that passage is not
    yet seen, and say how it sits with the user's idea ("Kowalski goes further", "He says

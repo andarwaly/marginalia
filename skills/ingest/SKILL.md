@@ -14,8 +14,9 @@ scaffolds.
 If a technique skill named below is missing, stop and tell the user to install the full
 marginalia set.
 
-Terms (Thread, Passage, Seen, Intention, Prior belief, Source point, Implications,
-Scaffold, End review, Wrap-up): `references/terms.md`.
+Terms (Thread, Passage, Passage tag, Seen, Intention, Prior belief, Source point,
+Implications, Key Concepts, Mentioned, Reading state, Meet and return, Rider, Scaffold, End
+review, Wrap-up): `references/terms.md`.
 
 ## Steps
 
@@ -49,9 +50,10 @@ Scaffold, End review, Wrap-up): `references/terms.md`.
    The user may reorder, add or drop threads.
 5. **Discuss a thread.**
    - Open with one question that asks for the user's take, naming only the topic.
-   - Name the author in the third person and mark anything of your own as yours (the full
-     marker the first time in a thread, first person after that); never speak as the
-     author.
+   - Name the author in the third person and mark anything of your own as yours; never
+     speak as the author. A scaffold always opens with its own full marker
+     (`scaffold-technique`) and does not count toward this rule; your view uses the full
+     marker on its first appearance in a thread and first person after.
    - Read each answer with `references/reading-the-answer.md`: take the first matching row
      and show the user only the question. Show each ask passage after the user's take
      (`references/passages.md`).

@@ -39,7 +39,10 @@ copy that ships with the skill.
   table, list, cited quote, image or demo. See `passages.md`.
 - **Seen**: a passage is seen once the agent showed it verbatim after the user's take, or
   the user pasted it or put it in other words with the same meaning. A thread is done only
-  when each of its passages is seen.
+  when each of its ask passages is seen.
+- **Passage tag**: each passage is tagged ask (every example, code block, table, image or
+  demo, and the passage behind each claim: it gets one question) or mention (a context
+  paragraph: shown with the rest at the end of the thread, with no question).
 - **Reading state**: which row of the routing table in `reading-the-answer.md` the user's
   last answer matches. It routes the next move and is never named to the user.
 - **Rider**: the one extra item a reply may carry besides its question: the author's exact
@@ -49,8 +52,9 @@ copy that ships with the skill.
   sentences (agree or differ), then the author's passage that bears on it if unseen, then
   one question. It never labels the user's idea as outside the source. Not a scaffold.
 - **Scaffold**: the agent's marked contribution: one example or counter-case offered
-  before the user settles, or the stuck ladder. First person, marked as the agent's own
+  on a complete tentative claim, or the stuck ladder. First person, marked as the agent's own
   knowledge, never part of a source point.
 - **End review**: the one review at the end, where the user edits the drafted notes.
   See `end-review.md`.
-- **Wrap-up**: the ending sequence in SKILL.md step 7.
+- **Wrap-up**: the ending sequence in SKILL.md step 7: the coverage list, `ideate`
+  suggestions, main idea, Key Concepts and Mentioned proposal, End review, folder, files.

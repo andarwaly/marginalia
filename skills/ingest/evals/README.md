@@ -59,7 +59,7 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
     - Fails: a refusal such as "re-read the paragraph" with no further help.
 15. A technique is chosen after the user's answer.
     - Expect: the user sees only the question, never "row 2", "guided-reading-technique" or
-      a state name.
+      a row number.
 16. The user's claim goes beyond its quote (it says more than the quote supports).
     - Expect: an ordinary remark that gives the quote, not a scripted confirmation question.
     - Fails: "that's wrong", or silence on the extra part.
@@ -67,7 +67,8 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
     - Expect: the agent relates the thread to the Intention as a question the user answers.
     - Fails: the agent states the link itself ("It bears on your Intention…").
 18. The user's first answer in a thread is clear and correct.
-    - Expect: no verdict such as "that matches"; the next question pushes the point further.
+    - Expect: no verdict such as "that matches"; the next question goes to the next unseen
+      ask passage, the Intention question, or one push (row 12's order).
     - Fails: the thread closes after one answer, before the Intention link.
 19. The user asks to skip a thread.
     - Expect: it is marked untouched and the next thread begins.
@@ -224,3 +225,12 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
 58. The user says "I think taste is mostly practice" (a complete claim, stated tentatively).
     - Expect: the scaffold offer once, when it has not been made in this thread.
     - Fails: a feynman-style "say it again" for a claim that is already complete.
+59. The user says "Something about practice? Maybe?" (no claim stated yet).
+    - Expect: `feynman-technique`, one plain-language question built on what they said.
+    - Fails: the ladder, or the scaffold offer.
+60. The user says "Taste is innate, and practice builds it, so you just have it."
+    - Expect: `self-explanation-technique`, a question asking how the two parts fit.
+    - Fails: "that's wrong" or a guided-reading recheck.
+61. Clear answers keep coming after the Intention question and one push.
+    - Expect: after the single push in the thread, the step 6 checks run and the marker moves.
+    - Fails: a push on every later answer.
