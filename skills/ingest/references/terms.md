@@ -32,10 +32,19 @@ copy that ships with the skill.
   kept on the map, and recalled once per thread.
 - **Prior belief**: what the user thinks about the topic before the discussion, in their
   words.
-- **Thread**: a chain of related claims in the source, possibly across headings. The
-  discussion runs thread by thread, shown at the start with a progress marker.
+- **Thread**: a chain of related claims and passages in the source, possibly across
+  headings. The discussion runs thread by thread, shown at the start with a progress marker
+  and the examples it holds.
+- **Passage**: one paragraph-sized unit of the source: a paragraph, example, code block,
+  table, list, cited quote, image or demo. See `passages.md`.
+- **Seen**: a passage is seen once the agent showed it verbatim after the user's take, or
+  the user pasted it or put it in other words with the same meaning. A thread is done only
+  when each of its passages is seen.
 - **Reading state**: how the user's last answer landed. The states are in the table in
   `reading-the-answer.md`. It routes the next move and is never named to the user.
+- **Meet and return**: the reply to the user's own thinking: your marked view in one or two
+  sentences (agree or differ), then the author's passage that bears on it if unseen, then
+  one question. It never labels the user's idea as outside the source. Not a scaffold.
 - **Scaffold**: the agent's marked contribution: one example or counter-case offered
   before the user settles, or the stuck ladder. First person, marked as the agent's own
   knowledge, never part of a source point.

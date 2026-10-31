@@ -10,8 +10,8 @@ may use several techniques.
 | Attempted but hedged, shaky, trailing off | hesitant | `feynman-technique` |
 | Garbled, circular or self-contradicting | confused | `self-explanation-technique` |
 | Nothing substantive ("no idea", "skip") | blank | `guided-reading-technique` |
-| Clear but the source says otherwise | mismatch | `elenchus-technique` |
-| The user's own thinking, not a claim about the source | own thinking | `maieutic-technique` |
+| Clear, but the passage says otherwise | misread | `guided-reading-technique`: back to the passage, see `passages.md` |
+| The user's own thinking, not a claim about the source | own thinking | none: meet and return, below |
 | A tentative claim, "I think…", or a wish to move on | settling | `scaffold-technique` (the offer) |
 | "I'm stuck", "no idea", two blanks in a row, "just explain it" | stuck | `scaffold-technique` (the ladder) |
 | Has the idea but lacks the words ("I can't put it into words", a rough dump) | articulating | none: the articulation help in SKILL.md step 5 |
@@ -19,8 +19,27 @@ may use several techniques.
 A blank answer begins with the passage and offers no choice between reading alone and
 working together.
 
-A thin but accurate answer is not a mismatch. Press with elenchus only on a located
-weakness: a quote that contradicts the restatement.
+A thin but accurate answer is not a misread. Call it a misread only when a passage says
+otherwise.
+
+## Meeting the user's own thinking
+
+An idea, example, doubt or application of the user's is never labeled or set aside. Before
+you answer, search the passage list: when the author covers the point, it is a return, not
+your own knowledge. Answer in one reply, three beats:
+
+1. **Your view**, one or two sentences: agree or differ, with no new example or
+   counter-case (that is a scaffold). Open "From my own knowledge, not <Author>'s:" the
+   first time in a thread; later, "From what I know:". Cite a work only when you can name
+   it exactly; otherwise give no citation, and never a URL.
+2. **Return.** Show the author's passage that bears on it, only when that passage is not
+   yet seen, and say how it sits with the user's idea ("Kowalski goes further", "He says
+   the opposite"). When every bearing passage is seen, name it by its opening words
+   instead.
+3. **One question**, about that passage or how it sits with the user's idea.
+
+The user's thinking is recorded as an Implication without announcement. Your view is not a
+scaffold; it follows from the user's thinking and stays in chat.
 
 ## A remark that fits no thread
 
@@ -42,11 +61,12 @@ Claim: "Taste grows from making many things and judging them."
   practice builds it. How do those fit?"
 - Blank. User: "No idea." `guided-reading-technique`: "Look at the paragraph starting
   'Most people...' What is it saying about where taste comes from?"
-- Mismatch. User: "He says only experts can have taste." The source says anyone can.
-  `elenchus-technique`: name the quote, ask what they make of it.
-- Own thinking. User: "This reminds me of cooking for my family." Not a source claim.
-  `maieutic-technique`: ask what part of that they keep coming back to. The result becomes an
-  Implication.
+- Misread. User: "He says only experts can have taste." The source says anyone can.
+  `guided-reading-technique`: "Look at the paragraph starting 'Most people...'. What does it
+  say?" A paste or other words are fine.
+- Own thinking. User: "This reminds me of cooking for my family." Not a source claim. Meet
+  and return: the agent's view on how cooking builds taste, then the author's passage on
+  practice (if unseen), then "What do you make of that?"
 - Settling. User: "I think it's basically repetition with feedback." `scaffold-technique`: one
   marked example that tests it, then one question.
 - Stuck. User: "I'm stuck, I don't know what this paragraph is saying." `scaffold-technique`:

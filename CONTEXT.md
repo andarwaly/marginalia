@@ -58,11 +58,21 @@ _Avoid_: purpose, goal
 What the user thinks about the topic before the discussion, in their words.
 
 **Thread**:
-A chain of related claims in the source, possibly across headings. The discussion runs thread by thread, shown at the start with a progress marker.
+A chain of related claims and passages in the source, possibly across headings. The discussion runs thread by thread, shown at the start with a progress marker and the examples it holds.
 _Avoid_: topic, heading
 
+**Passage**:
+One paragraph-sized unit of the source: a paragraph, example, code block, table, list, cited quote, image or demo. The agent lists every passage, first to last, before it groups them into threads.
+_Avoid_: section, chunk
+
+**Seen**:
+A passage is seen once the agent showed it verbatim after the user's take, or the user pasted it or put it in other words with the same meaning. A thread is done only when each of its passages is seen.
+
 **Reading state**:
-How the user's last answer landed: confident, hesitant, blank or confused. It routes the agent's next move and is never named to the user.
+How the user's last answer landed: confident, hesitant, confused, blank, misread, own thinking, settling, stuck or articulating. It routes the agent's next move and is never named to the user.
+
+**Meet and return**:
+The `ingest` reply to the user's own thinking: the agent's marked view in one or two sentences (agree or differ), then the author's passage that bears on it if unseen, then one question. It never labels the user's idea as outside the source. Not a scaffold.
 
 **Scaffold**:
 The agent's marked contribution: one example or counter-case offered before the user settles, or the stuck ladder (point to the passage, quote the author, explain plainly with an example). First person, marked as the agent's own knowledge, and never part of a source point.
