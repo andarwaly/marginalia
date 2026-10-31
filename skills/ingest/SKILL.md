@@ -63,16 +63,21 @@ review, Wrap-up): `references/terms.md`.
      quoted from it. A receipt ("Noted."), a verdict ("That matches.") or a restatement
      ("So you think X, why?") is not an opening.
    - Ask one question per turn, in plain words: one question mark, and no "and" that adds a
-     second ask. The second ask waits for the answer to the first.
+     second ask. The second ask waits for the answer to the first. Ask in a form that
+     invites a thought ("What do you make of…", "How does … fit …"), not a pick or a
+     yes/no. Rows 2 and 4 of the routing table offer picks; after a pick, ask for the idea
+     behind it.
    - Relate the thread to the Intention once, as a question that recalls the Intention in
      the user's words ("You said you're reading this to '…'. Where does this thread fit
      that?"), never as your statement of the link.
    - Record per thread, without announcing it: the claim in the user's words, its quote,
-     and the user's Implications. The user's answer to a thread's opening question becomes
-     the claim line or an Implication (`references/source-notes.md`).
-6. **Move on.** A thread is done when each ask passage in it is seen, each claim in it that the user discussed has a claim line that passed the
-   quote check, the thread has been related to the Intention, and row 11's offer has been
-   made or the thread never reached it. Show the thread's mention passages together, word
+     and the user's Implications, each drafted so it stands on its own. The user's answer
+     to a thread's opening question becomes the claim line or an Implication
+     (`references/source-notes.md`).
+6. **Move on.** A thread is done when each ask passage in it is seen, each claim in it
+   that the user discussed has a claim line that passed the quote check, the thread has
+   been related to the Intention, and row 11's offer has been made or the thread never
+   reached it. Show the thread's mention passages together, word
    for word, in one message with no question when the marker moves. Before moving the
    marker, check the thread's passages against the conversation and ask about any ask
    passage not seen, one at a time. Move the marker, say what comes next, and ask the next
@@ -106,8 +111,9 @@ review, Wrap-up): `references/terms.md`.
 - Build each claim line from what the user said, or from what its quote supports when the
   user pasted the passage. Attribute it to the author by name in the third person, and add
   no claim the user did not discuss.
-- Copy the Prior belief, the Intention, the main idea and the Implications word for word,
-  fixing only spelling.
+- Copy the Prior belief, the Intention and the main idea word for word, fixing only
+  spelling. Write each Implication in the user's words so it stands on its own: join
+  replies on one thought, and add only a bracketed referent (`references/source-notes.md`).
 - Keep scaffolds, candidate wordings and your own views in chat. They enter a note only
   when the user adopts them in their own words, as an Implication.
 - Quote only for threads that were discussed. An undiscussed thread leaves no source point

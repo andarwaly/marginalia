@@ -30,7 +30,7 @@ What the source chiefly argues, in the user's words. The user states it first.
 _Avoid_: core idea
 
 **Implications**:
-The user's own thinking, kept verbatim under the source point it concerns or on the map: tangents, cross-domain links, doubts, examples from their life.
+The user's own thinking, in their words and standing on its own (only a bracketed referent is added), under the source point it concerns or on the map: tangents, cross-domain links, doubts, examples from their life.
 _Avoid_: reaction, take
 
 **Key Concepts**:
@@ -85,7 +85,7 @@ The agent's marked contribution: one example or counter-case offered on a comple
 _Avoid_: hint, tip
 
 **End review**:
-The one review at the end of `ingest`. The agent shows the drafted claim lines for the user to edit; Implications are copied verbatim and the main idea is the user's.
+The one review at the end of `ingest`. The agent shows the drafted claim lines for the user to edit; Implications keep the user's words, with bracketed referents the user can check, and the main idea is the user's.
 
 **Wrap-up**:
 `ingest`'s ending sequence: the coverage list, `ideate` suggestions, main idea, Key Concepts and Mentioned proposal, End review, folder, files written.
