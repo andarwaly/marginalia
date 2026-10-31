@@ -40,8 +40,11 @@ copy that ships with the skill.
 - **Seen**: a passage is seen once the agent showed it verbatim after the user's take, or
   the user pasted it or put it in other words with the same meaning. A thread is done only
   when each of its passages is seen.
-- **Reading state**: how the user's last answer landed. The states are in the table in
-  `reading-the-answer.md`. It routes the next move and is never named to the user.
+- **Reading state**: which row of the routing table in `reading-the-answer.md` the user's
+  last answer matches. It routes the next move and is never named to the user.
+- **Rider**: the one extra item a reply may carry besides its question: the author's exact
+  words, or a remark that the user's claim goes beyond its quote. The three beats of meet
+  and return count as one reply.
 - **Meet and return**: the reply to the user's own thinking: your marked view in one or two
   sentences (agree or differ), then the author's passage that bears on it if unseen, then
   one question. It never labels the user's idea as outside the source. Not a scaffold.

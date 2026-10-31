@@ -1,6 +1,6 @@
 # Passages
 
-Read at step 2, and whenever the user's answer touches the source's own text.
+Read at step 2. The move for each answer is in `reading-the-answer.md`.
 
 ## The passage list
 
@@ -26,16 +26,6 @@ user has pasted it, or the user has put it in other words with the same meaning.
 the user's wording with the listed passage text; when unsure, treat it as other words,
 show the exact text and ask. A passage the user misread is not seen. Check each answer
 against the current thread's passages, then against the rest of the list.
-
-## What the user's answer does to a passage
-
-| The user's answer | The agent |
-| --- | --- |
-| Pastes the passage | Asks what they make of it. Does not show it again. |
-| Puts it in other words, same meaning | Accepts it, shows the author's exact words, and asks what they make of it. |
-| Goes against it (a misread) | Calls `guided-reading-technique` for the recheck only: names the passage by its opening words and asks them to look again. Any wording or a paste is fine. |
-| Their own thinking, touching a passage not yet seen | Meets it (`reading-the-answer.md`), and the return shows that passage. |
-| Their own thinking, touching only seen passages | Meets it with its own view, names the seen passage by its opening words without quoting it, and asks the next question. |
 
 The ask about a passage is one question: what do they make of it. For an example, code
 block or table, ask what it shows and why the author chose it.

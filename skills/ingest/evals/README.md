@@ -53,11 +53,13 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
 13. The user gives a tentative claim.
     - Expect: one marked example (`scaffold-technique`), at most once in the thread.
 14. The user says "I'm stuck, I don't know what this paragraph is saying".
-    - Expect: the ladder, one rung per turn. The user sees only the question.
+    - Expect: the ladder, one rung per turn, entering at the rung that matches what the user
+      has said. The user sees only the question. A first plain "no idea" gets rung 1, the
+      passage named by its opening words, not the full ladder.
     - Fails: a refusal such as "re-read the paragraph" with no further help.
 15. A technique is chosen after the user's answer.
-    - Expect: the user sees only the question, never "blank → guided-reading-technique" or a
-      state name.
+    - Expect: the user sees only the question, never "row 2", "guided-reading-technique" or
+      a state name.
 16. The user's claim goes beyond its quote (it says more than the quote supports).
     - Expect: an ordinary remark that gives the quote, not a scripted confirmation question.
     - Fails: "that's wrong", or silence on the extra part.
@@ -101,11 +103,13 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
     - Expect: the coverage list marks the third untouched, and it leaves no quote or source
       point in the notes.
 28. The user's own idea touches a passage the user has not seen.
-    - Expect: the agent's view ("From my own knowledge, not <Author>'s:", agree or differ,
-      cited only if it can vouch), then the author's passage and how it sits with the idea,
-      then one question. The idea is recorded without announcement.
+    - Expect: the agent's view (the first in the thread opens "From my own knowledge, not
+      <Author>'s:"; a later one in the thread uses first person, agree or differ, cited only
+      if it can vouch), then the author's passage and how it sits with the idea, then one
+      question. The idea is recorded without announcement.
     - Fails: "That's yours, not <Author>'s…", a bare restatement, no return to the source,
-      or a second ask ("…and what…?").
+      a second ask ("…and what…?"), or the full prefix repeated on a later view in the same
+      thread.
 29. A scaffold or any question in a thread.
     - Expect: one ask in plain words; a second ask waits for the answer.
     - Fails: "X, and what does that say about Y?" in one turn.
@@ -150,10 +154,11 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
     - Expect: the agent accepts it, shows the author's exact words, and asks what they make
       of it. It does not ask for a restatement in their own words.
     - Fails: "put that in your own words", or accepting without showing the exact text.
-40. The user misreads a passage.
-    - Expect: `guided-reading-technique`: the passage named by its opening words, a request
-      to look again. A paste or other words are accepted.
-    - Fails: "that's wrong", or a pressing contradiction question.
+40. The user's reading goes against a passage.
+    - Expect: `guided-reading-technique` for the recheck only: the passage named by its
+      opening words, a request to look again. A paste or other words are accepted.
+    - Fails: "that's wrong", the exact quote dropped as a correction, or a pressing
+      contradiction question.
 41. An ask passage of a thread was never seen when the user seems done with it.
     - Expect: the agent asks about it, one at a time, before the marker moves; the thread's
       mention passages appear together, with no question.
@@ -188,7 +193,34 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
     - Expect: the agent says the source does not cover it, and the question becomes an Open
       Question in the notes.
     - Fails: the question is dropped.
-49. The user's reading goes against the quote.
-    - Expect: `guided-reading-technique` for the recheck only: the passage named by its
-      opening words, a request to look again.
-    - Fails: the exact quote dropped on the user as a correction, or a pressing question.
+49. The user pastes a passage and adds an idea of their own.
+    - Expect: meet and return; the pasted passage is named by its opening words, not quoted
+      again.
+    - Fails: "what do you make of it?" about a passage the user has just answered.
+50. The user rewrites a passage and part of it is wrong.
+    - Expect: a recheck of the wrong part only; nothing is accepted, and the passage stays
+      unseen.
+51. A tentative claim that misreads a passage.
+    - Expect: the recheck; the scaffold offer is not spent, and a later tentative claim in
+      the thread gets the offer.
+52. A clear answer, every ask passage of the thread seen, the Intention question asked.
+    - Expect: one push (a reason or a consequence), then the marker moves.
+    - Fails: the agent loops on the same thread.
+53. The user states their own idea and says they are stuck in the same message.
+    - Expect: the ladder; the idea is recorded as an Implication and not announced.
+54. The user asks a question the source answers.
+    - Expect: the passage named by its opening words, then "what do you make of it?".
+    - Fails: the agent answers from its own knowledge.
+55. The user says "I'm stuck, I can't put it into words".
+    - Expect: the ladder from the rung that fits (row 2), not candidate wordings.
+    - Fails: candidate wordings or a rough-dump invitation before any ladder rung.
+56. The user says "skip this one" about a thread.
+    - Expect: the thread is marked untouched and the next thread begins.
+    - Fails: the ladder runs on "skip".
+57. A doubt phrased as a question ("Isn't that just practice?").
+    - Expect: meet and return (the agent's view, the author's passage if unseen, one
+      question).
+    - Fails: "what do you make of it?" about a passage, with no view from the agent.
+58. The user says "I think taste is mostly practice" (a complete claim, stated tentatively).
+    - Expect: the scaffold offer once, when it has not been made in this thread.
+    - Fails: a feynman-style "say it again" for a claim that is already complete.

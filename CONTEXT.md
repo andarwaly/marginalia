@@ -69,7 +69,10 @@ _Avoid_: section, chunk
 A passage is seen once the agent showed it verbatim after the user's take, or the user pasted it or put it in other words with the same meaning. A thread is done only when each of its passages is seen.
 
 **Reading state**:
-How the user's last answer landed: confident, hesitant, confused, blank, misread, own thinking, settling, stuck or articulating. It routes the agent's next move and is never named to the user.
+Which row of the routing table in `reading-the-answer.md` the user's last answer matches. It routes the agent's next move and is never named to the user.
+
+**Rider**:
+The one extra item a reply may carry besides its question: the author's exact words, or a remark that the user's claim goes beyond its quote. The three beats of meet and return count as one reply.
 
 **Meet and return**:
 The `ingest` reply to the user's own thinking: the agent's marked view in one or two sentences (agree or differ), then the author's passage that bears on it if unseen, then one question. It never labels the user's idea as outside the source. Not a scaffold.

@@ -49,47 +49,33 @@ Scaffold, End review, Wrap-up): `references/terms.md`.
    The user may reorder, add or drop threads.
 5. **Discuss a thread.**
    - Open with one question that asks for the user's take, naming only the topic.
-   - Name the author in the third person and mark anything of your own as yours; never
-     speak as the author.
-   - Read each answer (`references/reading-the-answer.md`), pick the technique, load it with
-     the Skill tool the first time it is needed, and show the user only the question.
-   - Handle the user's contact with the source's text as `references/passages.md`
-     describes: show each ask passage after the user's take and ask what they make of it.
-   - Open each reply with the next question, with something the user said in an earlier
-     turn that bears on the point, or with your own view when the user gave their own
-     thinking (`references/reading-the-answer.md`). Refer to their last message only by a
-     short phrase quoted from it. A receipt
-     ("Noted."), a verdict ("That matches.") or a restatement ("So you think X, why?") is
-     not an opening.
+   - Name the author in the third person and mark anything of your own as yours (the full
+     marker the first time in a thread, first person after that); never speak as the
+     author.
+   - Read each answer with `references/reading-the-answer.md`: take the first matching row
+     and show the user only the question. Show each ask passage after the user's take
+     (`references/passages.md`).
+   - Open each reply with the next question, or with something the user said in an earlier
+     turn that bears on the point. Refer to their last message only by a short phrase
+     quoted from it. A receipt ("Noted."), a verdict ("That matches.") or a restatement
+     ("So you think X, why?") is not an opening.
    - Ask one question per turn, in plain words: one question mark, and no "and" that adds a
      second ask. The second ask waits for the answer to the first.
-   - Call `scaffold-technique` when the user is about to settle (once per thread) and when
-     the user is stuck.
    - Relate the thread to the Intention once, as a question that recalls the Intention in
      the user's words ("You said you're reading this to '…'. Where does this thread fit
      that?"), never as your statement of the link.
-   - Meet the user's own thinking (a tangent, a cross-domain link, an idea, a doubt, a way
-     to apply a point) as `references/reading-the-answer.md` describes: your view, the
-     author's passage, one question. It is the user's Implication.
-   - When the user cannot phrase a point, invite a rough dump in any language, then offer
-     two or three candidate wordings that differ in substance, labeled as yours. The user
-     picks one or rewrites it in their own words.
-   - Check each claim against its quote yourself. When the user's reading goes beyond the
-     quote, raise it as an ordinary remark that gives the quote. When it goes against the
-     quote, follow `references/passages.md`. When the user's remark fits no thread, follow
-     `references/reading-the-answer.md`.
    - Record per thread, without announcing it: the claim in the user's words, its quote,
      and the user's Implications. The user's answer to a thread's opening question becomes
      the claim line or an Implication (`references/source-notes.md`).
 6. **Move on.** A thread is done when each ask passage in it is seen and the user replied to
    its question, each claim in it that the user discussed has a claim line that passed the
-   quote check, the thread has been related to the Intention, and the scaffold offer has
-   been made or the user moved on before settling. Show the thread's mention passages
-   together, word for word, in one message with no question when the marker moves. Before
-   moving the marker, check the thread's passages against the conversation and ask about
-   any ask passage not seen, one at a time. Move the marker, say what comes next, and ask
-   the next thread's first question. When the user asks to skip a thread, mark it
-   untouched and move on.
+   quote check, the thread has been related to the Intention, and row 11's offer has been
+   made or the thread never reached it. Show the thread's mention passages together, word
+   for word, in one message with no question when the marker moves. Before moving the
+   marker, check the thread's passages against the conversation and ask about any ask
+   passage not seen, one at a time. Move the marker, say what comes next, and ask the next
+   thread's first question. When the user asks to skip a thread, mark it untouched and move
+   on.
 7. **Wrap-up.** Start on the user's signal ("done", "that's everything", or a request for
    the notes), or once every thread is done. In order:
    1. Name the threads and passages not discussed. When the user asked for the notes
@@ -105,8 +91,9 @@ Scaffold, End review, Wrap-up): `references/terms.md`.
       by the source's field and ask when it is unclear. Add a last line for the map, from
       the whole passage list, discussed or not: the vocabulary and proper names the source
       uses that no source point holds, at most about eight. List each term once, at the
-      point it fits most. The user chooses here, ahead of the End review: they add, drop or correct, and
-      silence on a point accepts it. Done after one reply from the user, or a decline.
+      point it fits most. The user chooses here, ahead of the End review: they add, drop
+      or correct, and silence on a point accepts it. Done after one reply from the user, or
+      a decline.
    5. Show the notes for the End review (`references/end-review.md`).
    6. Ask once for a folder, then write the files. With no folder, leave the notes in chat.
 8. **Notes.** Read `references/source-notes.md` before drafting.
