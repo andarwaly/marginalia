@@ -93,8 +93,10 @@ source: "[[§ Title of the source]]"
 
 - Always standalone: readable without the map.
 - The claim line names the author and is third person, about the source ("Kowalski says…"),
-  and covers only what the quote supports. First-person phrasing goes to Implications; a
-  claim the quote does not cover is its own source point or is left out.
+  and covers only what the quote supports. When the user put the passage in other words,
+  the claim line follows their words; when they pasted it, it follows what the quote
+  supports, and their take goes to Implications. First-person phrasing goes to
+  Implications; a claim the quote does not cover is its own source point or is left out.
 - Quote: one contiguous run within a single paragraph, no ellipsis. Narrow the claim line to
   what that paragraph supports; any other part is its own source point only if the user
   discussed it. Matching ignores markdown emphasis, link URLs, footnote markers like `[^1]`,
@@ -104,9 +106,10 @@ source: "[[§ Title of the source]]"
 - Locator: the nearest heading for an article, or the source title when no heading sits
   above the quote; a linked `[mm:ss]` timestamp for a video.
 - Key Concepts, Mentioned and Open Questions: definitions in `terms.md`, selection in
-  SKILL.md Wrap-up step 4. Key Concepts stay in the singular ("Tastemaker", never
-  "Tastemakers"). A link is written under Mentioned as `[Name](url)`. Omit a section that
-  is empty, Implications included when the user said nothing.
+  SKILL.md Wrap-up step 4. A question of the user's that the source does not answer is an
+  Open Question. Key Concepts stay in the singular ("Tastemaker", never "Tastemakers"). A
+  link is written under Mentioned as `[Name](url)`. Omit a section that is empty,
+  Implications included when the user said nothing.
 - An item goes on the source point whose quote it is about; an item with no quote, from the
   user's list at Wrap-up step 4 or flagged by the user, goes on the map.
 - Implications: first-person bullets in the user's words, word for word with spelling fixed,

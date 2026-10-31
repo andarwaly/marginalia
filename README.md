@@ -17,10 +17,12 @@ thought (+ backing)  -> /ideate                      -> thought note
 concept + notes      -> /define                      -> Reference note
 ```
 
-- `/ingest` discusses one source with you, thread by thread. The agent checks your claims
-  against exact quotes, adds a marked example of its own when you are about to settle or
-  are stuck, and never writes your claims for you. Your own thinking goes in an
-  Implications section, in your words.
+- `/ingest` discusses one source with you, thread by thread, and walks the whole source,
+  examples and code blocks included. The agent checks your claims against exact quotes,
+  answers your own ideas with its marked view and the author's passage that bears on
+  them, adds a marked example when you are about to settle or are stuck, and never
+  writes your claims for you. Your own thinking goes in an Implications section, in your
+  words.
 - `/ideate` is a two-way discussion about an idea of yours. The agent takes tagged
   positions and names the strongest counter-argument; you decide the claim.
 - `/define` writes a glossary entry from notes you paste. No interview.

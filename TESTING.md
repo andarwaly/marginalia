@@ -19,7 +19,8 @@ Harnesses: **CC** Claude Code, **CX** Codex, **CW** Cowork.
      finish line, and the first question of thread 1 in the same message. That question
      names only the topic.
 4. Give a confident, correct restatement.
-   - Pass: no verdict such as "that matches"; the next question pushes the point further.
+   - Pass: no verdict such as "that matches"; the next question goes to the next unseen ask
+     passage (or the Intention question, or one push).
 5. Give a hedge ("something about practice, I think?").
    - Pass: the agent calls `feynman-technique` by name and asks one plain-language question
      built on what you said.
@@ -30,9 +31,11 @@ Harnesses: **CC** Claude Code, **CX** Codex, **CW** Cowork.
      "From my own knowledge, not Kowalski's", then one question. The second time: rung 1 of
      the ladder (the passage named by its opening words), one rung per turn.
 7. Answer "no idea."
-   - Pass: `guided-reading-technique`, with no choice offered.
+   - Pass: the `scaffold-technique` ladder at rung 1 (the passage named by its opening
+     words), with no choice offered.
 8. Say "done".
-   - Pass: up to three `ideate` suggestions; you state the main idea first; the notes appear
+   - Pass: the coverage list; up to three `ideate` suggestions; you state the main idea
+     first; one message proposes Key Concepts and Mentioned; the notes appear
      in fenced blocks for the End review; the agent asks once for a folder and writes files
      only after the review. Prior belief, Intention, main idea and Implications are your
      words, word for word.
@@ -177,6 +180,7 @@ End review). They are history, not a pass for the new skills. Record new runs in
 | G-v2 | CC 2.1.312 (-p, local) | 2026-10-30 | partial | Run 1 (13 turns, scripted user), then fixes, then run 2 (6 turns). **Pass:** ingest 1, 5, 7, 11, 12, 13, 18, 19, 20, 21, 22, 23, 24 (quote verbatim in the clip; Prior belief, Intention, main idea and Implications word for word), 25, 27. Run 2: `feynman-technique` and `scaffold-technique` loaded by name; the stuck ladder began at rung 1; "I can't put it into words" got three candidate wordings. **Fail or weak:** 9 (stock opener "Noted, skipping the AI thread" in run 1; a milder "'Seeing patterns' is a start." in run 2); 14 (run 1: "can't put it into words" took the rough-dump path, not the ladder; trigger overlap fixed in the skills, run 2 passes); 15 (run 1: only `scaffold-technique` was loaded by name; fixed by loading techniques with the Skill tool, run 2 passes for feynman and scaffold); 17 (no Intention link seen in run 1 before a thread closed). **Not exercised:** 2, 3, 4, 6, 10, 16, 26; `maieutic`, `elenchus`, `guided-reading`, `verification` and `self-explanation` were never triggered. |
 
 | 23-v2 | CC cloud (marginalia-vault PR #1, interactive) | 2026-10-30 | pass on outcome, with fixes | Owner run on "Developing Taste" (4 threads, 9 source points). The owner reported learning and a two-way discussion. **Pass:** ingest 1, 5, 10, 13, 21, 22, 23, 24, 25 (scaffolds Van Gogh, wine study and AlphaGo stayed out of the notes). **Fail or weak:** 9 and 18 (every reply opened by restating the owner, with verdicts such as "a sound one"); 7 (quotes shown before the owner's take, then a "what does <Author> say" question); 17 (Intention link stated, not asked, and missing in two threads); the scaffold questions packed two asks and the owner twice asked for elaboration; Key Concepts and Mentioned were picked silently, so the owner added them by hand; Key Concepts inconsistent ("Tastemaker", "Tastemakers"). **Fixes applied:** openers, one plain ask, the Intention link as a question, a Wrap-up step 4 that proposes Key Concepts and Mentioned in one message, the one-clause "that's yours" note for the owner's own ideas, no agent-written prefix on Implications, the Intention question reworded ("What makes you want to read this?"). **Held:** quote timing and thread-opening questions, until a second source. |
+| 23b-v2 | CC cloud (marginalia-vault PR #2, interactive) | 2026-10-31 | partial; owner: less learning, not grounded | Owner run on "Agents with Taste" (3 threads, 3 source points) on skills `2ca8744`. **Findings:** the "that's yours, not <Author>'s" clause opened about 8 of 14 replies and made the owner feel wrong; threads built from claims skipped the article's Linear logo demo, the `scale(0)` versus 0.95 comparison, the Practical Tips, easing, duration and typography code blocks; the agent offered tabular-nums as "my own knowledge" though the article contains it; the owner's answer to thread 1 and their question about agencies reached no note; the Key Concepts and Mentioned proposal missed names the owner added. **Fixes (branch `claude/ingest-v3-grounding`):** passage list first to last, examples and code as discussion items, meet and return replacing "that's yours", misreads sent to `guided-reading-technique`, a thread done only when its passages are seen, a coverage list at wrap-up, a source-wide map line. **Next:** re-run on the same article and compare. |
 
 ### G findings (v2, 2026-10-30)
 

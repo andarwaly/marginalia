@@ -43,27 +43,32 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
 10. Setup: in an earlier turn the user told a bootcamp story; a later point bears on it.
     - Expect: the agent brings that story back in a question.
 11. The user answers with a tangent ("this reminds me of how CLIs show help").
-    - Expect: the agent follows it for a turn or two, asking what the user sees in it; it is
-      recorded as an Implication; the thread resumes afterwards.
-    - Fails: it parks the tangent without a reply.
+    - Expect: meet and return: the agent's view, marked as its own; then the author's passage
+      that bears on it, if unseen; then one question. It is recorded as an Implication, and
+      the thread resumes afterwards.
+    - Fails: it parks the tangent without a reply, or labels it ("that's yours").
 12. The user says "I get it but I can't put it into words", then sends a rough dump.
     - Expect: two or three candidate wordings that differ in substance, labeled as the
       agent's; the user's final claim line is the one they pick or rewrite.
 13. The user gives a tentative claim.
     - Expect: one marked example (`scaffold-technique`), at most once in the thread.
 14. The user says "I'm stuck, I don't know what this paragraph is saying".
-    - Expect: the ladder, one rung per turn. The user sees only the question.
+    - Expect: the ladder, one rung per turn, entering at the rung that matches what the user
+      has said. The user sees only the question. A first plain "no idea" gets rung 1, the
+      passage named by its opening words, not the full ladder.
     - Fails: a refusal such as "re-read the paragraph" with no further help.
 15. A technique is chosen after the user's answer.
-    - Expect: the user sees only the question, never "blank → guided-reading-technique" or a
-      state name.
-16. The user's claim goes beyond its quote.
+    - Expect: the user sees only the question, never "row 2", "guided-reading-technique" or
+      a row number.
+16. The user's claim goes beyond its quote (it says more than the quote supports).
     - Expect: an ordinary remark that gives the quote, not a scripted confirmation question.
+    - Fails: "that's wrong", or silence on the extra part.
 17. Once per thread.
     - Expect: the agent relates the thread to the Intention as a question the user answers.
     - Fails: the agent states the link itself ("It bears on your Intention…").
 18. The user's first answer in a thread is clear and correct.
-    - Expect: no verdict such as "that matches"; the next question pushes the point further.
+    - Expect: no verdict such as "that matches"; the next question goes to the next unseen
+      ask passage, the Intention question, or one push (row 12's order).
     - Fails: the thread closes after one answer, before the Intention link.
 19. The user asks to skip a thread.
     - Expect: it is marked untouched and the next thread begins.
@@ -98,10 +103,14 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
 27. Only two of three threads were discussed.
     - Expect: the coverage list marks the third untouched, and it leaves no quote or source
       point in the notes.
-28. The user's remark goes beyond the source ("this reminds me of how CLIs show help").
-    - Expect: one clause (it may come before the question) says the remark is the user's
-      and goes in as their Implication, then the agent asks about it.
-    - Fails: a silent record, or a restatement of the remark.
+28. The user's own idea touches a passage the user has not seen.
+    - Expect: the agent's view (the first in the thread opens "From my own knowledge, not
+      <Author>'s:"; a later one in the thread uses first person, agree or differ, cited only
+      if it can vouch), then the author's passage and how it sits with the idea, then one
+      question. The idea is recorded without announcement.
+    - Fails: "That's yours, not <Author>'s…", a bare restatement, no return to the source,
+      a second ask ("…and what…?"), or the full prefix repeated on a later view in the same
+      thread.
 29. A scaffold or any question in a thread.
     - Expect: one ask in plain words; a second ask waits for the answer.
     - Fails: "X, and what does that say about Y?" in one turn.
@@ -122,11 +131,106 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
     - Expect: "Coal", "Seam" and "Sediment layer" are proposed as Key Concepts, and
       "Balikpapan" as Mentioned.
     - Fails: "Coal" is skipped as too concrete, or "Balikpapan" is filed as a Key Concept.
-34. Wrap-up: the user used a term in chat that no source point holds, and a third thread was
-    never discussed.
-    - Expect: the last line offers the user's term for the map; terms from the undiscussed
-      thread are not proposed.
+34. Wrap-up: the source holds a term in a thread the user never discussed.
+    - Expect: the last line of the proposal offers it for the map, and the user may drop it;
+      no source point or quote exists for that thread.
+    - Fails: a source point or quote for the undiscussed thread.
 35. A named framework ("Occam's razor") and a named place that is also a field term
     ("Kutai Basin").
     - Expect: "Occam's razor" is a Key Concept and its originator is Mentioned; "Kutai
       Basin" is Mentioned and "Basin" is a Key Concept.
+36. The source has an example, a code block, a table and a demo.
+    - Expect: the thread list names the examples each thread holds by a short label; each
+      ask passage is shown after the user's take and discussed ("what does it show, why
+      this one?"); sibling examples merge into one item, about four ask passages per thread.
+    - Fails: an example or code block never comes up, or the label gives away its content.
+37. A demo or image the clip dropped ("the animation below").
+    - Expect: the agent names it by its text and asks the user to open it at the source and
+      say what they see.
+    - Fails: the agent describes a demo it cannot see.
+38. The user pastes the passage.
+    - Expect: one question, what they make of it; the passage is not shown again.
+    - Fails: the agent shows the passage again or asks for it in the user's own words.
+39. The user puts the passage in other words, same meaning.
+    - Expect: the agent accepts it, shows the author's exact words, and asks what they make
+      of it. It does not ask for a restatement in their own words.
+    - Fails: "put that in your own words", or accepting without showing the exact text.
+40. The user's reading goes against a passage.
+    - Expect: `guided-reading-technique` for the recheck only: the passage named by its
+      opening words, a request to look again. A paste or other words are accepted.
+    - Fails: "that's wrong", the exact quote dropped as a correction, or a pressing
+      contradiction question.
+41. An ask passage of a thread was never seen when the user seems done with it.
+    - Expect: the agent asks about it, one at a time, before the marker moves; the thread's
+      mention passages appear together, with no question.
+    - Fails: the marker moves with an ask passage unseen, or every context paragraph gets
+      its own question.
+42. Wrap-up.
+    - Expect: the agent names the threads and passages not discussed and offers them once;
+      the last line of the Key Concepts and Mentioned proposal comes from the whole passage
+      list.
+43. The source has an example the author gives (a demo, a comparison, a code block).
+    - Expect: it is discussed in a thread before the notes; the agent never offers it as its
+      own knowledge.
+    - Fails: the agent says "From my own knowledge, not <Author>'s" about something the
+      source contains.
+44. The user's own idea touches only passages already seen.
+    - Expect: the agent's view, the seen passage named by its opening words (not quoted
+      again), then one question.
+    - Fails: the passage is quoted again, or the reply has no pointer back.
+45. The agent's view cites a work.
+    - Expect: a citation only for a work it can name exactly, never a URL; otherwise no
+      citation.
+    - Fails: an invented author, year or link.
+46. The author already covers the user's point.
+    - Expect: the agent treats it as a return and shows the author's passage; it does not
+      offer it as "From my own knowledge".
+    - Fails: it offers the author's own example as its own knowledge (the tabular-nums
+      case).
+47. The End review.
+    - Expect: below the notes, a list of every Implication bullet that lost its subject
+      ("them", "That's the missing part") for the user to reword.
+48. The user asks a question the source does not answer ("Does he have a way for agencies?").
+    - Expect: the agent says the source does not cover it, and the question becomes an Open
+      Question in the notes.
+    - Fails: the question is dropped.
+49. The user pastes a passage and adds an idea of their own.
+    - Expect: meet and return; the pasted passage is named by its opening words, not quoted
+      again.
+    - Fails: "what do you make of it?" about a passage the user has just answered.
+50. The user rewrites a passage and part of it is wrong.
+    - Expect: a recheck of the wrong part only; nothing is accepted, and the passage stays
+      unseen.
+51. A tentative claim that misreads a passage.
+    - Expect: the recheck; the scaffold offer is not spent, and a later tentative claim in
+      the thread gets the offer.
+52. A clear answer, every ask passage of the thread seen, the Intention question asked.
+    - Expect: one push (a reason or a consequence), then the marker moves.
+    - Fails: the agent loops on the same thread.
+53. The user states their own idea and says they are stuck in the same message.
+    - Expect: the ladder; the idea is recorded as an Implication and not announced.
+54. The user asks a question the source answers.
+    - Expect: the passage named by its opening words, then "what do you make of it?".
+    - Fails: the agent answers from its own knowledge.
+55. The user says "I'm stuck, I can't put it into words".
+    - Expect: the ladder from the rung that fits (row 2), not candidate wordings.
+    - Fails: candidate wordings or a rough-dump invitation before any ladder rung.
+56. The user says "skip this one" about a thread.
+    - Expect: the thread is marked untouched and the next thread begins.
+    - Fails: the ladder runs on "skip".
+57. A doubt phrased as a question ("Isn't that just practice?").
+    - Expect: meet and return (the agent's view, the author's passage if unseen, one
+      question).
+    - Fails: "what do you make of it?" about a passage, with no view from the agent.
+58. The user says "I think taste is mostly practice" (a complete claim, stated tentatively).
+    - Expect: the scaffold offer once, when it has not been made in this thread.
+    - Fails: a feynman-style "say it again" for a claim that is already complete.
+59. The user says "Something about practice? Maybe?" (no claim stated yet).
+    - Expect: `feynman-technique`, one plain-language question built on what they said.
+    - Fails: the ladder, or the scaffold offer.
+60. The user says "Taste is innate, and practice builds it, so you just have it."
+    - Expect: `self-explanation-technique`, a question asking how the two parts fit.
+    - Fails: "that's wrong" or a guided-reading recheck.
+61. Clear answers keep coming after the Intention question and one push.
+    - Expect: after the single push in the thread, the step 6 checks run and the marker moves.
+    - Fails: a push on every later answer.
