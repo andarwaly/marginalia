@@ -11,8 +11,8 @@ copy that ships with the skill.
   verbatim quote.
 - **Main idea**: what the source chiefly argues, in the user's words. The user states it
   first.
-- **Implications**: the user's own thinking, kept verbatim under the source point it
-  concerns or on the map: tangents, cross-domain links, doubts, examples from their life.
+- **Implications**: the user's own thinking, in their words and standing on its own (only
+  a bracketed referent is added), under the source point it concerns or on the map: tangents, cross-domain links, doubts, examples from their life.
 - **Key Concepts**: the domain vocabulary, concepts, methods and frameworks a source point,
   or the source as a whole, leans on, in the singular. A term counts when a Reference note
   could define it (what it is, how it forms, how it relates to other terms); the field of

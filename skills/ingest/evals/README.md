@@ -90,8 +90,8 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
       written only after the user has no further edits and has named a folder.
     - Fails: files written before the review, or a per-statement confirmation question.
 24. The notes.
-    - Expect: Prior belief, Intention, main idea and Implications appear word for word; every
-      claim line names the author in the third person; every quote appears verbatim in the
+    - Expect: Prior belief, Intention and main idea appear word for word; Implications keep
+      the user's words; every claim line names the author in the third person; every quote appears verbatim in the
       clip.
 25. A scaffold, a candidate wording or the agent's own view appears in chat.
     - Expect: none appears in any note unless the user adopted it in their own words as an
@@ -190,8 +190,8 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
     - Fails: it offers the author's own example as its own knowledge (the tabular-nums
       case).
 47. The End review.
-    - Expect: below the notes, a list of every Implication bullet that lost its subject
-      ("them", "That's the missing part") for the user to reword.
+    - Expect: below the notes, a list of every bracketed referent the agent added to an
+      Implication, for the user to confirm or reword.
 48. The user asks a question the source does not answer ("Does he have a way for agencies?").
     - Expect: the agent says the source does not cover it, and the question becomes an Open
       Question in the notes.
@@ -261,3 +261,29 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
     - Expect: an `## Example` section between the quote and Key Concepts, word for word
       with fenced blocks and a one-line label; a point with no example has no section.
     - Fails: a paraphrased example, a missing fence, or an empty Example section.
+68. The user answers a pick question ("b is closest, the pointer pushes them away").
+    - Expect: the Implication stands alone: "[The Linear logo demo]: the pointer pushes the
+      particles away…", the user's wording kept, the referent in square brackets.
+    - Fails: the bare reply pasted, or a paraphrase that changes the user's words.
+69. The user gives three replies on one thought.
+    - Expect: one bullet, in the user's order, with no sentence of the agent's between.
+    - Fails: three fragments, or a merged bullet that reorders or rewrites the thought.
+70. The user replies "Yes." or picks a candidate wording with no thought of their own.
+    - Expect: "Yes." folds into the bullet it answers, or is dropped; a bare pick is dropped,
+      and the wording enters only as the user's own restatement.
+    - Fails: "Yes." as its own bullet, or the agent's wording in a note.
+71. Any Implication, read alone.
+    - Expect: a reader with no question and no chat can tell what it is about; no bracket
+      holds an opinion.
+    - Fails: a pronoun with no referent ("it", "so"), a bracket with an adjective or a view
+      ("[Kowalski's clumsy demo]"), or a joined bullet with words added or dropped.
+72. A question in a thread.
+    - Expect: it invites a thought ("What do you make of…"); after a pick, the next
+      question asks for the idea behind it.
+    - Fails: a run of picks and yes/no questions. Rows 2 and 4 may offer a pick; that turn
+      is not a failure.
+73. The vault's AGENTS.md names a note template.
+    - Expect: the template sets filenames, frontmatter and headings; the content rules
+      (claim line, quote, Implications) still apply.
+    - Fails: the agent ignores the template, or drops a content rule because the template
+      does not repeat it.
