@@ -1,0 +1,9 @@
+# One source note per source, with quotes the user picks
+
+Status: accepted
+
+The owner reviewed the vault output of `ingest` (2026-11-03, `marginalia-vault`: two sources, 17 notes). A map note plus one file per source point filled the file list, and reading one source meant opening many files. Each source point also carried a verbatim `>` block, which did the job of proof and bloated the note; the owner keeps a line only when it interests them.
+
+`ingest` now writes one source note per source: the main idea first, then a `##` section per source point (claim heading, claim line, locator, Implications, a fenced code block when the source shares code), then Key Concepts, Mentioned, Open Questions and Why I'm here once at the foot. The exact passage behind a claim is a highlight: the agent holds it before it talks about the claim, and the note keeps only its locator. A quote is a line the user names, written `"text" - [[Name]]`. The Prior belief is still asked and no longer written. The discussion is unchanged.
+
+Considered: atomic files plus a map note that embeds them (rejected: the file list stays cluttered, and embeds break outside Obsidian); one long note with no claim sections (rejected: the owner left that layout once because it grew too long to find or link an idea). Thought notes stay atomic files, written by `ideate`, and are not part of this change. Risk: heading links (`[[Source#Claim]]`) are untested in the Capacities importer, so the claim heading drops `: # ^ [ ] | \ /`, and the vault runs one test import before converting existing notes.

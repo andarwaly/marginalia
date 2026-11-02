@@ -1,6 +1,6 @@
 # Define evals
 
-Judged by behavior. Inputs are pasted notes with their map frontmatter.
+Judged by behavior. Inputs are pasted notes with their frontmatter.
 
 1. **Routing.** `/define taste` with pasted notes -> `define` runs. "what does taste mean?"
    with no slash -> it does not.

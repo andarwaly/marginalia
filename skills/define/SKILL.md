@@ -24,7 +24,7 @@ Fuller definitions and examples: `references/admission.md`.
 ## Steps
 
 1. **Take the input.** The user names a term and pastes the point notes that mention it, with
-   each note's map frontmatter (`author`, `source`). Without pasted notes, ask for them; do
+   each note's frontmatter (`author`, `source`). Without pasted notes, ask for them; do
    not search a vault. Alternate names the user gives become aliases.
 2. **Gather.** From each pasted note, take what it says the term is. Group the notes by
    support path (same URL or same author is one path).
@@ -56,7 +56,7 @@ Fuller definitions and examples: `references/admission.md`.
 ```
 ---
 sources:
-  - "[[§ Map note title]]"
+  - "[[Source note title]]"
 aliases:
   - alternate name
 ---
@@ -74,7 +74,7 @@ aliases:
 ...
 ```
 
-- `sources` lists the map notes of the deduplicated sources. `aliases` lists the alternate
+- `sources` lists the source notes of the deduplicated sources. `aliases` lists the alternate
   names the user gave; omit it if none.
 - Headings appear only for the parts the notes support. A one-line caveat, if any, comes
   right under the `# heading`.

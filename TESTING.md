@@ -35,10 +35,10 @@ Harnesses: **CC** Claude Code, **CX** Codex, **CW** Cowork.
      words), with no choice offered.
 8. Say "done".
    - Pass: the coverage list; up to three `ideate` suggestions; you state the main idea
-     first; one message proposes Key Concepts and Mentioned; the notes appear
-     in fenced blocks for the End review; the agent asks once for a folder and writes files
-     only after the review. Prior belief, Intention, main idea and Implications are your
-     words, word for word.
+     first; one message proposes Key Concepts and Mentioned; the note appears
+     in a fenced block for the End review; the agent asks once for a folder and writes the
+     file only after the review. Intention (as Why I'm here), main idea and Implications are
+     your words, word for word; the Prior belief is not in the note.
 
 ## B. Flags and routing
 
@@ -85,7 +85,7 @@ Harnesses: **CC** Claude Code, **CX** Codex, **CW** Cowork.
 
 ## F. End to end
 
-22. Ingest "Developing Taste" to notes. `/ideate` a thought from it, with the notes pasted.
+22. Ingest "Developing Taste" to a note. `/ideate` a thought from it, with the note pasted.
     Then `/define taste`. Pass: the notes pass the checks in each skill's `evals/README.md`.
 23. Acceptance, run by the owner. Run `/ingest` on "Developing Taste" with your real answers,
     then compare with the failed v1 run (`session-test/marginalia/transcript.md`) and the
@@ -148,7 +148,7 @@ in the language you want to test)
 
 Cases that need their own session: ingest 4 (delete one `*-technique` folder from the vault
 first), 6 (give no Intention), 10 (tell a story in turn 3 that a later point bears on), 16 (a
-claim that goes beyond its quote), 26 (answer in Indonesian), 27 (leave a thread untouched),
+claim that goes beyond its highlight), 26 (answer in Indonesian), 27 (leave a thread untouched),
 2 and 3 (a plain prompt with no slash). For the other skills, open `<skill>/evals/README.md`
 and follow its setup; `scaffold-technique` cases 12 and 13 run standalone.
 
@@ -156,8 +156,10 @@ and follow its setup; `scaffold-technique` cases 12 and 13 run standalone.
 
 - Skill calls per turn: `grep -o '"name":"Skill","input":{[^}]*}' logs/N.jsonl`. The skill
   must be called by name, not opened by path.
-- Quotes: each quote in the notes must appear verbatim in the saved clip, inside one
-  paragraph, ignoring `[^n]` markers, emphasis and curly quotes. Check with a script.
+- Quotes and code: each Quote and each code block in the note must appear verbatim in the
+  saved clip, inside one paragraph or code block, ignoring `[^n]` markers, emphasis and
+  curly quotes. Each locator must point at a real heading or timestamp, and no highlight
+  text may sit in the note. Check with a script.
 - Judge behavior, not wording. Mark each case pass, fail or not exercised, with the quoted
   turn. Ignore harness noise (blocked `/tmp` writes, denied tools); it is not a skill defect.
 - Record the result in the table below, with the harness and date.
@@ -183,6 +185,7 @@ End review). They are history, not a pass for the new skills. Record new runs in
 | 23b-v2 | CC cloud (marginalia-vault PR #2, interactive) | 2026-10-31 | partial; owner: less learning, not grounded | Owner run on "Agents with Taste" (3 threads, 3 source points) on skills `2ca8744`. **Findings:** the "that's yours, not <Author>'s" clause opened about 8 of 14 replies and made the owner feel wrong; threads built from claims skipped the article's Linear logo demo, the `scale(0)` versus 0.95 comparison, the Practical Tips, easing, duration and typography code blocks; the agent offered tabular-nums as "my own knowledge" though the article contains it; the owner's answer to thread 1 and their question about agencies reached no note; the Key Concepts and Mentioned proposal missed names the owner added. **Fixes (branch `claude/ingest-v3-grounding`):** passage list first to last, examples and code as discussion items, meet and return replacing "that's yours", misreads sent to `guided-reading-technique`, a thread done only when its passages are seen, a coverage list at wrap-up, a source-wide map line. **Next:** re-run on the same article and compare. |
 | 23c-v3 | CC cloud (marginalia-vault PR #3, interactive) | 2026-11-01 | partial; better grounded, still drifted | Owner run on "Agents with Taste" on skills `5e9729f`. **Pass:** the scale balloon, tips table, easing flowchart, duration table and typography block were shown and discussed; the Linear and dialog demos were handled as dropped demos; no "that's yours"; wrap-up proposed Key Concepts and Mentioned from the whole source. **Findings:** thread 2 spent about 13 turns on the owner's own blur rule (ideate's job); passages shown as a bridge counted as seen, so typography, the duration rules and the skill-creator tip ended as "not discussed"; a receipt ("Prior belief and Intention are recorded"); the full marker appeared on views that did not differ from the author; the owner asked for reasons per term, an Example section and plain Key Concepts entries mid-session. **Fixes (branch `claude/ingest-v4-ask-the-passage`):** the closing question is about the passage; seen needs an answered question about it, and table rows and rules belong to their parent; marker only when the view differs from the author; Key Concepts as `Term: what it is, why it is here`; Example section. **Next:** re-run and watch for a question per row (over-questioning) and for the marker on agreeing views. |
 | 23d-v5 | CC cloud (pending re-run) | 2026-11-01 | not run | Changes after 23c-v3, on branch `claude/ingest-v5-implications`: Implications stand on their own (bracketed referents, replies on one thought joined, the End review lists the brackets); questions invite a thought, not a pick; `source-notes.md` yields filenames, frontmatter and headings to a vault template named in AGENTS.md. **Check on the next re-run:** no bare fragment as an Implication (evals 68-71); no run of pick questions (72); the vault template is followed and the content rules survive it (73); brackets never hold an opinion. |
+| 23e-v6 | CC cloud (pending re-run) | 2026-11-03 | not run | Output only, on branch `claude/ingest-v6-source-note-output`; the interview is unchanged. One source note per source: main idea first, a `##` claim heading per source point (five to nine words, no author name), a locator on every claim, Key Concepts, Mentioned, Open Questions and Why I'm here at the foot. **Check on the next re-run:** no highlight text in the note; a Quote only when the user named the line; code blocks verbatim under their claim; no Prior belief in the note; Implications that fit no point sit below the main idea; the interview behaves as in 23d-v5. |
 
 ### G findings (v2, 2026-10-30)
 
