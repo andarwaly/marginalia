@@ -15,7 +15,7 @@ _Avoid_: resource
 The markdown text of a source fetched from a URL. It lives in the temp folder for the session, never in the vault.
 
 **Source note**:
-One file per source. Holds the main idea, then loose Quotes and Implications, a section per source point, and at the foot Key Concepts, Mentioned, Open Questions and Why I'm here.
+One file per source. Opens with Why I'm here and the main idea, each under its heading, then holds loose Quotes and Implications, a section per source point, and at the foot Key Concepts, Mentioned and Open Questions.
 _Avoid_: literature note, map note
 
 **Source point**:
@@ -23,7 +23,7 @@ One proposition the source makes: a `##` section of the source note, headed by t
 _Avoid_: point note, claim note
 
 **Main idea**:
-What the source chiefly argues, in the user's words. The user states it first. It opens the source note, with no heading.
+What the source chiefly argues, in the user's words. The user states it first. It sits under its own heading, after Why I'm here.
 _Avoid_: core idea
 
 **Implications**:
@@ -59,7 +59,7 @@ The user's glossary entry for a term, built from their notes. Written by `define
 ### Discussion
 
 **Intention**:
-What makes the user want to read or watch the source and what they want from it, in their words, often including what they will do with it. Set at the start, written as the Why I'm here section at the foot of the source note, and recalled once per thread.
+What makes the user want to read or watch the source and what they want from it, in their words, often including what they will do with it. Set at the start, written as the Why I'm here section at the top of the source note, and recalled once per thread.
 _Avoid_: purpose, goal
 
 **Prior belief**:

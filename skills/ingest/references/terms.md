@@ -3,15 +3,15 @@
 Read when a rule in SKILL.md is unclear. The repo's `CONTEXT.md` is the source; this is the
 copy that ships with the skill.
 
-- **Source note**: one file per source. Holds the main idea, then loose Quotes and
-  Implications, a section per source point, and at the foot Key Concepts, Mentioned, Open
-  Questions and Why I'm here.
+- **Source note**: one file per source. Opens with Why I'm here and the main idea, each
+  under its heading, then holds loose Quotes and Implications, a section per source point,
+  and at the foot Key Concepts, Mentioned and Open Questions.
 - **Source point**: one proposition the source makes: a `##` section of the source note,
   headed by the claim (short, positive, no author name). It carries a claim line attributed
   to the author by name, in the user's words, a Locator, the user's Implications, and a
   fenced code block when the source shares code.
 - **Main idea**: what the source chiefly argues, in the user's words. The user states it
-  first. It opens the source note, with no heading.
+  first. It sits under its own heading, after Why I'm here.
 - **Implications**: the user's own thinking, in their words and standing on its own (only
   a bracketed referent is added), under the source point it concerns, or below the main
   idea when it fits no point: tangents, cross-domain links, doubts, examples from their
@@ -43,7 +43,7 @@ copy that ships with the skill.
   heading sits above it.
 - **Intention**: what makes the user want to read or watch the source and what they want
   from it, in their words, often including what they will do with it. Set at the start,
-  written as the Why I'm here section at the foot of the source note, and recalled once
+  written as the Why I'm here section at the top of the source note, and recalled once
   per thread.
 - **Prior belief**: what the user thinks about the topic before the discussion, in their
   words. Asked at the start; not written to the note.

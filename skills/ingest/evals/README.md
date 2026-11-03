@@ -294,10 +294,10 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
     - Fails: the agent ignores the template, or drops a content rule because the template
       does not repeat it.
 74. The note's layout.
-    - Expect: one note for the source. The main idea comes first with no heading; each
-      source point is a `##` heading of five to nine words, with no author name and none of
-      `: # ^ [ ] | \ /`; Key Concepts, Mentioned, Open Questions and Why I'm here sit once
-      at the foot.
+    - Expect: one note for the source. Why I'm here and the main idea open the note,
+      each under its heading; each source point is a `##` heading of five to nine words,
+      with no author name and none of `: # ^ [ ] | \ /`; Key Concepts, Mentioned and Open
+      Questions sit once at the foot.
     - Fails: a separate file per source point, a map note, an author name in a heading, or
       Key Concepts repeated under each point.
 75. Locator and highlight.
