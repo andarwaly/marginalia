@@ -262,10 +262,11 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
     - Fails: a bare term, a wikilink, or a definition from outside the source.
 67. A source point whose passage holds a code block, a table or a flowchart.
     - Expect: for code, a fenced block under the claim line, word for word, with the
-      language tag; a point with no code has none. A table or flowchart is not copied; what
-      the user said about it is an Implication.
-    - Fails: paraphrased code, a missing fence, a copied table or flowchart, or an empty
-      `## Example` section.
+      language tag; a point with no code has none. A table or flowchart the source shows as a
+      code block is copied as code; one shown any other way is not copied, and what the user
+      said about it is an Implication.
+    - Fails: paraphrased code, a missing fence, a table or flowchart copied from outside a
+      code block, or an empty `## Example` section.
 68. The user answers a pick question ("b is closest, the pointer pushes them away").
     - Expect: the Implication stands alone: "[The Linear logo demo]: the pointer pushes the
       particles away…", the user's wording kept, the referent in square brackets.

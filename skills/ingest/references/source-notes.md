@@ -96,8 +96,9 @@ source: https://example.com/article
   or the source title when no heading sits above the highlight; a linked `[mm:ss]`
   timestamp for a video. The highlight's text stays out of the note.
 - Code: when the source shares code for that point, copy it word for word from the clip
-  into a fenced block under the claim line, with the language tag. A table or flowchart is
-  not copied; what the user said about it is an Implication. An image or demo gives its
+  into a fenced block under the claim line, with the language tag. A table or flowchart the
+  source shows as a code block is a code block and is copied; one shown any other way is
+  not copied, and what the user said about it is an Implication. An image or demo gives its
   caption or alt text, flagged in the check as not source text.
 - Quote: a line the user named, copied word for word from the clip and checked the same
   way as a highlight. Written `"text" - [[Name]]`, where Name is whoever said it: the
