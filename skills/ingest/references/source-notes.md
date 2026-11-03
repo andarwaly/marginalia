@@ -37,7 +37,11 @@ source: https://example.com/article
 ---
 # Title of the source
 
-<main idea, the user's words, no heading>
+## Why I'm here
+<the user's words>
+
+## Main idea
+<the user's words>
 
 - I think ... (Implications that fit no source point)
 
@@ -62,16 +66,13 @@ source: https://example.com/article
 
 ## Open Questions
 - ...
-
-## Why I'm here
-<the user's words>
 ````
 
 - `published-at` is `YYYY-MM-DD`, empty when the clip lacks it, never guessed. A video uses
   its upload date.
 - `author` is a bare wikilink; for a video, the channel name.
-- The main idea comes first, with no heading. Below it sit the Implications and the
-  Quotes that fit no source point. Omit what is empty.
+- Why I'm here and the main idea open the note, each under its heading. Below them sit the
+  Implications and the Quotes that fit no source point. Omit what is empty.
 - Why I'm here is the Intention in the user's words, word for word. Omit the section when
   the user gave none. The Prior belief is not written.
 - Key Concepts, Mentioned and Open Questions sit once, at the foot, each term once. Omit a
