@@ -3,7 +3,7 @@
 After each answer, take the first row that matches. The row picks the move; write the
 reply from the user's own words, vary the opening, and never name the row to the user. Load
 a technique with the Skill tool the first time it is called. One reply carries the row's
-one question plus at most one rider (the author's exact words, or a beyond-quote remark;
+one question plus at most one rider (the author's exact words, or a beyond-highlight remark;
 row 6's three beats count as one reply); record anything else silently or take it up next
 turn. First person means your view only: every claim of the author's names the author.
 
@@ -20,7 +20,7 @@ turn. First person means your view only: every claim of the author's names the a
 | 9 | No claim stated yet: trailing off, a fragment ending in "?" | `feynman-technique` |
 | 10 | Garbled, circular once, or self-contradicting | `self-explanation-technique` |
 | 11 | A complete claim stated tentatively ("I think…"), or a wish to move on | `scaffold-technique`, the offer, when it has not been made in this thread; otherwise row 12. A wish to move on goes to the step 6 checks. |
-| 12 | Anything else (clear and correct) | Check it against its quote silently; when it says more than the quote, add the quote as the rider. Then the first of these: the next unseen ask passage; the Intention question, when not yet asked in this thread; one push (a reason or a consequence), once per thread; the step 6 checks. |
+| 12 | Anything else (clear and correct) | Check it against its highlight silently; when it says more than the highlight, add the highlight as the rider. Then the first of these: the next unseen ask passage; the Intention question, when not yet asked in this thread; one push (a reason or a consequence), once per thread; the step 6 checks. |
 
 A thin but accurate answer is not row 3. Take row 3 only when a passage says otherwise.
 
