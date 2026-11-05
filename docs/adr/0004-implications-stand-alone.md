@@ -1,6 +1,6 @@
 # Implications stand on their own, with bracketed referents
 
-Status: accepted
+Status: superseded by 0006
 
 In the third owner run (2026-11-01, "Agents with Taste") the Implications were pasted word for word, and six of them lost their meaning without the agent's question ("b is closest, the pointer pushes them away", "The agent should draft it, and I review it."). The agent listed them at the End review for the user to reword; the user did not. `ingest` now drafts each Implication so it stands on its own: the user's wording and opinion words stay, replies on one thought join into one bullet, and the only agent text is a bracketed referent naming what the author made. The End review lists the brackets.
 

@@ -1,22 +1,23 @@
 ---
 name: ingest
-description: "Discusses one source with the user, then drafts a source note whose claims and Implications stay in the user's words. Use when the user runs /ingest with a URL or pasted text."
+description: "Discusses one source with the user to sharpen their thinking, then drafts a source note to refine: the source's points, the user's own words, the author's examples and quoted people, Key Concepts and Mentioned. Use when the user runs /ingest with a URL or pasted text."
 disable-model-invocation: true
 ---
 
 # Ingest
 
 Discuss one source with the user until they have met each passage and said what they make
-of it. Then draft the source note. The user supplies the claims and the thinking; the agent
-supplies the source's text, a discussion partner's questions, and marked views and
-scaffolds.
+of it. The goal is the user's sharpened thinking and their grasp of what the author means.
+Then draft the source note: a Draft the user refines into their own note. The user supplies
+the claims and the thinking; the agent supplies the source's text, a discussion partner's
+questions, and marked views and scaffolds.
 
 If a technique skill named below is missing, stop and tell the user to install the full
 marginalia set.
 
-Terms (Thread, Passage, Passage tag, Seen, Intention, Prior belief, Source point,
-Highlight, Quote, Locator, Implications, Key Concepts, Mentioned, Reading state, Meet and
-return, Rider, Scaffold, End review, Wrap-up): `references/terms.md`.
+Terms (Draft, Thread, Passage, Passage tag, Seen, Intention, Prior belief, Source point,
+Highlight, Example, Quoted, Quote, Locator, Implications, Key Concepts, Mentioned, Reading
+state, Meet and return, Rider, Scaffold, End review, Wrap-up): `references/terms.md`.
 
 ## Steps
 
@@ -72,9 +73,9 @@ return, Rider, Scaffold, End review, Wrap-up): `references/terms.md`.
      the user's words ("You said you're reading this to '…'. Where does this thread fit
      that?"), never as your statement of the link.
    - Record per thread, without announcing it: the claim in the user's words, its highlight,
-     and the user's Implications, each drafted so it stands on its own. The user's answer
-     to a thread's opening question becomes the claim line or an Implication
-     (`references/source-notes.md`).
+     the Examples and Quoted lines of the passages the user has seen, and the user's
+     Implications in their own words. The user's answer to a thread's opening question
+     becomes the claim line or an Implication (`references/source-notes.md`).
 6. **Move on.** A thread is done when each ask passage in it is seen, each claim in it
    that the user discussed has a claim line that passed the highlight check, the thread has
    been related to the Intention, and row 11's offer has been made or the thread never
@@ -90,9 +91,7 @@ return, Rider, Scaffold, End review, Wrap-up): `references/terms.md`.
       without saying they are done, offer them once.
    2. Name up to three Implications that look worth refining in `ideate`, as a suggestion
       the user may ignore.
-   3. Ask for the main idea. The user states it first; offer two tighter candidates only
-      when their statement is long or loose.
-   4. Read the Key Concepts and Mentioned definitions in `references/terms.md`. Propose
+   3. Read the Key Concepts and Mentioned definitions in `references/terms.md`. Propose
       them in one message, one line per source point you will write (Key Concepts |
       Mentioned), from that point's passages: propose a term only when the claim line or
       the user's words would lose meaning without it, at most about five per point; judge
@@ -103,8 +102,8 @@ return, Rider, Scaffold, End review, Wrap-up): `references/terms.md`.
       point it fits most. The user chooses here, ahead of the End review: they add, drop
       or correct, and silence on a point accepts it. Done after one reply from the user, or
       a decline.
-   5. Show the note for the End review (`references/end-review.md`).
-   6. Ask once for a folder, then write the file. With no folder, leave the note in chat.
+   4. Show the note for the End review (`references/end-review.md`).
+   5. Ask once for a folder, then write the file. With no folder, leave the note in chat.
 8. **Notes.** Read `references/source-notes.md` before drafting.
 
 ## Hard rules
@@ -112,15 +111,16 @@ return, Rider, Scaffold, End review, Wrap-up): `references/terms.md`.
 - Build each claim line from what the user said, or from what its highlight supports when
   the user pasted the passage. Attribute it to the author by name in the third person, and
   add no claim the user did not discuss.
-- Copy the Intention (written as Why I'm here) and the main idea word for word, fixing
-  only spelling. The Prior belief is asked and not written. Write each Implication in the
-  user's words so it stands on its own: join replies on one thought, and add only a
-  bracketed referent (`references/source-notes.md`).
+- Write each Implication in the user's words, fixing only spelling: join replies on one
+  thought and add nothing (`references/source-notes.md`). The Intention and the Prior belief
+  are asked and not written.
 - Keep scaffolds, candidate wordings and your own views in chat. They enter a note only
   when the user adopts them in their own words, as an Implication.
 - Write a source point only for threads that were discussed. An undiscussed thread leaves
-  no source point; only the terms the user accepts at Wrap-up step 4 reach the foot of the
-  note. A Quote is written only when the user names the line. A partial note is valid.
+  no source point; only the terms the user accepts at Wrap-up step 3 reach the foot of the
+  note. A Quote is written only when the user names the line; an Example or Quoted line is
+  written only for a passage the user has seen, and these are the only source text the
+  agent places on its own. A partial note is valid.
 - Write the file only after the End review and a folder from the user.
 - Reply in the user's language. Whatever names the source stays in the source's language
   (`references/source-notes.md`).

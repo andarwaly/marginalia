@@ -1,8 +1,8 @@
 # marginalia
 
-Skills that turn a source into notes that keep your own implications apart from the
-source's points, and turn your own ideas into refined thought notes. For Claude Code and
-Codex. The chat route comes later.
+Skills that sharpen your thinking about a source or an idea. Each session ends with a
+draft note that keeps your own words apart from the source's points, for you to refine. For
+Claude Code and Codex. The chat route comes later.
 
 Status: all thirteen skills are written; the redesigned `ingest` has not been tested yet.
 See [CONTEXT.md](./CONTEXT.md) for the terms and [docs/adr/](./docs/adr/) for the decisions;
@@ -12,7 +12,7 @@ See [CONTEXT.md](./CONTEXT.md) for the terms and [docs/adr/](./docs/adr/) for th
 
 ```
 URL                  -> clip-article | clip-youtube -> clip (session only)
-clip, or pasted text -> /ingest   (with techniques)  -> source notes (map + points)
+clip, or pasted text -> /ingest   (with techniques)  -> source note (draft)
 thought (+ backing)  -> /ideate                      -> thought note
 concept + notes      -> /define                      -> Reference note
 ```
@@ -21,8 +21,9 @@ concept + notes      -> /define                      -> Reference note
   examples and code blocks included. The agent checks your claims against exact quotes,
   answers your own ideas with its marked view and the author's passage that bears on
   them, adds a marked example when you are about to settle or are stuck, and never
-  writes your claims for you. Your own thinking goes in an Implications section, in your
-  words.
+  writes your claims for you. The draft source note holds each point, your own thinking
+  in your words, the author's examples and quoted people, and the terms and names the
+  discussion used.
 - `/ideate` is a two-way discussion about an idea of yours. The agent takes tagged
   positions and names the strongest counter-argument; you decide the claim.
 - `/define` writes a glossary entry from notes you paste. No interview.

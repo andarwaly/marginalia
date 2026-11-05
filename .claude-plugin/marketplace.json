@@ -5,7 +5,7 @@
     {
       "name": "marginalia",
       "source": "./",
-      "description": "Skills that turn sources into notes with your own implications, and notes into ideas.",
+      "description": "Skills that sharpen your thinking about a source or an idea and draft notes for you to refine.",
       "version": "0.0.1"
     }
   ]

@@ -1,20 +1,21 @@
 # Source notes
 
-Read before drafting the note. When the vault's AGENTS.md names a note template, the
-template sets filenames, link and entry syntax, frontmatter, headings and section order,
-and the layout example below gives way to it; every rule below about content still
-applies. One source, one note, in one fenced block. Put the filename on a plain line
+Read before drafting the note. The note is a draft the user refines into their own notes:
+it records the source's points, the user's words, the author's examples and quoted people,
+and the terms and names the discussion used. When the vault's AGENTS.md names a note
+template, the template sets filenames, link and entry syntax, frontmatter, headings and
+section order, and the layout example below gives way to it; every rule below about content
+still applies. One source, one note, in one fenced block. Put the filename on a plain line
 directly above the block, not in a block of its own.
 
 ## Language
 
 Whatever names or quotes the source stays in the source's language: the filename, the
-title, claim headings, claim lines, quotes, locators, Key Concepts and Mentioned. A source
-titled "Developing Taste" gives `Developing Taste`, never a translation. What the user
-said keeps the user's language: the main idea, Why I'm here and Implications. A claim line
+title, claim headings, claim lines, examples, Quoted lines, quotes, locators, Key Concepts
+and Mentioned. A source titled "Developing Taste" gives `Developing Taste`, never a
+translation. What the user said keeps the user's language: the Implications. A claim line
 is in the source's language and built from the user's words, so translate those words when
-the languages differ. Section headings (`## Key Concepts`, `## Why I'm here`) stay in
-English.
+the languages differ. Section headings (`## Key Concepts`, `## Mentioned`) stay in English.
 
 ## Filename and headings
 
@@ -32,16 +33,10 @@ English.
 ````
 ---
 author: "[[Author Name]]"
-published-at: 2026-01-31
-source: https://example.com/article
+published: 2026-01-31
+url: https://example.com/article
 ---
 # Title of the source
-
-## Why I'm here
-<the user's words>
-
-## Main idea
-<the user's words>
 
 - I think ... (Implications that fit no source point)
 
@@ -50,33 +45,35 @@ source: https://example.com/article
 ## Claim heading
 <Author> says <claim line, built from the user's words>. [locator]
 
-- I think ...
-
-"a line the user kept" - [[Name]]
+- Example: <the author's case, word for word from the clip>
+- Quoted: <Person> says "<their words, word for word from the clip>"
 
 ```code
 <the author's code, word for word>
 ```
+
+- I think ...
+- Is ... ? (a question of the user's the source does not answer)
+
+"a line the user kept" - [[Name]]
 
 ## Key Concepts
 - Term: what it is, and why it is here
 
 ## Mentioned
 - Name: what it is, and why it is here
-
-## Open Questions
-- ...
 ````
 
-- `published-at` is `YYYY-MM-DD`, empty when the clip lacks it, never guessed. A video uses
+- `published` is `YYYY-MM-DD`, empty when the clip lacks it, never guessed. A video uses
   its upload date.
-- `author` is a bare wikilink; for a video, the channel name.
-- Why I'm here and the main idea open the note, each under its heading. Below them sit the
-  Implications and the Quotes that fit no source point. Omit what is empty.
-- Why I'm here is the Intention in the user's words, word for word. Omit the section when
-  the user gave none. The Prior belief is not written.
-- Key Concepts, Mentioned and Open Questions sit once, at the foot, each term once. Omit a
-  section that is empty.
+- `author` is a bare wikilink; for a video, the channel name. It and the Quote names are the
+  only wikilinks the agent writes.
+- Below the title sit the Implications and Quotes that fit no source point. Omit what is
+  empty.
+- The Intention and the Prior belief are asked and not written.
+- Key Concepts and Mentioned sit once, at the foot, each term once. Omit a section that is
+  empty. The user writes any section of their own, such as `## What I think`, after the
+  note; the agent writes none.
 
 ## Source point
 
@@ -95,43 +92,48 @@ source: https://example.com/article
   to view image") as a highlight.
 - Locator: on every source point, after the claim line. The nearest heading for an article,
   or the source title when no heading sits above the highlight; a linked `[mm:ss]`
-  timestamp for a video. The highlight's text stays out of the note.
-- Code: when the source shares code for that point, copy it word for word from the clip
-  into a fenced block under the claim line, with the language tag. A table or flowchart the
-  source shows as a code block is a code block and is copied; one shown any other way is
-  not copied, and what the user said about it is an Implication. An image or demo gives its
-  caption or alt text, flagged in the check as not source text.
+  timestamp for a video. The highlight's text stays out of the note, except where the
+  highlight is itself the Example: the Example entry carries it.
+- Example: a concrete case the author gives to show what the claim means. Written for each
+  example the user has seen, under the source point it illustrates; an example the user
+  never engaged with is left out. A prose case is the run of the clip that carries it,
+  word for word, and passes the highlight check. Code is copied word for word into a fenced
+  block with the language tag. A table or flowchart the source shows as a code block is a
+  code block and is copied; one shown any other way is not copied, and what the user said
+  about it is an Implication. An image or demo gives its caption or alt text, flagged in the
+  check as not source text. The user trims a long example at the End review.
+- Quoted: a person the author quotes in a passage the user has seen. Written
+  `Quoted: <Person> says "<words>"`, with the words word for word from the clip and
+  checked the same way as a highlight, under the source point the passage supports. The
+  claim line stays about the author. A line the user also names as a Quote is written once,
+  as the Quote.
 - Quote: a line the user named, copied word for word from the clip and checked the same
   way as a highlight. Written `"text" - [[Name]]`, where Name is whoever said it: the
   author, or the person the author quotes. It goes under the source point it relates to,
-  or below the main idea when it fits none. The agent writes none the user did not name.
+  or below the title when it fits none. The agent writes none the user did not name. The
+  Examples and Quoted lines are the only source text the agent places on its own.
 - Key Concepts and Mentioned entries are plain text: `- Term: what it is, and why it is
   here`. "What it is" comes from the clip or the discussion only; when the source does not
-  say, give the reason alone. The reason is the one agreed at Wrap-up step 4, so the user
+  say, give the reason alone. The reason is the one agreed at Wrap-up step 3, so the user
   can tell on a later visit why the term is there. A link is written under Mentioned as
   `[Name](url)`.
 - Key Concepts stay in the singular ("Tastemaker", never "Tastemakers"). Selection is in
-  SKILL.md Wrap-up step 4, definitions in `terms.md`. A question of the user's that the
-  source does not answer is an Open Question.
-- Implications: first-person bullets in the user's words that stand on their own: a reader
-  with neither the question nor the chat can tell what each is about. Keep the user's
-  wording and opinion words, spelling fixed. Join consecutive replies on one thought into
-  one bullet, in the user's order, by concatenation: add no word outside brackets and
-  drop none. Add only the missing referent (what "it", "so" or "b" stands for) in square
-  brackets, naming what the author made: "[Kowalski's dialog video] is his process of
-  reviewing the interaction…". The bracket holds a name from the source or the chat, with
-  no adjective or judgement. A reply with no thought of its own ("Yes.") folds into the
-  bullet it answers; a bare pick of a candidate wording is dropped, and the wording enters
-  only as the user's own restatement. The agent writes no opinion for the user. The user's
-  guess at an answer to an Open Question becomes an Implication under the source point the
-  question arose from, or below the main idea when none. The only agent text in a bullet is
-  a bracketed referent.
-- An Implication goes under the source point it is about. One that fits no point goes below
-  the main idea.
+  SKILL.md Wrap-up step 3, definitions in `terms.md`.
+- Implications: the user's own words as first-person bullets, one per thought, under the
+  source point they are about. Keep the user's wording and opinion words, spelling fixed.
+  Join consecutive replies on one thought into one bullet, in the user's order, by
+  concatenation: add no word and drop none. A reply with no thought of its own ("Yes.")
+  folds into the bullet it answers; a bare pick of a candidate wording is dropped, and the
+  wording enters only as the user's own restatement. The agent writes no opinion for the
+  user and adds no tag or link. A question of the user's that the source does not answer is
+  its own bullet, word for word, ending in its question mark, under the source point it
+  arose from, or below the title when none. The user's guess at an answer joins it. An
+  Implication that fits no point goes below the title.
 
 ## After the block
 
 A short plain-text list: every thread as shown at SKILL.md step 4 (Show the threads),
-marked as written, untouched, or started but not finished, and the result of the check
-(each highlight, quote and code block found verbatim in the clip, or flagged with the
-reason it was not).
+marked as written, untouched, or started but not finished; the result of the check (each
+highlight, Example, Quoted line, quote and code block found verbatim in the clip, or
+flagged with the reason it was not); and the Examples and Quoted lines the agent placed, so
+the user can cut any.

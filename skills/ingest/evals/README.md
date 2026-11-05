@@ -81,27 +81,25 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
 
 21. The user says "done" with one thread untouched.
     - Expect: the offer on the untouched thread is skipped; suggestions for `ideate`, the
-      main idea, the Key Concepts and Mentioned proposal, the End review and the folder
-      question still run.
-22. The agent asks for the main idea.
-    - Expect: the user states it first; the agent offers candidates only if the statement is
-      long or loose.
+      Key Concepts and Mentioned proposal, the End review and the folder question still run.
+22. Wrap-up.
+    - Expect: the agent does not ask for a main idea and the note has none.
+    - Fails: a main-idea question, or a main-idea section in the note.
 23. The End review.
     - Expect: the full note in a fenced block; the user's edits are applied; the file is
       written only after the user has no further edits and has named a folder.
     - Fails: files written before the review, or a per-statement confirmation question.
 24. The note.
-    - Expect: Why I'm here (the Intention) and the main idea appear word for word; the Prior
-      belief is not in the note; Implications keep the user's words; every claim line names
-      the author in the third person and carries a locator; every Quote and code block
-      appears verbatim in the clip.
+    - Expect: the Intention and the Prior belief are not in the note; Implications keep the
+      user's words; every claim line names the author in the third person and carries a
+      locator; every Example, Quoted line, Quote and code block appears verbatim in the clip.
 25. A scaffold, a candidate wording or the agent's own view appears in chat.
     - Expect: none appears in any note unless the user adopted it in their own words as an
       Implication.
 26. The user writes in Indonesian ("Barusan lewat di threads tentang taste…").
     - Expect: the agent's questions are in Indonesian; quotes, titles, filenames, claim
-      headings and claim lines stay in English; Why I'm here, the main idea and Implications
-      keep the user's Indonesian words; section headings stay English.
+      headings, claim lines, Examples and Quoted lines stay in English; Implications keep the
+      user's Indonesian words; section headings stay English.
 27. Only two of three threads were discussed.
     - Expect: the coverage list marks the third untouched, and it leaves no source
       point, locator or quote in the note.
@@ -117,7 +115,7 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
 29. A scaffold or any question in a thread.
     - Expect: one ask in plain words; a second ask waits for the answer.
     - Fails: "X, and what does that say about Y?" in one turn.
-30. Wrap-up, after the main idea.
+30. Wrap-up, after the `ideate` suggestions.
     - Expect: one message proposes Key Concepts (singular form, at most about five per
       point) and Mentioned (names, works, tools, footnote links), one line per point, each
       term with a short reason ("Term: why"); the
@@ -192,11 +190,11 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
     - Fails: it offers the author's own example as its own knowledge (the tabular-nums
       case).
 47. The End review.
-    - Expect: below the note, a list of every bracketed referent the agent added to an
-      Implication, for the user to confirm or reword.
+    - Expect: below the note, a list of every Example and Quoted line the agent placed, for
+      the user to keep or cut.
 48. The user asks a question the source does not answer ("Does he have a way for agencies?").
-    - Expect: the agent says the source does not cover it, and the question becomes an Open
-      Question in the note.
+    - Expect: the agent says the source does not cover it, and the question is kept as the
+      user's own bullet, word for word, ending in its question mark.
     - Fails: the question is dropped.
 49. The user pastes a passage and adds an idea of their own.
     - Expect: meet and return; the pasted passage is named by its opening words, not quoted
@@ -260,7 +258,7 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
       `- Term: what it is, and why it is here`, once, at the foot, with no `※` and no
       wikilink.
     - Fails: a bare term, a wikilink, or a definition from outside the source.
-67. A source point whose passage holds a code block, a table or a flowchart.
+67. A source point whose seen passage holds a code block, a table or a flowchart.
     - Expect: for code, a fenced block under the claim line, word for word, with the
       language tag; a point with no code has none. A table or flowchart the source shows as a
       code block is copied as code; one shown any other way is not copied, and what the user
@@ -268,9 +266,10 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
     - Fails: paraphrased code, a missing fence, a table or flowchart copied from outside a
       code block, or an empty `## Example` section.
 68. The user answers a pick question ("b is closest, the pointer pushes them away").
-    - Expect: the Implication stands alone: "[The Linear logo demo]: the pointer pushes the
-      particles away…", the user's wording kept, the referent in square brackets.
-    - Fails: the bare reply pasted, or a paraphrase that changes the user's words.
+    - Expect: the reply is kept under the source point it concerns, in the user's wording,
+      with nothing added.
+    - Fails: the bare reply left with no place, a paraphrase that changes the user's words, or
+      a bracketed referent.
 69. The user gives three replies on one thought.
     - Expect: one bullet, in the user's order, with no sentence of the agent's between.
     - Fails: three fragments, or a merged bullet that reorders or rewrites the thought.
@@ -278,39 +277,55 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
     - Expect: "Yes." folds into the bullet it answers, or is dropped; a bare pick is dropped,
       and the wording enters only as the user's own restatement.
     - Fails: "Yes." as its own bullet, or the agent's wording in a note.
-71. Any Implication, read alone.
-    - Expect: a reader with no question and no chat can tell what it is about; no bracket
-      holds an opinion.
-    - Fails: a pronoun with no referent ("it", "so"), a bracket with an adjective or a view
-      ("[Kowalski's clumsy demo]"), or a joined bullet with words added or dropped.
-72. A question in a thread.
-    - Expect: it invites a thought ("What do you make of…"); after a pick, the next
-      question asks for the idea behind it.
-    - Fails: a run of picks and yes/no questions. Rows 2 and 4 may offer a pick; that turn
-      is not a failure.
+71. Any Implication.
+    - Expect: the user's words, one bullet per thought, under the source point it concerns,
+      with no word added or dropped and no bracket, tag or wikilink.
+    - Fails: a bracketed referent, an added tag or link, or a joined bullet with words added
+      or dropped.
 73. The vault's AGENTS.md names a note template.
     - Expect: the template sets filenames, frontmatter and headings; the content rules
       (claim line, locator, Implications) still apply.
     - Fails: the agent ignores the template, or drops a content rule because the template
       does not repeat it.
 74. The note's layout.
-    - Expect: one note for the source. Why I'm here and the main idea open the note,
-      each under its heading; each source point is a `##` heading of five to nine words,
-      with no author name and none of `: # ^ [ ] | \ /`; Key Concepts, Mentioned and Open
-      Questions sit once at the foot.
-    - Fails: a separate file per source point, a map note, an author name in a heading, or
-      Key Concepts repeated under each point.
+    - Expect: one note for the source. Frontmatter holds `author`, `published` and `url`;
+      loose Implications and Quotes sit under the title; each source point is a `##` heading
+      of five to nine words, with no author name and none of `: # ^ [ ] | \ /`; Key Concepts
+      and Mentioned sit once at the foot; the agent writes no `## What I think`.
+    - Fails: a separate file per source point, a map note, an author name in a heading, Key
+      Concepts repeated under each point, or a Why I'm here, main idea or Open Questions
+      section.
 75. Locator and highlight.
     - Expect: every source point carries a locator after its claim line (a linked `[mm:ss]`
       for a video, the nearest heading for an article); the highlight's text is not in the
-      note.
+      note unless the highlight is itself the Example.
     - Fails: a `>` copy of the highlight, a source point with no locator, or a locator that
       points at nothing.
 76. The user names a line to keep at the End review.
     - Expect: `"text" - [[Name]]`, word for word from the clip, under the source point it
-      relates to or below the main idea; Name is whoever said it.
+      relates to or below the title; Name is whoever said it.
     - Fails: a Quote the user did not name, a paraphrase, or the author named for a line the
       author quotes from someone else.
 77. An Implication that fits no source point.
-    - Expect: it sits below the main idea.
+    - Expect: it sits below the title, before the first source point.
     - Fails: it is dropped, or placed under an unrelated source point.
+78. A seen prose example, then an example the user never engaged with.
+    - Expect: an `Example:` line for the seen one, word for word from the clip, under the
+      point it illustrates; none for the other.
+    - Fails: a paraphrased example, an example the user did not see, or an example under the
+      wrong point.
+79. An image or demo example the clip dropped.
+    - Expect: its caption or alt text under `Example:`, flagged in the After-the-block check
+      as not source text.
+    - Fails: a description the agent wrote, or no flag.
+80. The author quotes a person in a seen passage.
+    - Expect: `Quoted: Person says "words"` under the point, word for word, naming the quoted
+      person; the claim line stays about the author.
+    - Fails: the quoted person's words in the claim line, a paraphrase, or the author named.
+81. A line the user names as a Quote is also the author's quotation of someone.
+    - Expect: it is written once, as the Quote, with no `Quoted:` duplicate.
+    - Fails: the line written twice.
+82. The user raises a question the source answers and a gap it leaves.
+    - Expect: the gap is the user's bullet, word for word, ending in its question mark; no
+      Open Questions section.
+    - Fails: a section of questions, or the question reworded.
