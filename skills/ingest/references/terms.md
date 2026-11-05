@@ -3,19 +3,27 @@
 Read when a rule in SKILL.md is unclear. The repo's `CONTEXT.md` is the source; this is the
 copy that ships with the skill.
 
-- **Source note**: one file per source. Opens with Why I'm here and the main idea, each
-  under its heading, then holds loose Quotes and Implications, a section per source point,
-  and at the foot Key Concepts, Mentioned and Open Questions.
+- **Draft**: what a mode writes: a starting point the user refines into their own note. The
+  discussion aims at the user's sharpened thinking; the draft records it and does not
+  replace the user's writing.
+- **Source note**: one file per source. Opens with the loose Implications and Quotes that
+  fit no point, holds a section per source point, and at the foot Key Concepts and
+  Mentioned.
 - **Source point**: one proposition the source makes: a `##` section of the source note,
   headed by the claim (short, positive, no author name). It carries a claim line attributed
-  to the author by name, in the user's words, a Locator, the user's Implications, and a
-  fenced code block when the source shares code.
-- **Main idea**: what the source chiefly argues, in the user's words. The user states it
-  first. It sits under its own heading, after Why I'm here.
-- **Implications**: the user's own thinking, in their words and standing on its own (only
-  a bracketed referent is added), under the source point it concerns, or below the main
-  idea when it fits no point: tangents, cross-domain links, doubts, examples from their
-  life.
+  to the author by name, in the user's words, a Locator, the Examples and Quoted lines of
+  its seen passages, and the user's Implications.
+- **Implications**: the user's own thinking, in their words, one bullet per thought, under
+  the source point it concerns, or below the title when it fits no point: tangents,
+  cross-domain links, doubts, questions the source does not answer, examples from their
+  life. Nothing is added to them.
+- **Example**: a concrete case the author gives to show what a claim means: a prose case,
+  code, a table or flowchart shown as code, an image or demo. Written under its source
+  point when the user has seen it; verbatim from the clip, or the caption of an image or
+  demo, flagged as not source text.
+- **Quoted**: a person the author quotes in a passage the user has seen, written
+  `Quoted: Person says "words"` under the source point. Verbatim from the clip. The agent
+  places it. Not a Quote.
 - **Key Concepts**: the domain vocabulary, concepts, methods and frameworks a source point,
   or the source as a whole, leans on, in the singular. A term counts when a Reference note
   could define it (what it is, how it forms, how it relates to other terms); the field of
@@ -30,21 +38,19 @@ copy that ships with the skill.
   Sessions 2024"), with the footnote or link that points to it. A specific named place is
   Mentioned even when it is a field term. A brand used as a generic noun is Mentioned only
   when the source means the product. Written once each at the foot of the source note.
-- **Open Questions**: gaps the source leaves, flagged by the user only.
 - **Quote**: a line the user picks to keep, written `"text" - [[Name]]`, where Name is
   whoever said it: the author, or someone the author quotes. Verbatim from the clip. It
-  sits under the source point it relates to, or below the main idea when it fits none. The
-  user names it; the agent never picks one. Not a highlight.
+  sits under the source point it relates to, or below the title when it fits none. The
+  user names it; the agent never picks one. Not a highlight, not a Quoted line.
 - **Highlight**: the exact passage behind a claim, found verbatim in the clip. The agent
-  holds it as proof before it talks about the claim; the note keeps only its Locator. Not
-  a quote.
+  holds it as proof before it talks about the claim; the note keeps only its Locator,
+  unless the highlight is itself the Example. Not a quote.
 - **Locator**: the link from a source point to its highlight: a linked `[mm:ss]`
   timestamp for a video, the nearest heading for an article, the source title when no
   heading sits above it.
 - **Intention**: what makes the user want to read or watch the source and what they want
-  from it, in their words, often including what they will do with it. Set at the start,
-  written as the Why I'm here section at the top of the source note, and recalled once
-  per thread.
+  from it, in their words, often including what they will do with it. Set at the start to
+  steer the discussion and recalled once per thread. Not written to the note.
 - **Prior belief**: what the user thinks about the topic before the discussion, in their
   words. Asked at the start; not written to the note.
 - **Thread**: a chain of related claims and passages in the source, possibly across
@@ -72,7 +78,7 @@ copy that ships with the skill.
 - **Scaffold**: the agent's marked contribution: one example or counter-case offered
   on a complete tentative claim, or the stuck ladder. First person, marked as the agent's own
   knowledge, never part of a source point.
-- **End review**: the one review at the end, where the user edits the drafted source note and may name lines to keep as Quotes.
+- **End review**: the one review at the end, where the user edits the drafted source note, keeps or cuts the Examples and Quoted lines the agent placed, and may name lines to keep as Quotes.
   See `end-review.md`.
 - **Wrap-up**: the ending sequence in SKILL.md step 7: the coverage list, `ideate`
-  suggestions, main idea, Key Concepts and Mentioned proposal, End review, folder, files.
+  suggestions, Key Concepts and Mentioned proposal, End review, folder, files.

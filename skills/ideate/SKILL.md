@@ -8,7 +8,8 @@ disable-model-invocation: true
 
 Discuss the user's idea with them until it is a scoped claim they have confirmed, then
 write one thought note. The discussion is two-way: the agent takes positions, and the
-user decides the claim. The agent never writes the claim for the user.
+user decides the claim. The agent never writes the claim for the user. The goal is the
+user's sharpened thinking; the thought note is a Draft the user refines.
 
 If a technique skill named below is missing, stop and tell the user to install the full
 marginalia set.

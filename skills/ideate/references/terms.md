@@ -2,6 +2,9 @@
 
 Read when a rule in SKILL.md is unclear.
 
+- **Draft**: what a mode writes: a starting point the user refines into their own note. The
+  discussion aims at the user's sharpened thinking; the draft records it and does not
+  replace the user's writing.
 - **Thought note**: an atomic idea of the user's own, optionally backed by source notes.
   The title and filename are a full claim sentence with the `✱` prefix.
 - **Verb**: what the user wants done with the idea.

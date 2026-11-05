@@ -8,10 +8,13 @@ disable-model-invocation: true
 
 Write the user's glossary entry for one term, built only from the notes they paste. There is
 no interview: the agent synthesizes the definition, shows the entry, and asks one question.
-The agent never fills a gap from general knowledge.
+The agent never fills a gap from general knowledge. The entry is a Draft the user refines.
 
 ## Terms
 
+- **Draft**: what a mode writes: a starting point the user refines into their own note. The
+  discussion aims at the user's sharpened thinking; the draft records it and does not
+  replace the user's writing.
 - **Reference note**: the glossary entry this skill writes, titled by the term, with the `※`
   prefix in its filename.
 - **Admission sequence**: the ordered checks that decide whether a term earns an entry.
@@ -24,7 +27,7 @@ Fuller definitions and examples: `references/admission.md`.
 ## Steps
 
 1. **Take the input.** The user names a term and pastes the point notes that mention it, with
-   each note's frontmatter (`author`, `source`). Without pasted notes, ask for them; do
+   each note's frontmatter (`author`, `url`). Without pasted notes, ask for them; do
    not search a vault. Alternate names the user gives become aliases.
 2. **Gather.** From each pasted note, take what it says the term is. Group the notes by
    support path (same URL or same author is one path).

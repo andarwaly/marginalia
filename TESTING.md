@@ -34,11 +34,11 @@ Harnesses: **CC** Claude Code, **CX** Codex, **CW** Cowork.
    - Pass: the `scaffold-technique` ladder at rung 1 (the passage named by its opening
      words), with no choice offered.
 8. Say "done".
-   - Pass: the coverage list; up to three `ideate` suggestions; you state the main idea
-     first; one message proposes Key Concepts and Mentioned; the note appears
-     in a fenced block for the End review; the agent asks once for a folder and writes the
-     file only after the review. Intention (as Why I'm here), main idea and Implications are
-     your words, word for word; the Prior belief is not in the note.
+   - Pass: the coverage list; up to three `ideate` suggestions; one message proposes Key
+     Concepts and Mentioned; the note appears in a fenced block for the End review, with the
+     Examples and Quoted lines the agent placed listed below it; the agent asks once for a
+     folder and writes the file only after the review. Implications are your words, word for
+     word; the Intention and the Prior belief are not in the note.
 
 ## B. Flags and routing
 
@@ -144,7 +144,7 @@ in the language you want to test)
 | 9 | "skip the next thread" | 8, 19 |
 | 10 | A remark tied to no thread | 20 |
 | 11 | "done" | 21 |
-| 12-13 | A main idea, then "that's it" to the End review, then a folder name | 22, 23, 24, 25 |
+| 12-13 | "That's it" to the End review, then a folder name | 22, 23, 24, 25 |
 
 Cases that need their own session: ingest 4 (delete one `*-technique` folder from the vault
 first), 6 (give no Intention), 10 (tell a story in turn 3 that a later point bears on), 16 (a
@@ -156,10 +156,12 @@ and follow its setup; `scaffold-technique` cases 12 and 13 run standalone.
 
 - Skill calls per turn: `grep -o '"name":"Skill","input":{[^}]*}' logs/N.jsonl`. The skill
   must be called by name, not opened by path.
-- Quotes and code: each Quote and each code block in the note must appear verbatim in the
-  saved clip, inside one paragraph or code block, ignoring `[^n]` markers, emphasis and
-  curly quotes. Each locator must point at a real heading or timestamp, and no highlight
-  text may sit in the note. Check with a script.
+- Quotes, Examples, Quoted lines and code: each Quote, Example, Quoted line and code block
+  in the note must appear verbatim in the saved clip, inside one paragraph or code block,
+  ignoring `[^n]` markers, emphasis and curly quotes (an image or demo caption is flagged,
+  not checked). Each locator must point at a real heading or timestamp, and no highlight
+  text may sit in the note unless it is the Example. Every Example and Quoted line must come
+  from a passage the user saw. Check with a script.
 - Judge behavior, not wording. Mark each case pass, fail or not exercised, with the quoted
   turn. Ignore harness noise (blocked `/tmp` writes, denied tools); it is not a skill defect.
 - Record the result in the table below, with the harness and date.
@@ -186,6 +188,7 @@ End review). They are history, not a pass for the new skills. Record new runs in
 | 23c-v3 | CC cloud (marginalia-vault PR #3, interactive) | 2026-11-01 | partial; better grounded, still drifted | Owner run on "Agents with Taste" on skills `5e9729f`. **Pass:** the scale balloon, tips table, easing flowchart, duration table and typography block were shown and discussed; the Linear and dialog demos were handled as dropped demos; no "that's yours"; wrap-up proposed Key Concepts and Mentioned from the whole source. **Findings:** thread 2 spent about 13 turns on the owner's own blur rule (ideate's job); passages shown as a bridge counted as seen, so typography, the duration rules and the skill-creator tip ended as "not discussed"; a receipt ("Prior belief and Intention are recorded"); the full marker appeared on views that did not differ from the author; the owner asked for reasons per term, an Example section and plain Key Concepts entries mid-session. **Fixes (branch `claude/ingest-v4-ask-the-passage`):** the closing question is about the passage; seen needs an answered question about it, and table rows and rules belong to their parent; marker only when the view differs from the author; Key Concepts as `Term: what it is, why it is here`; Example section. **Next:** re-run and watch for a question per row (over-questioning) and for the marker on agreeing views. |
 | 23d-v5 | CC cloud (pending re-run) | 2026-11-01 | not run | Changes after 23c-v3, on branch `claude/ingest-v5-implications`: Implications stand on their own (bracketed referents, replies on one thought joined, the End review lists the brackets); questions invite a thought, not a pick; `source-notes.md` yields filenames, frontmatter and headings to a vault template named in AGENTS.md. **Check on the next re-run:** no bare fragment as an Implication (evals 68-71); no run of pick questions (72); the vault template is followed and the content rules survive it (73); brackets never hold an opinion. |
 | 23e-v6 | CC cloud (pending re-run) | 2026-11-03 | not run | Output only, on branch `claude/ingest-v6-source-note-output`; the interview is unchanged. One source note per source: Why I'm here and the main idea first, a `##` claim heading per source point (five to nine words, no author name), a locator on every claim, Key Concepts, Mentioned and Open Questions at the foot. **Check on the next re-run:** no highlight text in the note; a Quote only when the user named the line; code blocks verbatim under their claim; no Prior belief in the note; Implications that fit no point sit below the main idea; the interview behaves as in 23d-v5. |
+| 23f-v8 | CC (pending re-run) | 2026-11-05 | not run | Output only, on branch `chore/source-note-v8`; the interview is unchanged. The note is a Draft: frontmatter `author`, `published`, `url`; loose Implications and Quotes under the title; per point a claim line, a locator, Examples and Quoted lines (verbatim, seen passages only), the user's words as bullets; Key Concepts and Mentioned at the foot. No Why I'm here, no main idea, no Open Questions, no bracketed referents. **Check on the next re-run:** every Example and Quoted line verbatim in the clip and from a seen passage; a line the user named written once, as the Quote; the user's question kept word for word as a bullet; no Intention or Prior belief in the note; the End review lists the placed Examples and Quoted lines; the interview behaves as in 23e-v6. |
 
 ### G findings (v2, 2026-10-30)
 
