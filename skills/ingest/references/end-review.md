@@ -4,10 +4,12 @@ Read at Wrap-up step 4. The one review in `ingest`. Show the note as it will be 
 the source note in one fenced block, with the filename on a plain line above the block. The
 note is a draft; the user edits what they see.
 
-The claim lines are built from what the user said, in their wording where possible. The
-agent adds no claim the user did not make. Implications are the user's words, unchanged. An
-Example and a Quoted line are source text the agent placed; a Quote appears only when the
-user named the line, and the user may name more here.
+Each source point opens with the author's stand as a block quote of the highlight. The agent
+adds no claim the user did not discuss, and writes a claim line only when the user asks for
+one here, built from what they said. Reactions, Stances, Offshoots and Implications are the
+user's words, unchanged. A block quote, an Example and a Quoted line are source text the
+agent placed; a Quote appears only when the user named the line, and the user may name more
+here.
 
 | The user says | Review done? |
 | --- | --- |
@@ -15,7 +17,7 @@ user named the line, and the user may name more here.
 | Asks for a change | Apply it, show only the changed part, ask again. |
 | (changes the subject) | Return once; if the user moves on, leave the note as a draft in chat and write no files. |
 
-Below the note, list every Example and Quoted line the agent placed, so the user can keep
-or cut each.
+Below the note, list every block quote, Example and Quoted line the agent placed, so the
+user can keep or cut each, and every source point that has no Stance.
 
 The review is done when the user has no further edits. Files are written only after that.

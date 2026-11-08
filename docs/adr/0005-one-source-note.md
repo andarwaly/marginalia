@@ -1,6 +1,6 @@
 # One source note per source, with quotes the user picks
 
-Status: accepted. Amended by 0006 (the layout no longer writes Why I'm here, the main idea or Open Questions).
+Status: accepted. Amended by 0006 (the layout no longer writes Why I'm here, the main idea or Open Questions) and by 0007 (the highlight is written as a block quote).
 
 The owner reviewed the vault output of `ingest` (2026-11-03, `marginalia-vault`: two sources, 17 notes). A map note plus one file per source point filled the file list, and reading one source meant opening many files. Each source point also carried a verbatim `>` block, which did the job of proof and bloated the note; the owner keeps a line only when it interests them.
 
