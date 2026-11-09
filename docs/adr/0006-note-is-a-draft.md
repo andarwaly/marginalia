@@ -1,6 +1,6 @@
 # The note is a draft; the discussion is the product
 
-Status: accepted. Supersedes 0004. Amends 0005.
+Status: accepted. Supersedes 0004. Amends 0005. The Implications part is superseded by 0007.
 
 The owner (2026-11-05) rewrote a converted source note by hand and named what they use the skills for: sharpening their own thinking and understanding of the author, not producing a finished note. The agent's output is a starting point they refine into prose, and its layout matters less than what it records. The same holds for `ideate` and `define`; only the content differs. `CONTEXT.md` names it a Draft, and each mode states it in its intro.
 

@@ -69,7 +69,7 @@ important claims.
   Done — don't manufacture doubt where the check
   passed clean, that would just be friction for its own sake.
 - **A mismatch gets surfaced directly, not softened.** "The source actually
-  says X, not Y — what do you make of that?" rather than easing into it
+  says X, not Y. What is different from what you said?" rather than easing into it
   obliquely.
 
 ## Worked example

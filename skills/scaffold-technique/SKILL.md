@@ -66,5 +66,5 @@ Bracketed text stands for words copied from the clip at run time.
 > **Agent:** Kowalski's section on why taste matters has a paragraph opening with [its first
 > words]. What does it say about what people compare when they choose?
 > **User:** Still blank.
-> **Agent:** Kowalski writes: "[the sentence, copied exactly from the clip]". What do you
-> make of that?
+> **Agent:** Kowalski writes: "[the sentence, copied exactly from the clip]". In your own
+> words, what does this line say?
