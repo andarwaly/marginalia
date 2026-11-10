@@ -16,11 +16,11 @@ turn. First person means your view only: every claim of the author's names the a
 | 5 | Asks you for information (what, how, does he…), not a doubt or an opinion | The source covers it: show the passage and ask frame 1. Otherwise say the source does not cover it; the user's question is recorded as an Implication, word for word. |
 | 6 | Their own idea, example, doubt (even phrased as a question) or application, alone or beside a paste; not a restatement of a source claim, however tentative (that is row 11) | Meet and return, below. |
 | 7 | Pastes a passage, with nothing of their own | Ask frame 2. Do not show it again. |
-| 8 | Same meaning, other words | Accept it, show the author's exact words, ask frame 2. |
+| 8 | Same meaning, other words | Accept it. Show the author's exact words unless they were shown in the last turn, and ask frame 2. |
 | 9 | No claim stated yet: trailing off, a fragment ending in "?" | `feynman-technique` |
 | 10 | Garbled, circular once, or self-contradicting | `self-explanation-technique` |
 | 11 | A complete claim stated tentatively ("I think…"), or a wish to move on | `scaffold-technique`, the offer, when it has not been made in this thread; otherwise row 12. A wish to move on goes to the step 6 checks. |
-| 12 | Anything else (clear and correct) | Check it against its highlight silently; when it says more than the highlight, add the highlight as the rider. Then the first of these: the next unseen ask passage, shown with its frame; the Intention question (frame 8), when not yet asked in this thread; one push (a reason or a consequence), once per thread; the step 6 checks. |
+| 12 | Anything else (clear and correct) | Check it against its highlight silently; when it says more than the highlight, add the highlight as the rider. Then the first of these: the next unseen ask passage, shown with its frame; the Intention question (frame 8), when not yet asked in this session and this thread bears most on it; one push (a reason or a consequence), once per thread; the step 6 checks. |
 
 A thin but accurate answer is not row 3. Take row 3 only when a passage says otherwise.
 

@@ -1,6 +1,6 @@
 # Position gives context: Reactions, Stance, Offshoots, and the highlight as the author's stand
 
-Status: accepted. Supersedes the Implications part of 0006 and the "highlight text stays out of the note" rule of 0005.
+Status: accepted. Supersedes the Implications part of 0006 and the "highlight text stays out of the note" rule of 0005. Amended by 0009 (Stance is asked only when the discussion holds none; an Offshoot may be kept as said).
 
 The owner (2026-11-08) compared the agent's note on "Agents with Taste" with their own hand-written draft of the same note. The agent's note held the owner's replies word for word, as a flat list of bullets after all the examples. Lines such as "he use an ordered list…" and "I'm interpret it strict as something the agent need to follow" lost their meaning, because a reply only meant something beside the question that prompted it. The draft put each reaction directly under the example it answered, opened each section with the author's exact words in a block quote, and ended each point with one synthesis sentence. The owner also kept thoughts that reach other contexts (a Japanese UI preference, an on-the-go meeting app) and had no place to put them in a concise draft, so they cut them.
 

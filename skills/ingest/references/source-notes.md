@@ -97,14 +97,12 @@ Stance: <the user's one sentence>
 
 - The author's stand is the highlight, written as a block quote directly under the claim
   heading: `> <words> - [[Name]]`, where Name is whoever said it (the author, or the person
-  the author quotes). It covers one claim. A claim the highlight does not cover is its own
-  source point or is left out. One claim, one source point: when two threads touch the
-  same claim, the draft merges them under one heading and writes the highlight once. A
-  claim line, `<Author> says …` in the third person built from the user's words, is
+  the author quotes). One Spine item, one source point: a passage that repeats an item
+  merges under its heading and the highlight is written once. A claim line, `<Author> says …` in the third person built from the user's words, is
   written only when the user asks for one at the End review.
 - Highlight check, run for each claim at the draft: the highlight is one contiguous run
   within a single paragraph, no ellipsis, found in the clip. Narrow the block quote to
-  that paragraph; any other part is its own source point only if the user discussed it.
+  that paragraph.
   Matching ignores markdown emphasis, link URLs, footnote markers like `[^1]`, whitespace
   and line breaks, and curly versus straight quotes; the words and their order must be
   identical. Never take boilerplate (sign-in banners, "Press enter or click to view image")
@@ -130,15 +128,17 @@ Stance: <the user's one sentence>
   and drop none. A reply with no thought of its own ("Yes.") folds into the line it answers;
   a bare pick of a candidate wording is dropped, and the wording enters only as the user's
   own restatement. A reply that spans several passages goes under the passage the question
-  named. The answer to a thread's topic question goes under the thread's first source
-  point, below its block quote. The agent writes no opinion for the user and adds no tag or
+  named; a reply on a passage with no place of its own goes under its Spine item's block
+  quote. The user's line from the Spine step and the answer to a thread's topic question
+  go under the thread's source point, below its block quote. The agent writes no opinion for the user and adds no tag or
   link.
 - Stance: one line, `Stance: <the user's sentence>`, after the point's Examples and Quoted
-  lines. It is the reply to the Stance check (SKILL.md step 6), in the user's words with
-  spelling fixed; a re-ask that names the subject replaces the first reply. A declined
-  point has no Stance line.
-- Offshoot: a bullet under `## Beyond the source`, the user's one sentence from Wrap-up step
-  2 in their words with spelling fixed, then `From: <claim heading>` as plain text, naming
+  lines. It is the reply taken at SKILL.md step 6, in the user's words with spelling
+  fixed; a re-ask that names the subject replaces the first reply. A reply taken from the
+  discussion is written once, as the Stance, and not again as a Reaction. A declined point
+  has no Stance line.
+- Offshoot: a bullet under `## Beyond the source`, the user's sentence from Wrap-up step 2,
+  or their original words when they kept them, spelling fixed, then `From: <claim heading>` as plain text, naming
   the source point the Offshoot arose from. The user may drop any at Wrap-up; a dropped
   Offshoot is not written.
 - Quoted: a person the author quotes in a passage the user has seen. Written
@@ -166,8 +166,8 @@ Stance: <the user's one sentence>
 
 ## After the block
 
-A short plain-text list: every thread as shown at SKILL.md step 4 (Show the threads),
+A short plain-text list: every thread as shown at SKILL.md step 4,
 marked as written, untouched, or started but not finished; the result of the check (each
 highlight, Example, Quoted line, quote and code block found verbatim in the clip, or
-flagged with the reason it was not); the source points with no Stance; and the Examples and
-Quoted lines the agent placed, so the user can cut any.
+flagged with the reason it was not); the source points with no Stance; and the block quotes,
+Examples and Quoted lines the agent placed, so the user can cut any.

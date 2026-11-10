@@ -18,14 +18,15 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
 
 ## Opening and threads
 
-5. The user answers the Prior belief and Intention questions.
-   - Expect: 2–4 threads as one-line chains, ordered by the Intention, with a progress
-     marker, the finish line, and the first thread's first question in the same message.
+5. The user has set the Spine.
+   - Expect: one thread per Spine item as one-line chains, ordered by the Intention, with a
+     progress marker, the finish line, and the first thread's first question in the same
+     message.
    - Fails: passages shown, headings used as the threads, or the thread list hidden.
 6. The user gives no Intention.
    - Expect: the agent suggests one way the source could help and lets the user take,
      change or drop it.
-7. The agent opens a thread.
+7. The agent opens a thread on a Spine item it added.
    - Expect: one question asking for the user's take, naming only the topic.
    - Fails: it states what the source says, or asks two things.
 8. A thread finishes.
@@ -64,13 +65,14 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
     - Expect: an ordinary remark that gives the highlight's words, not a scripted
       confirmation question.
     - Fails: "that's wrong", or silence on the extra part.
-17. Once per thread.
-    - Expect: the agent relates the thread to the Intention as a question the user answers.
+17. Once per session.
+    - Expect: the agent relates the source to the Intention as a question the user answers,
+      in the thread that bears most on it.
     - Fails: the agent states the link itself ("It bears on your Intention…").
 18. The user's first answer in a thread is clear and correct.
     - Expect: no verdict such as "that matches"; the next question goes to the next unseen
       ask passage, the Intention question, or one push (row 12's order).
-    - Fails: the thread closes after one answer, before the Intention link.
+    - Fails: the thread closes after one answer with an ask passage unseen.
 19. The user asks to skip a thread.
     - Expect: it is marked untouched and the next thread begins.
 20. The user makes a remark tied to no thread.
@@ -80,8 +82,9 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
 ## Wrap-up and notes
 
 21. The user says "done" with one thread untouched.
-    - Expect: the offer on the untouched thread is skipped; suggestions for `ideate`, the
-      Key Concepts and Mentioned proposal, the End review and the folder question still run.
+    - Expect: the offer on the untouched thread is skipped; the Key Concepts and Mentioned
+      proposal, the End review, the folder question and, after the file, the suggestions for
+      `ideate` still run.
 22. Wrap-up.
     - Expect: the agent does not ask for a main idea and the note has none.
     - Fails: a main-idea question, or a main-idea section in the note.
@@ -116,9 +119,9 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
 29. A scaffold or any question in a thread.
     - Expect: one ask in plain words; a second ask waits for the answer.
     - Fails: "X, and what does that say about Y?" in one turn.
-30. Wrap-up, after the `ideate` suggestions.
-    - Expect: one message proposes Key Concepts (singular form, at most about five per
-      point) and Mentioned (names, works, tools, footnote links), one line per point, each
+30. Wrap-up, after the Offshoots.
+    - Expect: one message proposes Key Concepts (singular form, at most about three per
+      point, with the parts of a structure the author lists outside that count) and Mentioned (names, works, tools, footnote links), one line per point, each
       term with a short reason ("Term: why"); the
       user's reply, or silence on a point, decides the notes; the step ends after that one
       reply.
@@ -143,10 +146,12 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
     - Expect: "Occam's razor" is a Key Concept and its originator is Mentioned; "Kutai
       Basin" is Mentioned and "Basin" is a Key Concept.
 36. The source has an example, a code block, a table and a demo.
-    - Expect: the thread list names the examples each thread holds by a short label; each
-      ask passage is shown with a frame question ("What is X for?", "What do you see in
-      X?"), then why this one (frame 5); sibling examples merge into one item, about four ask passages per thread.
-    - Fails: an example or code block never comes up, or the label gives away its content.
+    - Expect: the thread list names the examples each thread holds by a short label; at most
+      one example per thread is an ask passage, shown with a frame question ("What is X
+      for?", "What do you see in X?"), then why this one (frame 5); the others are shown as
+      mentions.
+    - Fails: an example gets a question beyond the one chosen, unless the user took it up, or
+      the label gives away its content.
 37. A demo or image the clip dropped ("the animation below").
     - Expect: the agent names it by its text and asks the user to open it at the source, with
       what to look at named (frame 3).
@@ -170,11 +175,12 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
     - Fails: the marker moves with an ask passage unseen, or every context paragraph gets
       its own question.
 42. Wrap-up.
-    - Expect: the agent names the threads and passages not discussed and offers them once;
+    - Expect: the agent names the threads not discussed and the passages skipped, and offers
+      the threads once;
       the last line of the Key Concepts and Mentioned proposal comes from the whole passage
       list.
 43. The source has an example the author gives (a demo, a comparison, a code block).
-    - Expect: it is discussed in a thread before the notes; the agent never offers it as its
+    - Expect: it is shown in its thread before the notes; the agent never offers it as its
       own knowledge.
     - Fails: the agent says "From my own knowledge, not <Author>'s" about something the
       source contains.
@@ -208,7 +214,7 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
 51. A tentative claim that misreads a passage.
     - Expect: the recheck; the scaffold offer is not spent, and a later tentative claim in
       the thread gets the offer.
-52. A clear answer, every ask passage of the thread seen, the Intention question asked.
+52. A clear answer, every ask passage of the thread seen, no Intention question due here.
     - Expect: one push (a reason or a consequence), then the marker moves.
     - Fails: the agent loops on the same thread.
 53. The user states their own idea and says they are stuck in the same message.
@@ -342,12 +348,14 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
       tree`, `#### Grouped elements + Range`), with no agent text between.
     - Fails: the reactions in one flat list after all the examples, or a reaction under the
       wrong example.
-84. A thread closes with discussed source points.
-    - Expect: one batched Stance message, one line per discussed source point, in frame 2
-      ("Do you agree? Tell me why, in one sentence that makes sense without this chat."),
-      before the marker moves.
-    - Fails: a Stance asked per point mid-discussion, one message per point, or the marker
-      moving first.
+84. A thread closes, and the user has already said "Agree, domain expertise makes the shaping
+    precise" about its item.
+    - Expect: that reply is the Stance and no question is asked; it appears once in the note.
+    - Fails: "Do you agree?" asked again, or the same thought as both a Reaction and a Stance.
+84a. A thread closes with no agreement or disagreement stated.
+    - Expect: one line, "<claim heading>: Do you agree? Tell me why in one sentence. Name the
+      topic in your sentence.", before the marker moves.
+    - Fails: "makes sense without this chat", or the marker moving first.
 85. The user's Stance reply leans on the question ("it makes sense because of that").
     - Expect: one re-ask for a version that names its subject; the next reply is taken as
       given and written in the user's words.
@@ -358,12 +366,13 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
 87. A reply brings in a context the source never mentions (Japan's UI preference, an
     on-the-go meeting app).
     - Expect: the agent holds it silently as an Offshoot and the thread resumes; at Wrap-up
-      it lists each Offshoot in the user's own short phrase and asks for one standalone
-      sentence each in one message.
-    - Fails: the Offshoot dropped, lost in the Reactions, or announced mid-thread.
+      it lists each Offshoot once, in the user's own short phrase, and asks in one message
+      for each: write one sentence, keep it as said, or drop it.
+    - Fails: the Offshoot lost in the Reactions, announced mid-thread, the list shown twice,
+      or no way to keep it as said.
 88. The note after Wrap-up with two Offshoots.
     - Expect: `## Beyond the source` after the last source point, one bullet per Offshoot in
-      the user's sentence, each ending `From: <claim heading>` as plain text; a dropped
+      the user's sentence or original words, each ending `From: <claim heading>` as plain text; a dropped
       Offshoot is not written.
     - Fails: an Offshoot under a source point, a wikilink in `From:`, or a rewritten sentence.
 89. A source point is drafted.
@@ -371,9 +380,9 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
       then labelled Examples with Reactions, Quoted lines, the Stance, and doubts.
     - Fails: a paraphrase in place of the block quote, or a claim line the user did not ask
       for.
-90. Two threads touch the same claim.
+90. Two passages state the same Spine item.
     - Expect: one source point, the highlight written once.
-    - Fails: two source points for one claim.
+    - Fails: two source points for one item.
 91. Every question in a session.
     - Expect: each is one frame of `questions.md`, fifteen words or fewer plus the shown
       object, with one question mark.
@@ -384,8 +393,8 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
       words, a caption, a row's text); a claim passage is shown whole.
     - Fails: "that step", "the person doing it" or "that last line" with no object beside it.
 93. A question that needs the author's wording (frames 1 to 8).
-    - Expect: the author's line shown first, then the frame. Only a topic question (frame 0)
-      is asked before the passage is met.
+    - Expect: the author's line shown first, then the frame. Only frames 0 and 9 are asked
+      before the passage is met.
     - Fails: a passage described vaguely so as to keep it hidden.
 94. The user says "what do you mean?" or "I didn't get your question".
     - Expect: the object shown and a plainer question, with no defence of the first; from then
@@ -393,9 +402,46 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
     - Fails: the same question repeated, a defence, or a return to take-first questions.
 95. The Intention link.
     - Expect: frame 8, quoting the Intention and naming the content ("What does the easing
-      flowchart teach you about that?"), once per thread.
-    - Fails: "Where does this thread fit that?" or "what we just covered".
-96. The next question changes topic.
-    - Expect: it opens with a short phrase quoted from the user's last reply, then the link,
-      in one clause.
-    - Fails: a jump with no link, or a restatement of the user's reply.
+      flowchart teach you about that?"), once per session.
+    - Fails: the same question in a second thread, "Where does this thread fit that?" or
+      "what we just covered".
+96. Across a session's replies.
+    - Expect: a quoted phrase of the user's opens a reply only when it is the reason for the
+      next passage, at most one reply in four; the others open on the passage or question.
+    - Fails: `You said "…"` followed by an unrelated "Next, he…", or a restatement of the
+      user's reply.
+
+## Spine
+
+97. A video states a formula and names four layers, and the user lists two other ideas at
+    step 4.
+    - Expect: frame 9 is asked once; the user's lines come first in their words; the formula
+      and the layers appear under "Also in the source:" with locators, before the threads.
+    - Fails: the agent shows its list first, or a named structure is left to Key Concepts.
+98. The user says they have not read the source.
+    - Expect: the agent's draft, marked as its own, and `guided-reading-technique`.
+    - Fails: frame 9 pressed again.
+99. A long source with many claims.
+    - Expect: three to six Spine items, one thread and one source point each; a passage that
+      repeats an item is skipped or merged.
+    - Fails: a source point per claim, or a repeat asked about again.
+100. The user named a Spine item.
+     - Expect: its thread opens on the highlight with frame 2, and the user's line is a
+       Reaction under that highlight.
+     - Fails: frame 0 or frame 1 asks for what the user's line already gave.
+101. The user takes up a mention passage ("extending can be complex too").
+     - Expect: it is discussed for that turn, and the reply sits under the Spine item the
+       passage supports.
+     - Fails: the reply is lost, or the passage becomes its own source point.
+102. A question whose answer the user gave earlier, in other words.
+     - Expect: the agent goes to the next move without asking it.
+     - Fails: the user has to say "I already told you".
+103. A Spine item's statement is shown, and the user's paraphrase matches it.
+     - Expect: frame 2 names the passage by its opening words; it is not quoted again.
+     - Fails: the same lines shown in two consecutive turns.
+104. Wrap-up with Offshoots kept.
+     - Expect: the `ideate` suggestion comes after the file is written.
+     - Fails: the suggestion appears with the Offshoot question.
+105. The End review.
+     - Expect: one After the block list below the note.
+     - Fails: the same items listed twice.
