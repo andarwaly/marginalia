@@ -9,25 +9,26 @@ copy that ships with the skill.
 - **Source note**: one file per source. Opens with the loose Implications and Quotes that
   fit no point, holds a section per source point, then Beyond the source, then Key
   Concepts and Mentioned at the foot.
-- **Source point**: one proposition the source makes: a `##` section of the source note,
-  headed by the claim (short, positive, no author name). It carries the author's stand as a
-  block quote of the Highlight, a Locator, each seen Example under a short label with the
-  user's Reactions beneath it, the Quoted lines of its seen passages, the user's Stance,
-  and Implications. A claim line appears only when the user asks for one at the End
-  review. One claim, one source point: two threads that touch the same claim merge into
-  one.
+- **Source point**: one Spine item as the source states it: a `##` section of the source
+  note, headed by the claim (short, positive, no author name). It carries the author's
+  stand as a block quote of the Highlight, a Locator, each seen Example under a short label
+  with the user's Reactions beneath it, the Quoted lines of its seen passages, the user's
+  Stance, and Implications. A claim line appears only when the user asks for one at the End
+  review. One Spine item, one source point: a passage that repeats an item merges into it.
 - **Reaction**: the user's response to one passage, in their words, written directly under
   the Example, Quoted line or block quote the question was about. A reply on several
-  passages goes under the passage the question named. Nothing is added to it.
+  passages goes under the passage the question named; a reply on a passage with no place of
+  its own goes under its Spine item's block quote. Nothing is added to it.
 - **Stance**: the user's one-sentence position on a source point, with the reason, written
-  so it reads without the chat. Asked once per thread, in one batched message when the
-  thread closes. The user's reply is the Stance, spelling fixed, with one re-ask when it
-  leans on the question. The user may decline, and that point has no Stance.
+  so it reads without the chat. When the discussion already holds their agreement or
+  disagreement with a reason, that reply becomes the Stance and nothing is asked. Otherwise
+  it is asked once, when the thread closes, with one re-ask when the reply leans on the
+  question. Spelling fixed. The user may decline, and that point has no Stance.
 - **Offshoot**: a thought of the user's that brings in a context the source never
   mentions: another culture, product, field or their own experience. Held silently during
-  the discussion, asked for as one standalone sentence at Wrap-up, and written under
-  `## Beyond the source` with a plain-text `From:` pointer to its source point. `ideate`
-  starts from Offshoots.
+  the discussion. At Wrap-up the user writes one standalone sentence, keeps their original
+  words, or drops it. Written under `## Beyond the source` with a plain-text `From:`
+  pointer to its source point. `ideate` starts from Offshoots.
 - **Implications**: the user's own doubts and questions the source does not answer, in
   their words, one bullet per thought, under the source point they arose from, or below
   the title when they fit no point. Nothing is added to them.
@@ -65,12 +66,17 @@ copy that ships with the skill.
   heading sits above it.
 - **Intention**: what makes the user want to read or watch the source and what they want
   from it, in their words, often including what they will do with it. Set at the start to
-  steer the discussion and recalled once per thread. Not written to the note.
+  steer the discussion and recalled once per session. Not written to the note.
 - **Prior belief**: what the user thinks about the topic before the discussion, in their
   words. Asked at the start; not written to the note.
-- **Thread**: a chain of related claims and passages in the source, possibly across
-  headings. The discussion runs thread by thread, shown at the start with a progress marker
-  and the examples it holds.
+- **Spine**: the few things a source is about: three to six items, each a core idea or a
+  structure the author names (a formula, layers, a framework, a list). The user names what
+  they think it holds first; the agent adds what they missed, and the user confirms.
+  Without having read the source, the user edits the agent's list. A claim that repeats an
+  item merges into it.
+- **Thread**: the discussion of one Spine item and the passages behind it, possibly across
+  headings. The discussion runs thread by thread, shown with a progress marker and the
+  examples each holds.
 - **Passage**: one paragraph-sized unit of the source: a paragraph, example, code block,
   table, list, cited quote, image or demo. See `passages.md`.
 - **Seen**: a passage is seen once the user has met its exact words (the agent showed
@@ -78,9 +84,10 @@ copy that ships with the skill.
   words with the same meaning) and has answered a question about it. The parts of a
   passage (table rows, list entries) belong to it. A thread is done only when each of its
   ask passages is seen.
-- **Passage tag**: each passage is tagged ask (every example, code block, table, image or
-  demo, and the passage behind each claim: it gets one question) or mention (a context
-  paragraph: shown with the rest at the end of the thread, with no question).
+- **Passage tag**: each passage is tagged ask (the passage that states a Spine item, and at
+  most one example or supporting passage for it: it gets a question) or mention (every
+  other passage: shown with the rest at the end of the thread, with no question). A passage
+  that repeats one already listed is skipped as a repeat.
 - **Reading state**: which row of the routing table in `reading-the-answer.md` the user's
   last answer matches. It routes the next move and is never named to the user.
 - **Rider**: the one extra item a reply may carry besides its question: the author's exact
@@ -99,5 +106,5 @@ copy that ships with the skill.
   knowledge, never part of a source point.
 - **End review**: the one review at the end, where the user edits the drafted source note, keeps or cuts the Examples and Quoted lines the agent placed, and may name lines to keep as Quotes.
   See `end-review.md`.
-- **Wrap-up**: the ending sequence in SKILL.md step 7: the coverage list, Offshoots and
-  `ideate` suggestions, Key Concepts and Mentioned proposal, End review, folder, files.
+- **Wrap-up**: the ending sequence in SKILL.md step 7: the coverage list, Offshoots, Key
+  Concepts and Mentioned proposal, End review, folder, files, `ideate` suggestions.

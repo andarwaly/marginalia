@@ -23,17 +23,17 @@ One file per source. Opens with the loose Implications and Quotes that fit no po
 _Avoid_: literature note, map note
 
 **Source point**:
-One proposition the source makes: a `##` section of the source note, headed by the claim (short, positive, no author name). It carries the author's stand as a block quote of the Highlight, a Locator, each seen Example under a short label with the user's Reactions beneath it, the Quoted lines of its seen passages, the user's Stance, and Implications. A claim line appears only when the user asks for one at the End review. One claim, one source point: two threads that touch the same claim merge into one.
+One Spine item as the source states it: a `##` section of the source note, headed by the claim (short, positive, no author name). It carries the author's stand as a block quote of the Highlight, a Locator, each seen Example under a short label with the user's Reactions beneath it, the Quoted lines of its seen passages, the user's Stance, and Implications. A claim line appears only when the user asks for one at the End review. One Spine item, one source point: a passage that repeats an item merges into it.
 _Avoid_: point note, claim note
 
 **Reaction**:
-The user's response to one passage, in their words, written directly under the Example, Quoted line or block quote the question was about. A reply on several passages goes under the passage the question named. Nothing is added to it.
+The user's response to one passage, in their words, written directly under the Example, Quoted line or block quote the question was about. A reply on several passages goes under the passage the question named; a reply on a passage with no place of its own goes under its Spine item's block quote. Nothing is added to it.
 
 **Stance**:
-The user's one-sentence position on a source point, with the reason, written so it reads without the chat. Asked once per thread, in one batched message when the thread closes. The user's reply is the Stance, spelling fixed, with one re-ask when it leans on the question. The user may decline, and that point has no Stance.
+The user's one-sentence position on a source point, with the reason, written so it reads without the chat. When the discussion already holds their agreement or disagreement with a reason, that reply becomes the Stance and nothing is asked. Otherwise it is asked once, when the thread closes, with one re-ask when the reply leans on the question. Spelling fixed. The user may decline, and that point has no Stance.
 
 **Offshoot**:
-A thought of the user's that brings in a context the source never mentions: another culture, product, field or their own experience. Held silently during the discussion, asked for as one standalone sentence at Wrap-up, and written under `## Beyond the source` with a plain-text `From:` pointer to its source point. `ideate` starts from Offshoots.
+A thought of the user's that brings in a context the source never mentions: another culture, product, field or their own experience. Held silently during the discussion. At Wrap-up the user writes one standalone sentence, keeps their original words, or drops it. Written under `## Beyond the source` with a plain-text `From:` pointer to its source point. `ideate` starts from Offshoots.
 
 **Implications**:
 The user's own doubts and questions the source does not answer, in their words, one bullet per thought, under the source point they arose from, or below the title when they fit no point. Nothing is added to them.
@@ -72,14 +72,18 @@ The user's glossary entry for a term, built from their notes. Written by `define
 ### Discussion
 
 **Intention**:
-What makes the user want to read or watch the source and what they want from it, in their words, often including what they will do with it. Set at the start to steer the discussion and recalled once per thread. Not written to the note.
+What makes the user want to read or watch the source and what they want from it, in their words, often including what they will do with it. Set at the start to steer the discussion and recalled once per session. Not written to the note.
 _Avoid_: purpose, goal
 
 **Prior belief**:
 What the user thinks about the topic before the discussion, in their words. Asked at the start; not written to the note.
 
+**Spine**:
+The few things a source is about: three to six items, each a core idea or a structure the author names (a formula, layers, a framework, a list). The user names what they think it holds first; the agent adds what they missed, and the user confirms. Without having read the source, the user edits the agent's list. A claim that repeats an item merges into it.
+_Avoid_: main idea, summary
+
 **Thread**:
-A chain of related claims and passages in the source, possibly across headings. The discussion runs thread by thread, shown at the start with a progress marker and the examples it holds.
+The discussion of one Spine item and the passages behind it, possibly across headings. The discussion runs thread by thread, shown with a progress marker and the examples each holds.
 _Avoid_: topic, heading
 
 **Passage**:
@@ -90,7 +94,7 @@ _Avoid_: section, chunk
 A passage is seen once the user has met its exact words (the agent showed them, before or after the user's take, or the user pasted them or put them in other words with the same meaning) and has answered a question about it. The parts of a passage (table rows, list entries) belong to it. A thread is done only when each of its ask passages is seen.
 
 **Passage tag**:
-Each passage is tagged ask (every example, code block, table, image or demo, and the passage behind each claim: it gets one question) or mention (a context paragraph: shown with the rest at the end of the thread, with no question).
+Each passage is tagged ask (the passage that states a Spine item, and at most one example or supporting passage for it: it gets a question) or mention (every other passage: shown with the rest at the end of the thread, with no question). A passage that repeats one already listed is skipped as a repeat.
 
 **Reading state**:
 Which row of the routing table in `reading-the-answer.md` the user's last answer matches. It routes the agent's next move and is never named to the user.
@@ -112,7 +116,7 @@ _Avoid_: hint, tip
 The one review at the end of `ingest`. The agent shows the drafted source note for the user to edit, keep or cut the Examples and Quoted lines the agent placed, and name lines to keep as Quotes; Reactions, Stances, Offshoots and Implications keep the user's words unchanged.
 
 **Wrap-up**:
-`ingest`'s ending sequence: the coverage list, Offshoots and `ideate` suggestions, Key Concepts and Mentioned proposal, End review, folder, files written.
+`ingest`'s ending sequence: the coverage list, Offshoots, Key Concepts and Mentioned proposal, End review, folder, files written, `ideate` suggestions.
 
 **Statement gate**:
 The `ideate` rule that a claim is fixed only on the user's open confirmation. Not used in `ingest`.

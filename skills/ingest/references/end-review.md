@@ -17,7 +17,7 @@ here.
 | Asks for a change | Apply it, show only the changed part, ask again. |
 | (changes the subject) | Return once; if the user moves on, leave the note as a draft in chat and write no files. |
 
-Below the note, list every block quote, Example and Quoted line the agent placed, so the
-user can keep or cut each, and every source point that has no Stance.
+Below the note, show the After the block list (`source-notes.md`), so the user can keep or
+cut what the agent placed.
 
 The review is done when the user has no further edits. Files are written only after that.
