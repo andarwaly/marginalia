@@ -1,0 +1,12 @@
+# Preread: a Reading map for writing the note yourself
+
+Status: accepted. Narrows 0009's rule against the agent proposing the Spine to `ingest`.
+
+The owner (2026-11-11) said that after using `ingest` they articulate their thinking better, and still need help finding the claims and the passages behind them. They want no interview, but they do want to be asked their goal and offered what else the source argues.
+
+Changes:
+
+- **`preread`** asks the Intention once, then shows one Reading map: claims with locators for the goal, the other claims and Named structures as an offer, and what to skip. It adds what the owner picks and stops. It writes no file.
+- **The agent words the claims.** That is the help asked for.
+
+Considered: topic labels in place of claims (rejected: finding the claim is the part the owner wants help with); a map with no question (rejected by the owner: the goal should lead); extend `ingest` with a short mode (rejected: `ingest` exists to draw out thinking, and this skill exists to leave it to the owner). Risk: agent-worded claims frame the reading, so the owner may read to confirm them. Asking the Intention first and keeping the map to claims and locators limits this.

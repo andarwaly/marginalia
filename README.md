@@ -4,7 +4,7 @@ Skills that sharpen your thinking about a source or an idea. Each session ends w
 draft note that keeps your own words apart from the source's points, for you to refine. For
 Claude Code and Codex. The chat route comes later.
 
-Status: all thirteen skills are written; the redesigned `ingest` has not been tested yet.
+Status: all fourteen skills are written; the redesigned `ingest` has not been tested yet.
 See [CONTEXT.md](./CONTEXT.md) for the terms and [docs/adr/](./docs/adr/) for the decisions;
 [DECISIONS.md](./DECISIONS.md) is the earlier record.
 
@@ -15,6 +15,7 @@ URL                  -> clip-article | clip-youtube -> clip (session only)
 clip, or pasted text -> /ingest   (with techniques)  -> source note (draft)
 thought (+ backing)  -> /ideate                      -> thought note
 concept + notes      -> /define                      -> Reference note
+clip, or pasted text -> /preread                     -> Reading map (chat only)
 ```
 
 - `/ingest` discusses one source with you, thread by thread, and walks the whole source,
@@ -27,6 +28,8 @@ concept + notes      -> /define                      -> Reference note
 - `/ideate` is a two-way discussion about an idea of yours. The agent takes tagged
   positions and names the strongest counter-argument; you decide the claim.
 - `/define` writes a one-definition glossary entry from your notes. No interview.
+- `/preread` asks your goal, then shows the source's claims and which passages to read. You
+  write the note.
 - Notes appear in chat as copyable markdown. Files are written only after you review the
   notes and name a folder.
 
@@ -39,6 +42,7 @@ concept + notes      -> /define                      -> Reference note
 | `ingest` | mode, user-invoked | Discuss and learn from one source; source notes out |
 | `ideate` | mode, user-invoked | Sharpen, refine, validate or extend an idea; thought note out |
 | `define` | user-invoked | Glossary entry for a term, from your notes |
+| `preread` | user-invoked | The claims in a source and where to read them |
 | `verification-technique` | interview technique | Check a restatement against the source |
 | `elenchus-technique` | interview technique | Press a stated position on its weak point |
 | `feynman-technique` | interview technique | Explain plainly, find the gap, patch it |

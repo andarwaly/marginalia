@@ -69,6 +69,9 @@ An atomic idea of the user's own, titled by a claim and optionally backed by sou
 **Reference note**:
 The user's glossary entry for a term: one neutral definition in the user's vocabulary, built from their notes. Written by `define`. Any further heading is the user's own.
 
+**Reading map**:
+The one message `preread` produces: the source's claims with their Locators, led by the Intention, what else the source holds, and what to skip. Shown in chat; the user writes the note.
+
 ### Discussion
 
 **Intention**:
@@ -127,7 +130,7 @@ The `ideate` ending: the "so what" question, the sign-off pass, then the note. N
 ### Skills
 
 **Mode**:
-A user-invoked skill that runs a whole session: `ingest`, `ideate` or `define`.
+A user-invoked skill that runs a whole session: `ingest`, `ideate`, `define` or `preread`.
 
 **Technique**:
 A skill a mode calls by name for one move of the interview.
