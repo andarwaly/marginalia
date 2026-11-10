@@ -1,10 +1,10 @@
 ---
-name: preread
-description: "Shows what a source claims and which passages to read for the user's goal, so they can write the note themselves. Use when the user runs /preread with a URL or pasted text."
+name: sift
+description: "Shows what a source claims and which passages to read for the user's goal, so they can write the note themselves. Use when the user runs /sift with a URL or pasted text."
 disable-model-invocation: true
 ---
 
-# Preread
+# Sift
 
 Give the user a Reading map: the claims one source makes and where to read each, led by what
 they came for. The user does the reading and writes the note. The agent supplies the claims,

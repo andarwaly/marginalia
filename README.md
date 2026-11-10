@@ -15,7 +15,7 @@ URL                  -> clip-article | clip-youtube -> clip (session only)
 clip, or pasted text -> /ingest   (with techniques)  -> source note (draft)
 thought (+ backing)  -> /ideate                      -> thought note
 concept + notes      -> /define                      -> Reference note
-clip, or pasted text -> /preread                     -> Reading map (chat only)
+clip, or pasted text -> /sift                     -> Reading map (chat only)
 ```
 
 - `/ingest` discusses one source with you, thread by thread, and walks the whole source,
@@ -28,7 +28,7 @@ clip, or pasted text -> /preread                     -> Reading map (chat only)
 - `/ideate` is a two-way discussion about an idea of yours. The agent takes tagged
   positions and names the strongest counter-argument; you decide the claim.
 - `/define` writes a one-definition glossary entry from your notes. No interview.
-- `/preread` asks your goal, then shows the source's claims and which passages to read. You
+- `/sift` asks your goal, then shows the source's claims and which passages to read. You
   write the note.
 - Notes appear in chat as copyable markdown. Files are written only after you review the
   notes and name a folder.
@@ -42,7 +42,7 @@ clip, or pasted text -> /preread                     -> Reading map (chat only)
 | `ingest` | mode, user-invoked | Discuss and learn from one source; source notes out |
 | `ideate` | mode, user-invoked | Sharpen, refine, validate or extend an idea; thought note out |
 | `define` | user-invoked | Glossary entry for a term, from your notes |
-| `preread` | user-invoked | The claims in a source and where to read them |
+| `sift` | user-invoked | The claims in a source and where to read them |
 | `verification-technique` | interview technique | Check a restatement against the source |
 | `elenchus-technique` | interview technique | Press a stated position on its weak point |
 | `feynman-technique` | interview technique | Explain plainly, find the gap, patch it |

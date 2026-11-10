@@ -1,12 +1,12 @@
-# Preread evals
+# Sift evals
 
 Judged by behavior. Inputs are a URL or pasted text.
 
-1. **Routing.** `/preread <url>` -> `preread` runs. "what is this article about?" with no
+1. **Routing.** `/sift <url>` -> `sift` runs. "what is this article about?" with no
    slash -> it does not.
 2. **Intention first.** The agent asks the Intention question once, before any claim. Fails:
    the map appears first, or a second question about the goal.
-3. **Intention given.** `/preread <url> I want to know how to start` -> no Intention question.
+3. **Intention given.** `/sift <url> I want to know how to start` -> no Intention question.
 4. **Goal split.** The goal covers part of the source -> matching claims sit under "For your
    goal", and the others under "Also in the source" with the offer. Fails: the other claims
    are dropped.
