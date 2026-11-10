@@ -8,7 +8,7 @@ Changes:
 
 - **Definition only.** The agent writes one to three sentences. It may offer a further heading with the note line behind it; the owner writes any heading.
 - **The owner's words, neutral.** The definition draws on the owner's lines first, with no author name or first person. Agreement and disagreement stay in the source note.
-- **Links in prose.** A term with a Reference note is linked at its first mention; a part of a larger term opens with "Part of [[Harness|harness]]".
+- **Links in prose.** A term with a Reference note is linked at its first mention; a part of a larger term opens with "Part of [[Harness|harness]]". Related terms link each other when the notes state the relation, with one short connecting sentence if needed.
 - **No caveat line.** `sources` already shows a single source. "Write it anyway" holds for the session.
 - **Input and form.** A source note from the session or one the owner names counts as notes; a vault template sets the frontmatter and filename; the `※` prefix is gone.
 

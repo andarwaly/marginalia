@@ -54,8 +54,10 @@ Fuller definitions and examples: `references/admission.md`.
   stays in the source note.
 - The entry holds no source-by-source dossier and no new recommendation.
 - Link a term in the prose at its first mention when a Reference note for it exists or is in
-  this batch: `[[Harness|harness]]`, keeping the sentence's wording. Never link the entry to
-  itself. List the folder of Reference notes for this; their text is no source.
+  this batch and the link helps a reader of this entry: `[[Harness|harness]]`. Never link the
+  entry to itself. List the folder of Reference notes for this; their text is no source.
+- Related terms link each other when the relation is real. Add one short connecting sentence
+  when the notes state the relation; with no such line, leave the link out.
 - A part of a larger term opens by saying so when the notes do: "Part of [[Harness|harness]],
   a reusable capability…".
 - Filename: `<term>.md`, dropping `\ / * ? " < > |`, turning `:` into ` -`, avoiding

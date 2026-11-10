@@ -29,8 +29,9 @@ Judged by behavior. Inputs are notes with their frontmatter.
 12. **Several terms.** `/define a, b, c` -> the checks are reported together and one question
     is asked for the batch. "Write it anyway" also covers later terms in the session.
 14. **Links.** A definition mentions a term with a Reference note, or one in the batch -> the
-    first mention is `[[Term|as written]]`. Fails: a link to a note that does not exist, a
-    self-link, or a sentence reworded to fit a link.
+    first mention is `[[Term|as written]]`. Notes state that two terms relate -> the entries
+    link each other, with one short connecting sentence if needed. Fails: a link to a note
+    that does not exist, a self-link, or a connecting sentence no note supports.
 13. **Vault template.** The vault has a definition template -> the shown entry already uses
     its frontmatter and filename, and the file matches what was shown. Fails: properties
     added after the preview.
