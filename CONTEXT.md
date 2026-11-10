@@ -67,7 +67,7 @@ The link from a source point to its highlight: a linked `[mm:ss]` timestamp for 
 An atomic idea of the user's own, titled by a claim and optionally backed by source notes. Written by `ideate`.
 
 **Reference note**:
-The user's glossary entry for a term, built from their notes. Written by `define`.
+The user's glossary entry for a term: one neutral definition in the user's vocabulary, built from their notes. Written by `define`. Any further heading is the user's own.
 
 ### Discussion
 

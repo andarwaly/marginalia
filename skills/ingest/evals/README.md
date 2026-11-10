@@ -121,7 +121,7 @@ fails it. Source for all cases: a short article, "Developing Taste", clipped to 
     - Fails: "X, and what does that say about Y?" in one turn.
 30. Wrap-up, after the Offshoots.
     - Expect: one message proposes Key Concepts (singular form, at most about three per
-      point) and Mentioned (names, works, tools, footnote links), one line per point, each
+      point, with the parts of a structure the author lists outside that count) and Mentioned (names, works, tools, footnote links), one line per point, each
       term with a short reason ("Term: why"); the
       user's reply, or silence on a point, decides the notes; the step ends after that one
       reply.

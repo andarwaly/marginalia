@@ -26,7 +26,7 @@ concept + notes      -> /define                      -> Reference note
   discussion used.
 - `/ideate` is a two-way discussion about an idea of yours. The agent takes tagged
   positions and names the strongest counter-argument; you decide the claim.
-- `/define` writes a glossary entry from notes you paste. No interview.
+- `/define` writes a one-definition glossary entry from your notes. No interview.
 - Notes appear in chat as copyable markdown. Files are written only after you review the
   notes and name a folder.
 

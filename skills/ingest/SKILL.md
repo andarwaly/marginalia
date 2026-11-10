@@ -106,7 +106,8 @@ Wrap-up): `references/terms.md`.
    3. Read the Key Concepts and Mentioned definitions in `references/terms.md`. Propose
       them in one message, one line per source point you will write (Key Concepts |
       Mentioned), from that point's passages: propose a term only when the block quote or
-      the user's words would lose meaning without it, at most about three per point; judge
+      the user's words would lose meaning without it, at most about three per point, not
+      counting the parts of a structure the author lists, which are always proposed; judge
       by the source's field and ask when it is unclear. Give each term a short reason for
       being there ("Term: why"). Add a last line for the whole source, from the passages
       not skipped, discussed or not: the vocabulary and proper names the source uses that
